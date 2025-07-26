@@ -153,10 +153,10 @@
     <h3>Alterar Senha</h3>
 
      
-    <form action="">
-        <input type="password" placeholder="Senha Atual"><br>
-        <input type="password" placeholder="Nova Senha"><br>
-        <input type="password" placeholder="Confirmar Senha"><br>
+    <form onsubmit="alterarSenha(event)" >
+        <input id="inputSenhaAtual" type="password" placeholder="Senha Atual"><br>
+        <input id="inputNovaSenha" type="password" placeholder="Nova Senha"><br>
+        <input id="inputConfirmarSenha" type="password" placeholder="Confirmar Senha"><br>
         <button>Confirmar Alteração</button>
     </form>
 
@@ -225,6 +225,29 @@
             <a href="#"><img src="http://placehold.co/35" alt="">X</a>
         </div>
             </footer>
+
+            <script>
+
+                let alterar_senha = {
+                     senha_atual: "",
+                     nova_senha: "",
+                     confirmar_senha: ""
+                }
+
+                function alterarSenha(e){
+                    e.preventDefault()
+                    
+                    alterar_senha.senha_atual = document.querySelector("#inputSenhaAtual").value
+                    alterar_senha.nova_senha = document.querySelector("#inputNovaSenha").value
+                    alterar_senha.confirmar_senha = document.querySelector("#inputConfirmarSenha").value
+
+                    // senha_atual = nova_senha
+                    
+                    console.log(alterar_senha)
+
+                }
+
+            </script>
     
 </body>
 </html>
