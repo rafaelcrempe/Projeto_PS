@@ -108,7 +108,7 @@
         </div>
         <div>
             <ul>
-                <li>Pedro Alves <button>Ver Perfil</button></li>
+                <li><span id="textoNome"></span> <button>Ver Perfil</button></li>
                 <li>Alberto Martins <button>Ver Perfil</button></li>
                 <li>José Pereira <button>Ver Perfil</button></li>
                 <li>Conrado Lopes <button>Ver Perfil</button></li>
@@ -145,6 +145,36 @@
             <a href="#"><img src="http://placehold.co/35" alt="">X</a>
         </div>
             </footer>
-            
+           
+            <script>
+
+                let profissional = {
+
+                    id: 2,
+                    nome: "Pedro",
+                    sobrenome: "Alves",
+                    nascimento:"",
+                    cpf:"",
+                    telefone:"",
+                    email:"",
+                    senha_atual:"",
+                    pedreiro: true,
+                    encanador:false,
+                    pintor: false ,
+                    eletrecista: false,
+                    marceneiro: false,
+                    criado_em:"",
+                    imagem_perfil:"",
+                    ativo: true,
+
+                }
+
+                // profissional.nome = document.querySelector("#textoNome").value
+                document.querySelector("#textoNome").innerHTML = profissional.nome + " " + profissional.sobrenome
+
+                //profissional.nome + profissional.sobrenome
+
+            </script>
+
 </body>
 </html>
