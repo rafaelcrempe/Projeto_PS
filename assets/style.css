@@ -5,6 +5,7 @@ body {
     "wdth" 100;
     margin-top: 0;
     overflow: scroll;
+    background-color: #3F72AF;
 }
 
 header {
