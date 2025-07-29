@@ -11,52 +11,55 @@
     <a href="./perfil.html">Perfil</a>
     <hr>
 
-    <div>    
+    <div>
         <div>
             <img src="http://placehold.co/150x30" alt="">
             <h1>Ajuda Aqui!</h1>
         </div>
         
         <div>
-            <button>Home</button>
-            <button>Quem somos</button>
-            <button>login</button>
+            <button onclick="mostrarHome()">Home</button>
+            <button onclick="mostrarQuemSomos()">Quem somos</button>
+            <a href="./login.html"><button>login</button></a>
+            
         </div>
     </div>
-    <br><br>
+    <hr>
+      
+    <div id="home">
+
+        <div>
+            <form action="#">
+                <select name="#" id="#">
+                    <option selected>Cidade</option>
+                    <option value="sao_carlos">São Carlos</option>
+                    <option value="araraquara">Araraquara</option>
+                    <option value="ibate">Ibate</option>
+                    
+                </select>
+            </form>
+            <form action="#">
+                <select name="#" id="#">
+                    <option selected>Especialidades</option>
+                    <option value="pedreiro">Pedreiro</option>
+                    <option value="encanador">Encanador</option>
+                    <option value="pintor">Pintor</option>
+                    <option value="eletricista">Eletricista</option>
+                    <option value="marceneiro">Marceneiro</option>
+                    
+                </select>
+            </form>
+            
+            <button onclick="mostrarCategorias()">PESQUISAR</button>
+        </div>
         
-    <div>
-        <form action="#">
-            <select name="#" id="#">
-                <option selected>Cidade</option>
-                <option value="sao_carlos">São Carlos</option>
-                <option value="araraquara">Araraquara</option>
-                <option value="ibate">Ibate</option>
-                
-            </select>
-        </form>
-        <form action="#">
-            <select name="#" id="#">
-                <option selected>Especialidades</option>
-                <option value="pedreiro">Pedreiro</option>
-                <option value="encanador">Encanador</option>
-                <option value="pintor">Pintor</option>
-                <option value="eletricista">Eletricista</option>
-                <option value="marceneiro">Marceneiro</option>
-                
-            </select>
-        </form>
-        
-        <button>PESQUISAR</button>
-    </div>
-    
-    <div>
-        <ul>
-            <li>
-                <a href="#"><span class="icon">
-                    <img src="http://placehold.co/30" alt="">
-                </span>
-                Pedreiro
+        <div>
+            <ul>
+                <li>
+                    <a href="#"><span class="icon">
+                        <img src="http://placehold.co/30" alt="">
+                    </span>
+                    Pedreiro
                 </a>
             </li>
         </ul>
@@ -66,43 +69,49 @@
                     <img src="http://placehold.co/30" alt="">
                 </span>
                 Encanador
-                </a>
+            </a>
             </li>
         </ul>
         <ul>
             <li>
-                <a href="#"><span class="icon">
-                    <img src="http://placehold.co/30" alt="">
-                </span>
-                Pintor
-                </a>
-            </li>
+            <a href="#"><span class="icon">
+                <img src="http://placehold.co/30" alt="">
+            </span>
+            Pintor
+        </a>
+         </li>
         </ul>
         <ul>
             <li>
-                <a href="#"><span class="icon">
-                    <img src="http://placehold.co/30" alt="">
-                </span>
-                Eletricista
-                </a>
+            <a href="#"><span class="icon">
+                <img src="http://placehold.co/30" alt="">
+            </span>
+        Eletricista
+        </a>
             </li>
         </ul>
         <ul>
-            <li>
-                <a href="#"><span class="icon">
-                    <img src="http://placehold.co/30" alt="">
-                </span>
-                Marceneiro
-                </a>
-            </li>
+        <li>
+        <a href="#"><span class="icon">
+            <img src="http://placehold.co/30" alt="">
+        </span>
+        Marceneiro
+        </a>
+        </li>
         </ul>
-
     </div>
+
+</div>
+
+<div id="quemSomos">
     <hr>
     <h2>Quem somos</h2>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+</div>
+
     <hr>
-    <div>
+
+    <div id="categorias">
         <div>
             <h2>Categoria</h2>
         </div>
@@ -127,7 +136,8 @@
             </ul>
         </div>
     </div>
-        <hr>
+
+    <hr>
 
     <footer>
 
@@ -147,6 +157,9 @@
             </footer>
            
             <script>
+
+                    mostrarHome()
+                    
 
                 let profissional = {
 
@@ -174,7 +187,33 @@
 
                 //profissional.nome + profissional.sobrenome
 
-            </script>
+            
+            
 
+
+                function esconderTodos(){
+                         
+
+                    document.querySelector("#home").style.display = "none"
+                    document.querySelector("#quemSomos").style.display = "none"
+                    document.querySelector("#categorias").style.display = "none"
+
+                }
+                function mostrarHome(){
+                    esconderTodos()
+                    document.querySelector("#home").style.display = "block"
+
+                }
+                function mostrarQuemSomos(){
+                        esconderTodos()
+                    document.querySelector("#quemSomos").style.diplay = "block"
+
+                }
+                function mostrarCategorias(){
+                        esconderTodos()
+                    document.querySelector("#categorias").style.diplay = "block"
+
+                }
+            </script>
 </body>
 </html>
