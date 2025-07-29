@@ -1,0 +1,26 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-variation-settings:
+    "wdth" 100;
+    margin-top: 0;
+    overflow: scroll;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    background-color:#112D4E;
+    color: #DBE2EF;
+    width: 100%;
+}
+
+h1 {
+    
+}
+
+
