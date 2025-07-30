@@ -11,17 +11,34 @@ body {
 header {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     position: fixed;
     top: 0;
     background-color:#112D4E;
     color: #DBE2EF;
     width: 100%;
-}
-
-h1 {
+    height: 130px;
+    border: 0;
     
 }
+
+.navegacao {
+    display: flex;
+    flex: row;
+    height: 100px;
+    border: 0;
+    padding: 0;
+}
+
+.navegacao button {
+    background-color: transparent;
+    height: 100%;
+
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+
 
 
