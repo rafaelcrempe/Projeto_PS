@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +10,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-        
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+
 </head>
+
 <body>
 
     <a href="./index.html">Index</a>
@@ -19,23 +22,24 @@
     <a href="./perfil.html">Perfil</a>
     <hr>
 
-    <header>   
-        <div class="logo">
-            <img width="250px" src="./assets/img/logo.png" alt="Logo do site Ajuda Aqui!">
+        <div class="barraTopo">
+            <div class="logo">
+                <img width="250px" src="./assets/img/logo.png" alt="Logo do site Ajuda Aqui!">
+            </div>
 
+            <h1>Ajuda Aqui!</h1>
+
+            <div class="navegacao">
+                <button>Início</button>
+                <button>Quem somos</button>
+                <button>Login</button>
+            </div>
         </div>
 
-        <h1>Ajuda Aqui!</h1>
-        
-        <div class="navegacao">
-            <button>Home</button>
-            <button>Quem somos</button>
-            <button>login</button>
-        </div>
-    </header>
+
 
     <br><br>
-        
+
     <div id="login">
         <form action="#">
             <input type="email" placeholder="Digite o seu email">
@@ -49,7 +53,7 @@
     </div>
 
     <br><br>
- 
+
     <div id="tipoCadastro">
         <button onclick="mostrarCadastroProfissional()">Sou Profissional</button>
         <button onclick="mostrarCadastroUsuario()">Sou Usuário</button>
@@ -57,57 +61,57 @@
 
 
     <div id="cadastroProfissional">
-            <h2>Cadastro</h2>
-    <form onsubmit="cadastrarProfissional(event);mostrarCadastroRealizado()">
-        <input id="inputNomeProfissional"  type="text" placeholder="Nome"><br>
-        <input id="inputSobrenomeProfissional" type="text" placeholder="Sobrenome"><br>
-        <input id="inputNascimentoProfissional" type="date" placeholder="Data Nascimento"><br>
-        <input id="inputCPFProfissional" type="text" placeholder="CPF"><br>
-        <input id="inputTelefoneProfissional" type="tel" placeholder="Telefone"><br>
-        <input id="inputEmailProfissional" type="email" placeholder="E-mail"><br>
-        <input id="inputSenhaProfissional" type="password" placeholder="Senha"><br>
-        <input type="password" placeholder="Confirmar Senha"><br><br>
-        <div>
-            <p><strong>Especialidades</strong></p>
-            <input type="checkbox" id="pedreiro">
-            <label for="pedreiro">Pedreiro</label>
-            <input type="checkbox" id="encanador">
-            <label for="encanador">Encanador</label>
-            <input type="checkbox" id="pintor">
-            <label for="pintor">Pintor</label>
-            <input type="checkbox" id="eletricista">
-            <label for="eletricista">Eletricista</label>
-            <input type="checkbox" id="marceneiro">
-            <label for="marceneiro">Marceneiro</label>
-        </div>
-        <button>Cadastrar</button>
-    </form>
+        <h2>Cadastro</h2>
+        <form onsubmit="cadastrarProfissional(event);mostrarCadastroRealizado()">
+            <input id="inputNomeProfissional" type="text" placeholder="Nome"><br>
+            <input id="inputSobrenomeProfissional" type="text" placeholder="Sobrenome"><br>
+            <input id="inputNascimentoProfissional" type="date" placeholder="Data Nascimento"><br>
+            <input id="inputCPFProfissional" type="text" placeholder="CPF"><br>
+            <input id="inputTelefoneProfissional" type="tel" placeholder="Telefone"><br>
+            <input id="inputEmailProfissional" type="email" placeholder="E-mail"><br>
+            <input id="inputSenhaProfissional" type="password" placeholder="Senha"><br>
+            <input type="password" placeholder="Confirmar Senha"><br><br>
+            <div>
+                <p><strong>Especialidades</strong></p>
+                <input type="checkbox" id="pedreiro">
+                <label for="pedreiro">Pedreiro</label>
+                <input type="checkbox" id="encanador">
+                <label for="encanador">Encanador</label>
+                <input type="checkbox" id="pintor">
+                <label for="pintor">Pintor</label>
+                <input type="checkbox" id="eletricista">
+                <label for="eletricista">Eletricista</label>
+                <input type="checkbox" id="marceneiro">
+                <label for="marceneiro">Marceneiro</label>
+            </div>
+            <button>Cadastrar</button>
+        </form>
     </div>
 
 
     <div id="cadastroUsuario">
         <h2>Cadastro</h2>
-    <form onsubmit="cadastrarUsuario(event);mostrarCadastroRealizado()">
-        <input id="inputNomeUsuario" type="text" placeholder="Nome"><br>
-        <input id="inputSobrenomeUsuario" type="text" placeholder="Sobrenome"><br>
-        <input id="inputNascimentoUsuario" type="date" placeholder="Data Nascimento"><br>
-        <input id="inputCPFUsuario" type="text" placeholder="CPF"><br>
-        <input id="inputTelefoneUsuario" type="tel" placeholder="Telefone"><br>
-        <input id="inputEmailUsuario" type="email" placeholder="E-mail"><br>
-        <input id="inputSenhaUsuario" type="password" placeholder="Senha"><br>
-        <input type="password" placeholder="Confirmar Senha"><br><br>
-        
-        <button onclick="mostrarCadastroRealizado()">Cadastrar</button>
-    </form>
+        <form onsubmit="cadastrarUsuario(event);mostrarCadastroRealizado()">
+            <input id="inputNomeUsuario" type="text" placeholder="Nome"><br>
+            <input id="inputSobrenomeUsuario" type="text" placeholder="Sobrenome"><br>
+            <input id="inputNascimentoUsuario" type="date" placeholder="Data Nascimento"><br>
+            <input id="inputCPFUsuario" type="text" placeholder="CPF"><br>
+            <input id="inputTelefoneUsuario" type="tel" placeholder="Telefone"><br>
+            <input id="inputEmailUsuario" type="email" placeholder="E-mail"><br>
+            <input id="inputSenhaUsuario" type="password" placeholder="Senha"><br>
+            <input type="password" placeholder="Confirmar Senha"><br><br>
+
+            <button onclick="mostrarCadastroRealizado()">Cadastrar</button>
+        </form>
     </div>
-    
+
 
     <div id="cadastroRealizado">
         <h2>Cadastro realizado com sucesso!</h2>
         <button onclick="mostrarLogin()">Login</button>
     </div>
-    
-    
+
+
     <footer>
 
         <div>
@@ -130,125 +134,129 @@
 
         mostrarLogin()
 
-                let profissional = {
-                    id: 1,
-                    nome: "",
-                    sobrenome: "",
-                    nascimento: "",
-                    cpf: "",
-                    telefone: "",
-                    email: "",
-                    senha_atual: "",
-                    pedreiro: false,      
-                    encanador: false,
-                    pintor: false,
-                    eletricista: false,
-                    marceneiro: false,
-                    criado_em: "",
-                    imagem_perfil: "",
-                    ativo: true
-                }
+        let profissional = {
+            id: 1,
+            nome: "",
+            sobrenome: "",
+            nascimento: "",
+            cpf: "",
+            telefone: "",
+            email: "",
+            senha_atual: "",
+            pedreiro: false,
+            encanador: false,
+            pintor: false,
+            eletricista: false,
+            marceneiro: false,
+            criado_em: "",
+            imagem_perfil: "",
+            ativo: true
+        }
 
-                let usuario = {
-                    id: 1,
-                    nome: "",
-                    sobrenome: "",
-                    nascimento: "",
-                    cpf: "",
-                    telefone: "",
-                    email: "",
-                    senha_atual: "",
-                    criado_em: "",
-                    imagem_perfil: "",
-                    ativo: true
-                }
-
-
-
-                function cadastrarProfissional(e) {
-                    e.preventDefault()
-
-                    //Popular o objeto de acordo com os dados dos inputs
-                    profissional.nome = document.querySelector("#inputNomeProfissional").value 
-                    profissional.sobrenome = document.querySelector("#inputSobrenomeProfissional").value 
-                    profissional.nascimento = document.querySelector("#inputNascimentoProfissional").value  
-                    profissional.cpf = document.querySelector("#inputCPFProfissional").value  
-                    profissional.telefone = document.querySelector("#inputTelefoneProfissional").value  
-                    profissional.email = document.querySelector("#inputEmailProfissional").value  
-                    profissional.senha_atual = document.querySelector("#inputSenhaProfissional").value  
-                    profissional.pedreiro = document.querySelector("#pedreiro").checked    
-                    profissional.encanador = document.querySelector("#encanador").checked  
-                    profissional.pintor = document.querySelector("#pintor").checked  
-                    profissional.eletricista = document.querySelector("#eletricista").checked   
-                    profissional.marceneiro = document.querySelector("#marceneiro").checked  
-    
-                    //Adicionar os ocultos (dados de controle)
-                    profissional.id = 5
-                    profissional.criado_em = new Date()
-    
-                    //Mostrar os dados no console
-                    console.log(profissional)
-
-                }
-
-                function cadastrarUsuario(e) {
-                    e.preventDefault()
-
-                    //Popular o objeto de acordo com os dados dos inputs
-                    usuario.nome = document.querySelector("#inputNomeUsuario").value 
-                    usuario.sobrenome = document.querySelector("#inputSobrenomeUsuario").value 
-                    usuario.nascimento = document.querySelector("#inputNascimentoUsuario").value  
-                    usuario.cpf = document.querySelector("#inputCPFUsuario").value  
-                    usuario.telefone = document.querySelector("#inputTelefoneUsuario").value  
-                    usuario.email = document.querySelector("#inputEmailUsuario").value  
-                    usuario.senha_atual = document.querySelector("#inputSenhaUsuario").value  
-
-    
-                    //Adicionar os ocultos (dados de controle)
-                    usuario.id = 5
-                    usuario.criado_em = new Date()
-    
-                    //Mostrar os dados no console
-                    console.log(usuario)
-
-                }
+        let usuario = {
+            id: 1,
+            nome: "",
+            sobrenome: "",
+            nascimento: "",
+            cpf: "",
+            telefone: "",
+            email: "",
+            senha_atual: "",
+            criado_em: "",
+            imagem_perfil: "",
+            ativo: true
+        }
 
 
-                function esconderTodos() {
-                    document.querySelector("#login").style.display = "none"
-                    document.querySelector("#tipoCadastro").style.display = "none"
-                    document.querySelector("#cadastroProfissional").style.display = "none"
-                    document.querySelector("#cadastroUsuario").style.display = "none"
-                    document.querySelector("#cadastroRealizado").style.display = "none"
-                }
 
-                function mostrarLogin() {
-                    esconderTodos()
-                    document.querySelector("#login").style.display = "block"
-                }
+        function cadastrarProfissional(e) {
+            e.preventDefault()
 
-                function mostrarCadastroProfissional() {
-                    esconderTodos()
-                    document.querySelector("#cadastroProfissional").style.display = "block"
-                }
+            //Popular o objeto de acordo com os dados dos inputs
+            profissional.nome = document.querySelector("#inputNomeProfissional").value
+            profissional.sobrenome = document.querySelector("#inputSobrenomeProfissional").value
+            profissional.nascimento = document.querySelector("#inputNascimentoProfissional").value
+            profissional.cpf = document.querySelector("#inputCPFProfissional").value
+            profissional.telefone = document.querySelector("#inputTelefoneProfissional").value
+            profissional.email = document.querySelector("#inputEmailProfissional").value
+            profissional.senha_atual = document.querySelector("#inputSenhaProfissional").value
+            profissional.pedreiro = document.querySelector("#pedreiro").checked
+            profissional.encanador = document.querySelector("#encanador").checked
+            profissional.pintor = document.querySelector("#pintor").checked
+            profissional.eletricista = document.querySelector("#eletricista").checked
+            profissional.marceneiro = document.querySelector("#marceneiro").checked
 
-                function mostrarCadastroUsuario() {
-                    esconderTodos()
-                    document.querySelector("#cadastroUsuario").style.display = "block"
-                }
+            //Adicionar os ocultos (dados de controle)
+            profissional.id = 5
+            profissional.criado_em = new Date()
 
-                function mostrarTipoCadastro() {
-                    esconderTodos()
-                    document.querySelector("#tipoCadastro").style.display = "block"
-                }
+            //Mostrar os dados no console
+            console.log(profissional)
 
-                function mostrarCadastroRealizado() {
-                    esconderTodos()
-                    document.querySelector("#cadastroRealizado").style.display = "block"
-                }
-                
+        }
+
+        function cadastrarUsuario(e) {
+            e.preventDefault()
+
+            //Popular o objeto de acordo com os dados dos inputs
+            usuario.nome = document.querySelector("#inputNomeUsuario").value
+            usuario.sobrenome = document.querySelector("#inputSobrenomeUsuario").value
+            usuario.nascimento = document.querySelector("#inputNascimentoUsuario").value
+            usuario.cpf = document.querySelector("#inputCPFUsuario").value
+            usuario.telefone = document.querySelector("#inputTelefoneUsuario").value
+            usuario.email = document.querySelector("#inputEmailUsuario").value
+            usuario.senha_atual = document.querySelector("#inputSenhaUsuario").value
+
+
+            //Adicionar os ocultos (dados de controle)
+            usuario.id = 5
+            usuario.criado_em = new Date()
+
+            //Mostrar os dados no console
+            console.log(usuario)
+
+        }
+
+
+        function esconderTodos() {
+            document.querySelector("#login").style.display = "none"
+            document.querySelector("#tipoCadastro").style.display = "none"
+            document.querySelector("#cadastroProfissional").style.display = "none"
+            document.querySelector("#cadastroUsuario").style.display = "none"
+            document.querySelector("#cadastroRealizado").style.display = "none"
+        }
+
+        function mostrarLogin() {
+            esconderTodos()
+            document.querySelector("#login").style.display = "block"
+        }
+
+        function mostrarCadastroProfissional() {
+            esconderTodos()
+            document.querySelector("#cadastroProfissional").style.display = "block"
+        }
+
+        function mostrarCadastroUsuario() {
+            esconderTodos()
+            document.querySelector("#cadastroUsuario").style.display = "block"
+        }
+
+        function mostrarTipoCadastro() {
+            esconderTodos()
+            document.querySelector("#tipoCadastro").style.display = "block"
+        }
+
+        function mostrarCadastroRealizado() {
+            esconderTodos()
+            document.querySelector("#cadastroRealizado").style.display = "block"
+        }
+
     </script>
 
 
 </body>
+
 </html>
+
+
+

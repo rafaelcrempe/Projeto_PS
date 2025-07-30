@@ -1,27 +1,27 @@
 body {
     font-family: "Open Sans", sans-serif;
     font-optical-sizing: auto;
-    font-variation-settings:
-    "wdth" 100;
-    margin-top: 0;
+    font-variation-settings: "wdth" 100;
     overflow: scroll;
-    background-color: #3F72AF;
+    background-color: #3F72AF;    
+    margin-left: 0;
+
 }
 
-header {
+.barraTopo {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     position: fixed;
     top: 0;
-    background-color:#112D4E;
+    background-color: #112D4E;
     color: #DBE2EF;
     width: 100%;
     height: 130px;
     border: 0;
-    
 }
+
 
 .navegacao {
     display: flex;
@@ -34,11 +34,17 @@ header {
 .navegacao button {
     background-color: transparent;
     height: 100%;
-
+    color: #DBE2EF;
     border: 1px solid #ccc;
     cursor: pointer;
+    border: 0;
+    font-size: 20px;
+    padding: 10px;
 }
 
 
+.login {
+    margin-top: 100px;
+    position: absolute;
 
-
+}
