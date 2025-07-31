@@ -3,7 +3,7 @@ body {
     font-optical-sizing: auto;
     font-variation-settings: "wdth" 100;
     overflow: scroll;
-    background-color: #3F72AF;    
+    background-color: #DBE2EF;    
     margin-left: 0;
 }
 
@@ -45,9 +45,44 @@ body {
 }
 
 .login {
-    margin-top: 130px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 50px;
+    margin-bottom: 50px;    
+    height: 200px;
 }
 
+.loginCard form {
+    
+    margin-top: 180px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid ;
+    border-color: #112D4E;
+    background-color: #112D4E;
+    padding: 100px 300px;
+    border-radius:25px;
+    align-items: end;
+}
+
+.loginCard p {
+    
+    color: #DBE2EF;
+    align-items: end;
+}
+
+.loginCard .inputEmailLogin {
+    margin-bottom: 5px;
+    margin-left: 0;
+    align-items: flex-end;
+}
+
+.loginCard .inputSenhaLogin {
+    margin-bottom: 5px;
+}
+
+.loginCard button {
+}
 

@@ -22,33 +22,34 @@
     <a href="./perfil.html">Perfil</a>
     <hr>
 
-        <div class="barraTopo">
-            <div class="logo">
-                <img src="./assets/img/logo.png" alt="Logo do site Ajuda Aqui!">
-            </div>
-
-            <h1>Ajuda Aqui!</h1>
-
-            <div class="navegacao">
-                <button>Início</button>
-                <button>Quem somos</button>
-                <button>Login</button>
-            </div>
+    <div class="barraTopo">
+        <div class="logo">
+            <img src="./assets/img/logo.png" alt="Logo do site Ajuda Aqui!">
         </div>
 
-        <br/><br/>
+        <h1>Ajuda Aqui!</h1>
 
-    <div class="login" id="login">
-        <form action="#">
-            <input type="email" placeholder="Digite o seu email">
-            <input type="password" placeholder="Digite sua senha">
-            <button>ENTRAR</button>
-        </form>
-
-        <div>
-            <p>Não tem uma conta? Cadastre-se <a onclick="mostrarTipoCadastro()" href="#">aqui!</a></p>
+        <div class="navegacao">
+            <button>Início</button>
+            <button>Quem somos</button>
+            <button>Login</button>
         </div>
     </div>
+
+    <br /><br />
+
+    <div class="login">
+        <div class="loginCard" id="login">
+            <form action="#">
+                <input class="inputEmailLogin" type="email" placeholder="Digite o seu email">
+                <input class="inputSenhaLogin" type="password" placeholder="Digite sua senha">
+                <button>ENTRAR</button>
+                <p>Não tem uma conta? Cadastre-se <a onclick="mostrarTipoCadastro()" href="#">aqui!</a></p>
+            </form>
+
+        </div>
+    </div>
+
 
     <br><br>
 
@@ -255,6 +256,3 @@
 </body>
 
 </html>
-
-
-
