@@ -5,7 +5,6 @@ body {
     overflow: scroll;
     background-color: #3F72AF;    
     margin-left: 0;
-
 }
 
 .barraTopo {
@@ -22,13 +21,16 @@ body {
     border: 0;
 }
 
+.logo img {
+    width: 250px;
+}
+
 
 .navegacao {
     display: flex;
     flex: row;
     height: 100px;
-    border: 0;
-    padding: 0;
+    border: none;
 }
 
 .navegacao button {
@@ -42,17 +44,10 @@ body {
     padding: 10px;
 }
 
-
 .login {
-    margin-top: 100px;
-    position: absolute;
-
-}
- 
-.rodape {
-
-    
-
+    margin-top: 130px;
+    display: flex;
+    flex-direction: column;
 }
 
 
