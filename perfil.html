@@ -17,6 +17,7 @@
     <a href="./index.html">Index</a>
     <a href="./login.html">Login</a>
     <a href="./perfil.html">Perfil</a>
+    <button onclick="mostrarPerfil()">Ver Perfil</button>
     <hr>
 
     <div>    
@@ -39,8 +40,8 @@
             <h2>Nome</h2>
             <p>Contato:</p>
             <button onclick="mostrarHistoricoUsuario()">Histórico</button>
-            <button>Alterar Dados</button>
-            <button>Avaliação</button>
+            <button onclick="alterarFuncao()">Alterar Dados</button>
+            <button onclick="avaliacaoFuncao()">Avaliação</button>
         </div>
 
         <h2>Resumo Histórico</h2>
@@ -145,9 +146,9 @@
 
         <div>
             
-            <button>Histórico</button>
-            <button>Alterar fotos</button>
-            <button>Alterar Dados</button>
+            <button onclick="historicoProfissionalFuncao()">Histórico</button>
+            <button onclick="">Alterar fotos</button>
+            <button onclick="">Alterar Dados</button>
 
         </div>
 
@@ -240,6 +241,7 @@
                 <p>Fotos (opcional):</p>                
             </li>
         </ul>
+        <button onclick="voltarPerfilProfissional()">Voltar</button>
 
     </div>
 
@@ -264,8 +266,8 @@
     
 
     <div id="alterar">
-        <button>Alterar Senha</button><br>
-        <button>Alterar Número</button><br>
+        <button onclick="alterarSenhaFuncao()" >Alterar Senha</button><br>
+        <button onclick="alterarNumeroFuncao()" >Alterar Número</button><br>
     </div>
      
     
@@ -274,11 +276,11 @@
         <h3>Alterar Senha</h3>
         
         
-        <form onsubmit="alterarSenha(event)" >
+        <form onsubmit="alterarSenhaInput(event)" >
             <input id="inputSenhaAtual" type="password" placeholder="Senha Atual"><br>
             <input id="inputNovaSenha" type="password" placeholder="Nova Senha"><br>
             <input id="inputConfirmarSenha" type="password" placeholder="Confirmar Senha"><br>
-            <button>Confirmar Alteração</button>
+            <button onclick="voltarPerfil()">Confirmar Alteração</button>
         </form>
     </div>
 
@@ -288,11 +290,11 @@
         <h3>Alterar Número</h3>
         
         
-        <form action="">
-            <input type="password" placeholder="Número Atual"><br>
-            <input type="password" placeholder="Novo Número"><br>
-            <input type="password" placeholder="Confirmar Número"><br>
-            <button>Confirmar Alteração</button>
+        <form onsubmit="alterarNumeroInput(event)">
+            <input id="inputNumeroAtual" type="tel" placeholder="Número Atual"><br>
+            <input id="inputNovoNumero" type="tel" placeholder="Novo Número"><br>
+            <input id="inputConfirmarNumero" type="tel" placeholder="Confirmar Número"><br>
+            <button onclick="voltarPerfil()">Confirmar Alteração</button>
         </form>
     </div>
         
@@ -302,9 +304,9 @@
             <h2>Avaliação</h2>
             <p>Notamos que iniciou um chamado com um de nossos colaboradores, Qual o estagio do serviço?</p>
             
-            <button>Trabalho encerrado</button>
-            <button>Trabalho em Andamento</button>
-            <button>Não Contratado</button>
+            <button onclick="avaliacaoServicoFuncao()" >Trabalho encerrado</button>
+            <button onclick="retornoContatoFuncao()" >Trabalho em Andamento</button>
+            <button onclick="naoContratadoFuncao()" >Não Contratado</button>
         </div>
 
     
@@ -317,7 +319,7 @@
         <button>3</button>
         <button>4</button>
         <button>5</button><br>
-        <button>Enviar Avaliação</button>
+        <button onclick="avaliacaoProfissionalFuncao()">Enviar Avaliação</button>
     </div>
 
     
@@ -330,14 +332,20 @@
         <button>3</button>
         <button>4</button>
         <button>5</button><br>
-        <button>Enviar Avaliação</button>
+        <button onclick="voltarPerfil()">Enviar Avaliação</button>
     </div>
 
     
 
     <div id="retornoContato">
         <p>Entraremos em contato novamente mais tarde!</p>
-        <button>X</butto></button>
+        <button onclick="voltarPerfil()">X</butto></button>
+    </div>
+
+    <div id="naoContratado">
+        <p>Obrigado!</p>
+        <button onclick="voltarPerfil()">X</button>
+        
     </div>
 
     
@@ -360,20 +368,15 @@
             </footer>
 
             <script>
-                // esconderTodos()
-                // mostrarPerfil()
-
-                let alterar_senha = {
-                     senha_atual: "",
-                     nova_senha: "",
-                     confirmar_senha: ""
-                }
-
+                esconderTodos()
+                mostrarPerfil()
+                // mostrarPerfilProfissionalFuncao()
+                
                 function esconderTodos(){
                     document.querySelector("#perfil").style.display = "none"
                     document.querySelector("#historicoUsuario").style.display = "none"
-                    document.querySelector("#historicoProfissional").style.display = "none"
                     document.querySelector("#perfilAlteracao").style.display = "none"
+                    document.querySelector("#historicoProfissional").style.display = "none"
                     document.querySelector("#especialidades").style.display = "none"
                     document.querySelector("#alterar").style.display = "none"
                     document.querySelector("#alterarSenha").style.display = "none"
@@ -382,37 +385,114 @@
                     document.querySelector("#avaliacaoServico").style.display = "none"
                     document.querySelector("#avaliacaoProfissional").style.display = "none"
                     document.querySelector("#retornoContato").style.display = "none"
-                    document.querySelector("#voltarPerfil").style.display = "none"
-
+                    document.querySelector("#naoContratado").style.display = "none"
+                    
                 }
-
+                
                 function mostrarPerfil(){
                     document.querySelector("#perfil").style.display= "block"
                 }
-
+                
                 
                 function mostrarHistoricoUsuario(){
-                    // esconderTodos()
+                    esconderTodos()
                     document.querySelector("#historicoUsuario").style.display= "block"
                 }
+                
+                
+                function voltarPerfil(){
+                    esconderTodos()
+                    mostrarPerfil()
+                }
+
+                function alterarFuncao(){
+                     esconderTodos()
+                    document.querySelector("#alterar").style.display = "block"
+                }
+                
+                function alterarSenhaFuncao(){
+                    esconderTodos()
+                    document.querySelector("#alterarSenha").style.display = "block"
+                }
+                
+                function alterarNumeroFuncao(){
+                    esconderTodos()
+                    document.querySelector("#alterarNumero").style.display = "block"
+                }
+
+                function avaliacaoFuncao(){
+                    esconderTodos()
+                    document.querySelector("#statusServico").style.display = "block"
+                }
+
+                function avaliacaoServicoFuncao(){
+                    esconderTodos()
+                    document.querySelector("#avaliacaoServico").style.display = "block"
+                }
+
+                function avaliacaoProfissionalFuncao(){
+                    esconderTodos()
+                    document.querySelector("#avaliacaoProfissional").style.display = "block"
+                }
+
+                function retornoContatoFuncao(){
+                    esconderTodos()
+                    document.querySelector("#retornoContato").style.display = "block"
+                }
+
+                function naoContratadoFuncao(){
+                    esconderTodos()
+                    document.querySelector("#naoContratado").style.display = "block"
+                }
+
+                function mostrarPerfilProfissionalFuncao(){
+                    document.querySelector("#perfilAlteracao").style.display = "block"
+                }
+
+                function historicoProfissionalFuncao(){
+                    esconderTodos()
+                    document.querySelector("#historicoProfissional").style.display = "block"
+                }
+                function voltarPerfilProfissional(){
+                    esconderTodos()
+                    mostrarPerfilProfissionalFuncao()
+                }
+
 
                 
-                // function voltarPerfil(){
-                //     esconderTodos()
-                //     mostrarPerfil()
-                // }
+                let alterar_senha = {
+                    senha_atual: "",
+                    nova_senha: "",
+                    confirmar_senha: ""
+                }
 
-                function alterarSenha(e){
+                function alterarSenhaInput(e){
                     e.preventDefault()
                     
                     alterar_senha.senha_atual = document.querySelector("#inputSenhaAtual").value
                     alterar_senha.nova_senha = document.querySelector("#inputNovaSenha").value
                     alterar_senha.confirmar_senha = document.querySelector("#inputConfirmarSenha").value
-
+                    
                     // senha_atual = nova_senha
                     
                     console.log(alterar_senha)
+                    
+                }
 
+                let alterar_numero={
+                    numero_atual: "",
+                    novo_numero: "",
+                    confirmar_numero: ""
+                }
+
+                function alterarNumeroInput(e){
+                    e.preventDefault()
+                    
+                    alterar_numero.numero_atual = document.querySelector("#inputNumeroAtual").value
+                    alterar_numero.novo_numero = document.querySelector("#inputNovoNumero").value
+                    alterar_numero.confirmar_numero = document.querySelector("#inputConfirmarNumero").value
+
+                    console.log(alterar_numero)
                 }
 
             </script>
