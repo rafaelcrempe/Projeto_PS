@@ -86,3 +86,43 @@ body {
 .loginCard button {
 }
 
+.classPerfil {
+    margin-top: 130px;
+}
+.classHistoricoUsuario {
+    margin-top: 130px;
+}
+.classPerfilAlteracao {
+    margin-top: 130px;
+}
+.classHistoricoProfissional {
+    margin-top: 130px;
+}
+.classEspecialidades {
+    margin-top: 130px;
+}
+.classAlterar {
+    margin-top: 130px;
+}
+.classAlterarSenha {
+    margin-top: 130px;
+}
+.classAlterarNumero {
+    margin-top: 130px;
+}
+.classStatusServico {
+    margin-top: 130px;
+}
+.classAvaliacaoServico {
+    margin-top: 130px;
+}
+.classAvaliacaoProfissional {
+    margin-top: 130px;
+}
+.classRetornoContato {
+    margin-top: 130px;
+}
+.classNaoContratado {
+    margin-top: 130px;
+}
+
