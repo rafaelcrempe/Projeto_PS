@@ -1,24 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+function App() {  // aqui é java script
+  let oi = "Ola mundo!";
+
+   // oi +=  " marcos ";    (outra forma d fazer)
+
+   function soma(a, b){  // parametros
+    
+    return  a  + b
+
+   }
+
+   function divide( a, b){
+
+    return a/b
+
+   }
+
+  return ( /* aqui é  html */
+    <main className="App">
+
+      {soma(oi, "Marcos")} <br/>
+      {divide(36, 6)}
+    </main>
   );
 }
 
