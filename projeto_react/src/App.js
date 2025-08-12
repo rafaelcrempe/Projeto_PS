@@ -2,27 +2,28 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {  // aqui é java script
-  let oi = "Ola mundo!";
+  
+  function calculadora( a, b, op){
 
-   // oi +=  " marcos ";    (outra forma d fazer)
+    if(op == "+"){
+      return a + b
 
-   function soma(a, b){  // parametros
-    
-    return  a  + b
+    } else if( op == "-"){
+      return a - b
 
-   }
+    } else if( op == "*"){
+      return a * b
 
-   function divide( a, b){
-
-    return a/b
-
-   }
+    } else if( op == "/"){
+      return a/ b
+    }
+  } 
 
   return ( /* aqui é  html */
     <main className="App">
-
-      {soma(oi, "Marcos")} <br/>
-      {divide(36, 6)}
+      {calculadora(8, calculadora(4, 5, "*"),  "/")}<br/>
+      {calculadora( 12, 4, "/")}<br/>
+      {calculadora( 36, 12, "*")}<br/>
     </main>
   );
 }
