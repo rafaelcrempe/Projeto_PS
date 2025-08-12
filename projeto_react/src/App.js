@@ -7,8 +7,8 @@ function App() {
   let lista_impar = []
 
   for (let i = 0; i < lista.length; i++) {
-    if (i % 2 != 0) {
-      lista_impar.push(i)
+    if (lista[i] % 2 != 0) {
+      lista_impar.push(lista[i])
     }
 
   }
