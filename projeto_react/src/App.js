@@ -3,18 +3,25 @@ import './App.css';
 
 function App() { // aqui é JavaScript
 
-  let cesta = ['esfirra', 'pavê', 'pão de queijo', 'coca-cola'];
-  
-  let desenha = [];
+ // Faça um lista com todos os numeros mas exiba apenas o numeros 
+ // impares
 
-    for(let i= 0; i < 3; i++  ){
-      desenha.push(<p> {cesta[i]} </p>)
-}
+ let lista = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,]
+
+ let impares = []
+
+ for(let i= 0; i < lista.length; i++){
+    if(i % 2 == 1){
+      impares.push(lista[i])
+    }
+
+ }
 
   return ( // Aqui é html
     <main className="App">
-      {/* {cesta.join(', ')} */}
-     {desenha}
+   
+   {impares.join(', ')}
+    
     </main>
   );
 }
