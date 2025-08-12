@@ -11,8 +11,8 @@ function App() { // aqui é JavaScript
  let impares = []
 
  for(let i= 0; i < lista.length; i++){
-    if(i % 2 == 1){
-      impares.push(lista[i])
+    if(i % 2 == 1){                   // i % 2 !=0
+      impares.push(<p>{lista[i] } </p>);
     }
 
  }
