@@ -3,17 +3,19 @@ import './App.css';
 
 function App() {
 
-  let cesta = ['pão', 'suco', 'chocolate', 'pão de queijo', 'manteiga'];
-  let desenha = [];
+  let lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  let lista_impar = []
 
-  for (let i = 0; i < 3; i++) {
-    desenha.push(<p> {cesta[i]} </p>)
+  for (let i = 0; i < lista.length; i++) {
+    if (i % 2 != 0) {
+      lista_impar.push(i)
+    }
+
   }
-
 
   return (
     <main className="App">
-      {desenha}
+      {lista_impar.join(', ')}
     </main>
   );
 }
