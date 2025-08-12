@@ -5,18 +5,16 @@ function App() { // aqui é JavaScript
 
 
   function calculadora (a, b, op){
-    if(op == '+'){
-      return a + b
-    }
-    else if(op == '-'){
-      return a - b
-    }
-    else if(op == '*'){
-      return a * b
-    }
-    else if(op == '/'){
-      return a / b
-    }
+   switch(op){
+    case '+':
+      return a + b 
+    case '-':
+      return a - b 
+    case '*':
+      return a * b 
+    case '/':
+      return a / b 
+   }
   
   }
 
