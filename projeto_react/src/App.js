@@ -3,21 +3,27 @@ import './App.css';
 
 function App() { 
 
-  let oi = "Olá,";
-  oi += " Rafael";
-
-  function soma(a, b){
-    return a + b;
+  function calculadora(a, b, op){
+    if(op == '+'){
+      return a + b;
+    } else if(op == '-'){
+      return a - b;
+    } else if(op == '*'){
+      return a * b;
+    } else if(op == '/') {
+      return a / b;
+    } 
   }
 
-  function divide(a,b){
-    return a / b;
-  }
 
   return (
     <main className="App">
-      {soma(oi, " Crempe")} <br/>
-      {divide(36,6)}
+   {calculadora(2,5,'+')} <br/>
+   {calculadora(10,10,'-')} <br/>
+   {calculadora(10,3,'*')} <br/>
+   {(calculadora(10,3,'/').toFixed(1))} <br/>
+   {calculadora(5,calculadora(8,7,'*'),'+')} <br/>
+    
     </main>
   );
 }
