@@ -3,29 +3,17 @@ import './App.css';
 
 function App() {
 
-  function calculadora(a, b, op) {
+  let cesta = ['pão', 'suco', 'chocolate', 'pão de queijo', 'manteiga'];
+  let desenha = [];
 
-    switch (op) {
-      case '+':
-        return a + b;
-      case '-':
-        return a - b;
-      case '*':
-        return a * b;
-      case '/':
-        return a / b;
-    }
+  for (let i = 0; i < 3; i++) {
+    desenha.push(<p> {cesta[i]} </p>)
   }
 
 
   return (
     <main className="App">
-      {calculadora(2, 5, '+')} <br />
-      {calculadora(10, 10, '-')} <br />
-      {calculadora(10, 3, '*')} <br />
-      {(calculadora(10, 3, '/').toFixed(1))} <br />
-      {calculadora(5, calculadora(8, 7, '*'), '+')} <br />
-
+      {desenha}
     </main>
   );
 }
