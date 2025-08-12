@@ -3,23 +3,31 @@ import './App.css';
 
 function App() { // aqui é JavaScript
 
- let oi = "Olá Mundo!";
 
-  // oi += " Renan";
-
-  function soma(a,b){
-    return a + b;
-  }
-
-  function divide(a, b){
-    return a / b;
-
+  function calculadora (a, b, op){
+    if(op == '+'){
+      return a + b
+    }
+    else if(op == '-'){
+      return a - b
+    }
+    else if(op == '*'){
+      return a * b
+    }
+    else if(op == '/'){
+      return a / b
+    }
+  
   }
 
   return ( // Aqui é html
     <main className="App">
-     {soma(oi, "Meu chapa ")}<br/>
-     {divide(36, 6)}
+    {(calculadora(8, 5, '/')).toFixed(1)}<br/>
+    {calculadora(8, 5, '*')}<br/>
+    {calculadora(8, 5, '-')}<br/>
+    {calculadora(8, 5, '+')}
+    {calculadora(8, calculadora(8, 5, '*'), '+')}
+    
     </main>
   );
 }
