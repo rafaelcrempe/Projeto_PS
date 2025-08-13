@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.buttonSuccess {
+  background: red;
+  color: white;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  padding: 7px;
+  margin: 20px;
+
+}
