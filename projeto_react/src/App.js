@@ -3,25 +3,59 @@ import './App.css';
 
 function App() { // aqui é JavaScript
 
- // Faça um lista com todos os numeros mas exiba apenas o numeros 
- // impares
+ let  email = ""
+  function MudaEmail(valor){
+    email = valor
 
- let lista = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  }
 
- let impares = [];
+ let senha = ""
+  function MudarSenha(valor){
+    senha = valor
 
- for(let i= 0; i < lista.length; i++){
-    if(lista[i] % 2 == 1){
-      impares.push(<p>{lista[i]}</p>);
-    }
+  }
 
- }
+  function enviar(){
+
+    alert("Email:"+email+"senha: "+senha)
+
+  }
+
+  let islogin = true;
 
   return ( // Aqui é html
     <main className="App">
-   
-   {impares}
-    
+
+      <h1>Entrar</h1>
+
+      <button onClick={ () => {islogin = !islogin}}>
+        {islogin && ("cadastrar-se")}
+        {!islogin && ("Voltar para o login")}
+
+
+      </button>
+
+      {!islogin && (
+      <form className="Register"></form>
+      )}
+
+      {islogin && (
+      <form className="Login">
+          <label>
+          Email: <input type="email" name= "email " placeholder="email@ exemplo.com" onChange={ (e) => MudaEmail(e.target.value) }/> <br/>
+          </label>
+
+          <label>
+          Senha: <input type="password"  name= "senha" placeholder= "Digie a senha"onChange={(e) => MudarSenha(e.target.value)}/> <br/>
+
+          </label>
+          
+          <button className="button-sucess" onClick={() => enviar()}>Login</button>
+
+          <p>Não tem cadastro? <a Href= "#"> Clique aqui</a></p>
+
+      </form>
+      )}
     </main>
   );
 }
