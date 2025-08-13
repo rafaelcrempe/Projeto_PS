@@ -4,56 +4,57 @@ import './App.css';
 function App() { // aqui é JavaScript
 
   let email = ""
+  let senha = ""
 
-  function mudaEmail(valor){
+  function mudarEmail(valor) {
     email = valor
   }
 
-  let senha = ""
-
-  function mudarSenha(valor){
+  function mudarSenha(valor) {
     senha = valor
   }
 
-  function enviar(){
+  function enviar() {
     alert(`Email: ${email}\nSenha: ${senha}`)
   }
+
 
   let isLogin = true;
 
   return ( // Aqui é html
     <main className="App">
-      
-      <h1>Entrar</h1>
 
-      <button onClick={() => {isLogin = !isLogin}} >
-        {isLogin && ("Cadastrar-se")}
-        {!isLogin && ("Voltar para o login")}
-      </button>
+    <button onClick={() => {isLogin = !isLogin}}>
+      {isLogin && ("Cadastre-se")}
+      {!isLogin && ("Voltar para o login")}
+    </button>
 
-      {!isLogin && (
-      <form className="register" >
-        
-      </form>
+      {!isLogin &&(
+        <form className="register">
+           <input type="text" placeholder="Nome"/><br/>
+            <input type="text" placeholder="Sobrenome"/><br/>
+            <input type="date" placeholder="Data Nascimento"/><br/>
+            <input type="text" placeholder="CPF"/><br/>
+            <input type="tel" placeholder="Telefone"/><br/>
+            <input type="email" placeholder="E-mail"/><br/>
+            <input type="password" placeholder="Senha"/><br/>
+            <input type="password" placeholder="Confirmar Senha"/><br/>
+        </form>
       )}
 
       {isLogin && (
-      <form className="login" >
+        <form className="login">
+          <label>
+            Email: <input name="Email" type="email" placeholder="Digite o seu email" onChange={(e) => mudarEmail(e.target.value)} /><br />
+          </label>
+          <label>
+            Senha: <input name="Senha" type="password" placeholder="Digite a sua senha" onChange={(e) => mudarSenha(e.target.value)} /><br />
+          </label>
 
-        <label>
-          Email: <input name="Email" type="email" placeholder="Digite o Email" onChange={(e) => mudaEmail(e.target.value)} /><br/>
-        </label>
-
-        <label>
-          Senha: <input name="Senha" type="password" placeholder="Digite a senha" onChange={(e) => mudarSenha(e.target.value)} /><br/>
-        </label>
-
-      <button className="buttonSuccess" onClick={() => enviar()} >Login</button>
-
-      <p>Não Tem cadastro? <a href="#">Clique aqui</a></p>
-
-      </form>
+          <button className="buttonSuccess" onClick={() => enviar()}>Entrar!</button>
+        </form>
       )}
+
 
     </main>
   );
