@@ -32,18 +32,85 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 .buttonSuccess {
-  background-color: #076919;
+  background-color: #DBE2EF;
   height: 30px;
   padding: 7px;
   margin: 20px;
-  color: #FFF;
+  color: #112D4E;
   cursor: pointer;
   border: none;
   border-radius: 5px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 100;
+  overflow: scroll;
+  background-color: #DBE2EF;
+  margin-left: 0;
+}
+
+
+.fundoCadastro {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height:0%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid;
+  border-color: #112D4E;
+  background-color: #112D4E;
+  padding: 50px;
+  border-radius: 25px;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-left: 0;
+}
+
+
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: #DBE2EF;
+  text-align: left;
+}
+
+.login label {
+  margin: 10px;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: #DBE2EF;
+  text-align: left;
+}
+
+.register label {
+  margin: 10px;
+}
+
+.alterarLoginCadastro {
+  color: #DBE2EF;
+  font-size: 15px;
+  cursor: pointer;
 }
