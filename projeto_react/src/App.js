@@ -27,6 +27,7 @@ function App() { // aqui é JavaScript
 
   function enviar() {
     alert(`Email: ${user.email}\nSenha: ${user.password}`)
+    alert(`Email: ${user.email}\nSenha: ${user.password}`)
   }
 
   return ( // Aqui é html
