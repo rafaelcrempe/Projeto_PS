@@ -43,8 +43,8 @@ function App() { // aqui é JavaScript
         password: user.password
       })
 
-      if(error) throw error //throw força um erro, então se o supabase der erro, ele força o código a parar e entrar no catch
-      if(data.status == 400) throw data.message //podemos colocar outros erros aqui, mas inicialmente usaremos apenas o 400 por ser o mais comum
+      if (error) throw error //throw força um erro, então se o supabase der erro, ele força o código a parar e entrar no catch
+      if (data.status == 400) throw data.message //podemos colocar outros erros aqui, mas inicialmente usaremos apenas o 400 por ser o mais comum
 
       setMsg("Cadastro realizado com sucesso!")
     } catch (e) {
@@ -106,7 +106,6 @@ function App() { // aqui é JavaScript
           )}
 
           {isLogin && (
-
             <form className="login">
               <label>
                 Email<br />
