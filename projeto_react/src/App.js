@@ -26,26 +26,40 @@ function App() { // aqui é JavaScript
   });
 
 
-  const [name, setName] = useState("")
-  const [lastName, setLastName] = useState("")
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [isLogin, setIsLogin] = useState(true);
-  const [isSendRegister, setIsSendRegister] = useState(false)
+  const [isSendRegister, setIsSendRegister] = useState(false);
+  const [msg, setMsg] = useState("");
 
 
   async function register() {
 
     setIsSendRegister(true);
-    
-    let { data, error } = await supabase.auth.signUp({ //quando utilizar AWAIT, a função precisa ser declarada como assíncrona (async)
-      email: user.email,
-      password: user.password
-    })
-    
+
+    try { // uma especie de if/else, ele tenta executar o que esta no try e, caso não consiga, segue para o catch
+      let { data, error } = await supabase.auth.signUp({ //quando utilizar AWAIT, a função precisa ser declarada como assíncrona (async)
+        email: user.email,
+        password: user.password
+      })
+
+      if(error) throw error //throw força um erro, então se o supabase der erro, ele força o código a parar e entrar no catch
+      if(data.status == 400) throw data.message //podemos colocar outros erros aqui, mas inicialmente usaremos apenas o 400 por ser o mais comum
+
+      setMsg("Cadastro realizado com sucesso!")
+    } catch (e) {
+      setMsg(`Erro: ${e.message}`)
+    }
+
     setIsSendRegister(false);
+
+    setTimeout(() => setMsg(""), 5000); // depois de exibir o erro por 5s (mesmo tempo da mensagem de erro), volta a mensagem para vazio. 
+    // Permite que a mensagem seja exibida de novo
   }
 
   return ( // Aqui é html
     <main className="App">
+
 
       <div className="fundoCadastro">
         <div className="card">
@@ -114,6 +128,9 @@ function App() { // aqui é JavaScript
 
         </div>
       </div>
+
+      {msg && (<div className='toast'> {msg} </div>)}     {/* exibe a mensagem de erro na tela */}
+
     </main>
   );
 }
