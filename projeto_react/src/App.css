@@ -114,3 +114,18 @@ body {
   font-size: 15px;
   cursor: pointer;
 }
+
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #333;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0,0.2);
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: toastFadeInOut 3s forwards;
+  z-index: 9999;
+}
