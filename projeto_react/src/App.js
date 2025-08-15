@@ -31,17 +31,33 @@ function App() { // aqui é JavaScript
   const [isLogin, setIsLogin] = useState(true);
   const [isSendRegister, setIsSendRegister] = useState(false)
 
+  const [msg, setMsg] = useState("")
+
 
   async function register() {
 
     setIsSendRegister(true);
-    
-    let { data, error } = await supabase.auth.signUp({ //quando utilizar AWAIT, a função precisa ser declarada como assíncrona (async)
-      email: user.email,
+
+    try{
+
+      let  {data, error } = await supabase.auth.signUp({ //quando utilizar AWAIT, a função precisa ser declarada como assíncrona (async)
+        email: user.email,
       password: user.password
-    })
+
+      })
+
+      if(error) throw error
+
+      if(data.status == 400) throw data.message
+      
+      setMsg("Cadastro realizado!");
+   }catch(e){
+      setMsg(`Error: ${e.message}`)
+  }
     
     setIsSendRegister(false);
+    setTimeout(() => setMsg(""), 5000);
+
   }
 
   return ( // Aqui é html
@@ -114,6 +130,8 @@ function App() { // aqui é JavaScript
 
         </div>
       </div>
+
+      {msg && (<div className='toast'>{msg}</div>)}
     </main>
   );
 }
