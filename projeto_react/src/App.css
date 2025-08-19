@@ -105,6 +105,8 @@ nav a:hover {
   height:0%;
 }
 
+/*Card central*/
+
 .card {
   display: flex;
   flex-direction: column;
