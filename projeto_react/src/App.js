@@ -42,7 +42,7 @@ function App() { // aqui é JavaScript
         <Routes>
           {/* Rotas Públicas */}
           <Route path='/home' element={< Home />} />
-          <Route path='/login' element={< User/>} />
+          <Route path='/users' element={< User/>} />
 
 
           <Route element={ <PrivateSession/> }>
