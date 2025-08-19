@@ -8,7 +8,7 @@ const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8"
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-function User() { // aqui é JavaScript
+function Clients() { // aqui é JavaScript
 
 
   // a função useState retorna um vetor, e esse vetor é constante
@@ -134,4 +134,4 @@ function User() { // aqui é JavaScript
   );
 }
 
-export default User;
+export default Clients;

@@ -1,6 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import User from './User'
+import Clients from './Clients'
+import Images from './Images';
+import Auth from './Auth';
+import Professionals from './Professionals';
+import Services from './Services';
+import Users from './Users';
 import {BrowserRouter as Router, Routes, Route, Navigate, Link, Outlet} from 'react-router-dom';
 
 function PrivateSession(){
@@ -23,9 +28,12 @@ function App() { // aqui é JavaScript
           {hasSession? (
             <>  {/* tags vazia, equivale a uma DIV */}
 
-              <Link to="/home">Inicio</Link>
-              <Link to="/users">Usuários</Link>
+              
+              <Link to="/clients">Clientes</Link>
+              <Link to="/images">Imagens</Link>
+              <Link to="/profissionals">Profissionais</Link>
               <Link to="/services">Serviços</Link>
+              <Link to="/users">Usuários</Link>
             </>
           ):(
             <>  {/* tags vazia, equivale a uma DIV */}
@@ -41,17 +49,25 @@ function App() { // aqui é JavaScript
 
         <Routes>
           {/* Rotas Públicas */}
-          <Route path='/home' element={< Home />} />
-          <Route path='/users' element={< User/>} />
+          
+          <Route path='/images' element={< Images/>} />
+          <Route path='/professionals' element={< Professionals/>} />
+          <Route path='/login' element={< Auth/>} />
+
 
 
           <Route element={ <PrivateSession/> }>
           {/* Rotas Logado */}
 
-          <Route path='/services' element={< Serviços/>} />
+          <Route path='/clients' element={< Clients/>} />
+          <Route path='/services' element={< Services/>} />
+          <Route path='/users' element={< Users/>} />
+
+
 
 
           </Route>
+          <Route path='/'element={< Navigate to='/login'/>} />
         </Routes>
 
       </main>
