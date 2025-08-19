@@ -58,6 +58,35 @@ body {
   margin-left: 0;
 }
 
+/* Barra de navegação fixa no topo */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #112D4E;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 1000;
+}
+
+/* Estilo dos links */
+nav a {
+  color:#DBE2EF;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover com highlight*/
+nav a:hover {
+  background-color: #DBE2EF;
+  color: #112D4E;
+}
 
 .fundoCadastro {
   display: flex;
