@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
+import { useNavigate } from 'react-router-dom';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -14,7 +15,7 @@ function Auth() { // aqui é JavaScript
   // a função useState retorna um vetor, e esse vetor é constante
   // sempre em par, uma variável e uma função
   // por boa prática, o nome da função sempre é "set+Nome_Variável"
-
+  const nav = useNavigate(); // cria uma variável para chamar a função construtora e diminuir o código posteriormente
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -26,16 +27,42 @@ function Auth() { // aqui é JavaScript
   });
 
 
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
+  // const [name, setName] = useState("");
+  // const [lastName, setLastName] = useState("");
   const [isLogin, setIsLogin] = useState(true);
-  const [isSendRegister, setIsSendRegister] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
 
+  async function logar() {
+    setLoading(true)
+
+    try {
+      let { data, error } = await supabase.auth.signInWithPassword({
+        email: user.email,
+        password: user.password
+      })
+
+      if (error) throw error
+
+      setMsg("Logou");
+      
+
+      setTimeout(
+        nav('/home', { replace: true }),
+        5002
+      )
+
+    } catch (err) {
+      setMsg('Error: ' + err);
+    }
+
+    setLoading(false)
+
+  }
 
   async function register() {
 
-    setIsSendRegister(true);
+    setLoading(true);
 
     try { // uma especie de if/else, ele tenta executar o que esta no try e, caso não consiga, segue para o catch
       let { data, error } = await supabase.auth.signUp({ //quando utilizar AWAIT, a função precisa ser declarada como assíncrona (async)
@@ -51,7 +78,7 @@ function Auth() { // aqui é JavaScript
       setMsg(`Erro: ${e.message}`)
     }
 
-    setIsSendRegister(false);
+    setLoading(false);
 
     setTimeout(() => setMsg(""), 5000); // depois de exibir o erro por 5s (mesmo tempo da mensagem de erro), volta a mensagem para vazio. 
     // Permite que a mensagem seja exibida de novo
@@ -98,8 +125,8 @@ function Auth() { // aqui é JavaScript
                 Confirmar Senha <br />
                 <input type="password" placeholder="Confirmar Senha" /><br />
               </label>
-              <button className="buttonSuccess" onClick={register} disabled={isSendRegister}>
-                {isSendRegister ? "CADASTRANDO..." : "CADASTRAR"}
+              <button className="buttonSuccess" onClick={register} disabled={loading}>
+                {loading ? "CADASTRANDO..." : "CADASTRAR"}
               </button>
 
             </form>
@@ -116,7 +143,9 @@ function Auth() { // aqui é JavaScript
                 <input className="inputSenhaLogin" name="Senha" type="password" placeholder="Digite a sua senha" onChange={(e) => setUser({ ...user, password: e.target.value })} /><br />
               </label>
 
-              <button className="buttonSuccess">ENTRAR</button>
+              <button className="buttonSuccess" onClick={logar} disabled={loading} >
+                {loading ? "Entrando..." : "Login"}
+              </button>
             </form>
           )}
 
