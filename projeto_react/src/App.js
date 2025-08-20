@@ -9,7 +9,7 @@ import Users from './Users';
 import {BrowserRouter as Router, Routes, Route, Navigate, Link, Outlet} from 'react-router-dom';
 
 function PrivateSession(){
-  const hasSession = !! localStorage.getItem('supaSession');
+  const hasSession = !!localStorage.getItem('supaSession'); //pega a chave de sessão do supabase e guarda dentro do armazenamento local
   return hasSession ? <Outlet/> : <Navigate to="/login" replace/>
 }
 

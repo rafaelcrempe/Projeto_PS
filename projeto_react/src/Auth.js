@@ -45,6 +45,7 @@ function Auth() { // aqui é JavaScript
       if (error) throw error
 
       setMsg("Logou");
+      localStorage.setItem('supaSession', data.session ) //guardar um item no armazenamento local
       
 
       setTimeout(
@@ -144,7 +145,7 @@ function Auth() { // aqui é JavaScript
               </label>
 
               <button className="buttonSuccess" onClick={logar} disabled={loading} >
-                {loading ? "Entrando..." : "Login"}
+                {loading ? "ENTRANDO..." : "LOGIN"}
               </button>
             </form>
           )}
