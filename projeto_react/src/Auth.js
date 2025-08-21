@@ -23,7 +23,8 @@ function Auth() { // aqui é JavaScript
     name: "",
     last_name: "",
     birth: "",
-    cpf: ""
+    cpf: "",
+    url: ""
   });
 
 
@@ -45,8 +46,8 @@ function Auth() { // aqui é JavaScript
       if (error) throw error
 
       setMsg("Logou");
-      localStorage.setItem('supaSession', data.session ) //guardar um item no armazenamento local
-      
+      localStorage.setItem('supaSession', data.session) //guardar um item no armazenamento local
+
 
       setTimeout(
         nav('/home', { replace: true }),
@@ -74,6 +75,15 @@ function Auth() { // aqui é JavaScript
       if (error) throw error //throw força um erro, então se o supabase der erro, ele força o código a parar e entrar no catch
       if (data.status == 400) throw data.message //podemos colocar outros erros aqui, mas inicialmente usaremos apenas o 400 por ser o mais comum
 
+      
+      const { data: dU, error: eU } = await supabase
+        .from('users')
+        .insert([
+          { user },
+        ])
+        .select()
+
+
       setMsg("Cadastro realizado com sucesso!")
     } catch (e) {
       setMsg(`Erro: ${e.message}`)
@@ -86,9 +96,7 @@ function Auth() { // aqui é JavaScript
   }
 
   return ( // Aqui é html
-    <main className="App">
-
-
+    <div className="screen">
       <div className="fundoCadastro">
         <div className="card">
           {!isLogin && (
@@ -160,7 +168,7 @@ function Auth() { // aqui é JavaScript
 
       {msg && (<div className='toast'> {msg} </div>)}     {/* exibe a mensagem de erro na tela */}
 
-    </main>
+    </div>
   );
 }
 
