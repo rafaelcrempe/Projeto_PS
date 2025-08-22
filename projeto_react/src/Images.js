@@ -18,43 +18,60 @@ function Images() { // aqui é JavaScript
     professional_id: ""
   })
 
-   async function createImage(e){
-    e.preventDefault();
-    console.log('passou')
-    const {data: dataUser, error: errorUser} = await supabase.auth.getUser();
+  const [images, setImages] = useState([])
 
-    if(errorUser) nav('/login', {replace: true})
-
-    if(!dataUser) nav('/login', {replace: true})
-    
-    if(!dataUser && !dataUser.id) nav('/login', {replace:true})
-
-console.log(dataUser)
-
-  
-    
-    const { data, error } = await supabase
+   async function createImage(){
+     
+     
+     const {data: dataUser, error: errorUser} = await supabase.auth.getUser();
+     
+     const uid = dataUser?.user?.id;
+     
+     if(!uid) nav('/login', {replace: true})
+      
+      console.log(uid)
+      
+      const { data, error } = await supabase
       .from('images')
-      .insert([
-        {...image, professional_id: dataUser.id }     
-      ])
-      // .select()
-       console.log(error)
+      .insert({...image, professional_id: uid })
+      // .select();
 
-  }
+    }
 
+      async function readImage(){
+       
+        let { data: dataImages, error } = await supabase
+          .from('images')
+          .select('*')
 
+          setImages(dataImages);        
+      }
+      
+    
 
-  return ( // Aqui é html
-    <div className="screen">
-      <form>
-        <input type="text" placeholder='url imagem ' onChange={(e) => setImage({...image, url: e.target.value})}/>
+    
+    return ( // Aqui é html
+      <div className="screen">
+      <form onSubmit={(e) => e.preventDefault()} >
+        <input type="text" placeholder='url imagem ' onChange={(e) => setImage({...image, url: e.target.value})}/><> </>
 
-        <button className="buttonSuccess" onClick={(e) =>createImage(e)} >
-                CADASTRAR
-              </button>
+        <button onClick={createImage} >SALVAR</button><>               </>
+        <button onClick={readImage} >BUSCAR</button>
 
       </form>
+      
+
+
+        <div className='row'>
+        {images.map(
+          i => (
+            <div key={i.id}>
+            <img src={i.url}/>
+            </div>
+            
+          )
+        )}
+        </div>    
 
       
 

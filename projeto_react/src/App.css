@@ -1,8 +1,7 @@
 .App {
   min-height: calc(100vh - 30px);
-  margin-top: 180px;
+  align-items: center;
   display: flex;
-
   justify-content: center;
   background-color: #DBE2EF;
   font-family: "Open Sans", sans-serif;
@@ -95,6 +94,10 @@ nav a:hover {
   color: #112D4E;
 }
 
+button.ative{
+  background-color: #fff;
+}
+
 .fundoCadastro {
   display: flex;
   flex-direction: row;
@@ -119,6 +122,10 @@ nav a:hover {
   align-items: center;
   margin-bottom: 5px;
   margin-left: 0;
+}
+
+.row{
+  display: flex
 }
 
 
