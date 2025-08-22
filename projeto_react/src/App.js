@@ -34,6 +34,9 @@ function App() { // aqui é JavaScript
               <Link to="/profissionals">Profissionais</Link>
               <Link to="/services">Serviços</Link>
               <Link to="/users">Usuários</Link>
+              <Link to="/home">Inicio</Link>
+              <Link to="/login">Entrar</Link>
+              <Link to="/profile">Perfil</Link>
             </>
           ):(
             <>  {/* tags vazia, equivale a uma DIV */}
