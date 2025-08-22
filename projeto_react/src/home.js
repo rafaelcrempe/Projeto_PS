@@ -3,6 +3,7 @@ import './App.css';
 import { useState } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
+import Professionals from './Professionals';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -13,48 +14,29 @@ function Home() { // aqui é JavaScript
   const nav = useNavigate();
 
   
-  const [home, setHome]= useState([])
+  const [professionals, setProfessionals]= useState([])
 
-  async function createHome(){
-    const {data: dataUser, error: errorUser} = await supabase.auth.getUser();
 
-    const uid =dataUser?.user?.id;
-    if(!uid) nav("/login", {replace: true});
-        
-    const { data, error } = await supabase
 
-      .from('home')
-      .insert({...home, client_id: uid});
-      //.select();
-                
-
-       // service
-      //.select()
-    
-              
-
-    
-  } 
-
-    async function readHome(filtro){
+    async function readProfessionals(filtro){
       
       if(filtro){
 
-        let { data: dataHome, error } = await supabase
+        let { data: dataProfessionals, error } = await supabase
         .from('professionals')
         .select('*');
         eq('funcao', filtro)
         
-        setHome(dataHome);
+        setProfessionals(dataProfessionals);
 
       }else{
 
-        let { data: dataHome, error } = await supabase
-        .from('home')
+        let { data: dataProfessionals, error } = await supabase
+        .from('professionals')
         .select('*');
         
         
-        setHome(dataHome);
+        setProfessionals(dataProfessionals);
 
       }
 
@@ -86,7 +68,7 @@ function Home() { // aqui é JavaScript
         </div>
     <div/>
 
-      {services.map(
+      {professionals.map(
           s => (
 
             <div key={s.id}>
