@@ -44,7 +44,7 @@
 }
 
 .buttonSuccess {
-  background-color: #DBE2EF;
+  background-color: #DBE2EF;  
   height: 30px;
   padding: 7px;
   margin: 20px;
@@ -54,7 +54,7 @@
   border-radius: 5px;
 }
 
-button.ative{
+button.active{
   background-color: #DBE2EF;
   height: 30px;
   padding: 7px;

@@ -21,6 +21,7 @@ function Auth() { // aqui é JavaScript
     password: "",
     phone: "",
     name: "",
+    funcao: "cliente",
     last_name: "",
     birth: "",
     cpf: "",
@@ -93,6 +94,26 @@ function Auth() { // aqui é JavaScript
         .insert(senduser)
       // .select()
 
+      if (user.funcao == "cliente") {
+        const sendClient = {
+          client_id: dU.auth_id
+        }
+
+        const { data: dU, error: eU } = await supabase
+          .from('clients')
+          .insert(sendClient)
+      } else {
+        const sendProfessional = {
+          funcao: user.funcao,
+          professional_id: dU.auth_id
+          
+        }
+
+        const { data: dU, error: eU } = await supabase
+          .from('professionals')
+          .insert(sendProfessional)
+      }
+
 
       setMsg("Cadastro realizado com sucesso!")
     } catch (e) {
@@ -114,8 +135,8 @@ function Auth() { // aqui é JavaScript
           {!isLogin &&
             (<div>
               <p>Você deseja se cadastrar como: </p>
-              <button className={isProfessional ? 'buttonSuccess' : 'ative'} onClick={() => setIsProfessional(false)}>CLIENTE</button>
-              <button className={isProfessional ? 'ative' : 'buttonSuccess'} onClick={() => setIsProfessional(true)}>PROFISSIONAL</button>
+              <button className={isProfessional ? 'buttonSuccess' : 'active'} onClick={() => setIsProfessional(false)}>CLIENTE</button>
+              <button className={isProfessional ? 'active' : 'buttonSuccess'} onClick={() => setIsProfessional(true)}>PROFISSIONAL</button>
             </div>
             )
           }
@@ -124,13 +145,13 @@ function Auth() { // aqui é JavaScript
           {!isLogin && isProfessional && (
             <form className="register">
               <label for="funcao">Escolha sua especialidade: </label>
-                <select name="funcao" placeholder="Função" onChange={(e) => setUser({ ...user, funcao: e.target.value })}><br />
-                  <option value="pedreiro">Pedreiro</option>
-                  <option value="encanador">Encanador</option>
-                  <option value="pintor">Pintor</option>
-                  <option value="eletricista">Eletricista</option>
-                  <option value="marceneiro">Marceneiro</option>
-                </select>
+              <select name="funcao" placeholder="Função" onChange={(e) => setUser({ ...user, funcao: e.target.value })}><br />
+                <option value="pedreiro">Pedreiro</option>
+                <option value="encanador">Encanador</option>
+                <option value="pintor">Pintor</option>
+                <option value="eletricista">Eletricista</option>
+                <option value="marceneiro">Marceneiro</option>
+              </select>
 
 
               <label>
