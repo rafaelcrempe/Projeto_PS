@@ -31,6 +31,7 @@ function Auth() { // aqui é JavaScript
   // const [name, setName] = useState("");
   // const [lastName, setLastName] = useState("");
   const [isLogin, setIsLogin] = useState(true);
+  const [isProfessional, setIsProfessional] = useState(true);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
 
@@ -75,13 +76,22 @@ function Auth() { // aqui é JavaScript
       if (error) throw error //throw força um erro, então se o supabase der erro, ele força o código a parar e entrar no catch
       if (data.status == 400) throw data.message //podemos colocar outros erros aqui, mas inicialmente usaremos apenas o 400 por ser o mais comum
 
+      const uid = data?.user?.id;
+      if(!uid) throw 'deu ruim';
+
+      const senduser = {
+        phone: user.phone,
+        name: user.name,
+        last_name: user.last_name,
+        birth: user.birth,
+        cpf: user.cpf,
+        auth_id: uid
+      }
       
       const { data: dU, error: eU } = await supabase
         .from('users')
-        .insert([
-          { user },
-        ])
-        .select()
+        .insert(senduser)
+        // .select()
 
 
       setMsg("Cadastro realizado com sucesso!")
@@ -95,11 +105,68 @@ function Auth() { // aqui é JavaScript
     // Permite que a mensagem seja exibida de novo
   }
 
+
   return ( // Aqui é html
     <div className="screen">
       <div className="fundoCadastro">
         <div className="card">
-          {!isLogin && (
+
+{         !isLogin &&
+          (<div>
+          <p>Você deseja se cadastrar como: </p>
+          <button className={isProfessional? '': 'ative'} onClick={() => setIsProfessional(false)}>CLIENTE</button>
+          <button className={isProfessional? 'ative': '' } onClick={() => setIsProfessional(true)}>PROFISSIONAL</button>
+          </div>
+          )
+          }
+
+
+        {!isLogin && isProfessional && (
+            <form className="register">
+              <label>
+              Função <br />
+                <input type="text" placeholder="Função" onChange={(e) => setUser({ ...user, funcao: e.target.value })} /><br />
+              </label>
+
+              <label>
+                Nome <br />
+                <input type="text" placeholder="Nome" onChange={(e) => setUser({ ...user, name: e.target.value })} /><br />
+              </label>
+              <label>
+                Sobrenome <br />
+                <input type="text" placeholder="Sobrenome" onChange={(e) => setUser({ ...user, last_name: e.target.value })} /><br />
+              </label>
+              <label>
+                Data de Nascimento <br />
+                <input type="date" placeholder="Data Nascimento" onChange={(e) => setUser({ ...user, birth: e.target.value })} /><br />
+              </label>
+              <label>
+                CPF <br />
+                <input type="text" placeholder="CPF" onChange={(e) => setUser({ ...user, cpf: e.target.value })} /><br />
+              </label>
+              <label>
+                Telefone <br />
+                <input type="tel" placeholder="Telefone" onChange={(e) => setUser({ ...user, phone: e.target.value })} /><br />
+              </label>
+              <label>
+                Email <br />
+                <input type="email" placeholder="E-mail" onChange={(e) => setUser({ ...user, email: e.target.value })} /><br />
+              </label>
+              <label>
+                Senha <br />
+                <input type="password" placeholder="Senha" onChange={(e) => setUser({ ...user, password: e.target.value })} /><br />
+              </label>
+              <label>
+                Confirmar Senha <br />
+                <input type="password" placeholder="Confirmar Senha" /><br />
+              </label>
+              <button className="buttonSuccess" onClick={register} disabled={loading}>
+                {loading ? "CADASTRANDO..." : "CADASTRAR"}
+              </button>
+
+            </form>
+          )}
+          {!isLogin && !isProfessional && (
             <form className="register">
 
               <label>
@@ -158,6 +225,7 @@ function Auth() { // aqui é JavaScript
             </form>
           )}
 
+
           <a className="alterarLoginCadastro" onClick={() => setIsLogin(!isLogin)}>
             {isLogin && ("Cadastre-se")}
             {!isLogin && ("Voltar para o login")}
@@ -168,7 +236,9 @@ function Auth() { // aqui é JavaScript
 
       {msg && (<div className='toast'> {msg} </div>)}     {/* exibe a mensagem de erro na tela */}
 
+
     </div>
+
   );
 }
 

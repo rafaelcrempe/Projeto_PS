@@ -1,8 +1,7 @@
 .App {
   min-height: calc(100vh - 30px);
-  margin-top: 180px;
+  align-items: center;
   display: flex;
-
   justify-content: center;
   background-color: #DBE2EF;
   font-family: "Open Sans", sans-serif;
@@ -93,6 +92,10 @@ nav a {
 nav a:hover {
   background-color: #DBE2EF;
   color: #112D4E;
+}
+
+button.ative{
+  background-color: #fff;
 }
 
 .fundoCadastro {
