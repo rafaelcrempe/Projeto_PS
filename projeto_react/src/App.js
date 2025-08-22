@@ -7,6 +7,7 @@ import Professionals from './Professionals';
 import Services from './Services';
 import Users from './Users';
 import Home from './Home';
+import Profile from './Profile';
 import {BrowserRouter as Router, Routes, Route, Navigate, Link, Outlet} from 'react-router-dom';
 
 function PrivateSession(){
@@ -53,6 +54,7 @@ function App() { // aqui é JavaScript
 
         <Routes>
           {/* Rotas Públicas */}
+          <Route path='/profile' element={< Profile/>} />
           <Route path='/home' element={< Home/>} />
           <Route path='/images' element={< Images/>} />
           <Route path='/professionals' element={< Professionals/>} />
