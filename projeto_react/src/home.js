@@ -41,7 +41,7 @@ function Home() { // aqui é JavaScript
       if(filtro){
 
         let { data: dataHome, error } = await supabase
-        .from('home')
+        .from('professionals')
         .select('*');
         eq('funcao', filtro)
         
