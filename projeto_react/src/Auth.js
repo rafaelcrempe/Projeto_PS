@@ -123,9 +123,16 @@ function Auth() { // aqui é JavaScript
 
         {!isLogin && isProfessional && (
             <form className="register">
-              <label>
+              <label for="funcao">
               Função <br />
-                <input type="text" placeholder="Função" onChange={(e) => setUser({ ...user, funcao: e.target.value })} /><br />
+                <select name="funcao" placeholder="Função" onChange={(e) => setUser({ ...user, funcao: e.target.value })}><br />
+                <option value="inicial">Escolha sua especialidade: </option>
+                <option value="pedreiro">Pedreiro</option>
+                <option value="encanador">Encanador</option>
+                <option value="pintor">Pintor</option>
+                <option value="eletricista">Eletricista</option>
+                <option value="marceneiro">Marceneiro</option>
+                </select>
               </label>
 
               <label>
