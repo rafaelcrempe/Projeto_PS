@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
+import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
 
@@ -19,7 +19,10 @@ function Services() { // aqui é JavaScript
     professional_id: "",
     client_id: "",
   })
-  const [services, setServices]= useState([])
+  const [services, setServices]= useState([]) // essa função useEfFect, serve, para quando entrar na tela, ja acontece!
+  useEffect(()=> {
+    readServices()
+  }, [])
 
   async function createServices(){
     const {data: dataUser, error: errorUser} = await supabase.auth.getUser();

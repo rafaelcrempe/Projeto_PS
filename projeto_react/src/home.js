@@ -9,19 +9,13 @@ const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8"
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-function Services() { // aqui é JavaScript
+function Home() { // aqui é JavaScript
   const nav = useNavigate();
 
-  const [service,  setService] =useState({
-    status: "",
-    review: "",
-    star: "",
-    professional_id: "",
-    client_id: "",
-  })
-  const [services, setServices]= useState([])
+  
+  const [home, setHome]= useState([])
 
-  async function createServices(){
+  async function createHome(){
     const {data: dataUser, error: errorUser} = await supabase.auth.getUser();
 
     const uid =dataUser?.user?.id;
@@ -29,8 +23,8 @@ function Services() { // aqui é JavaScript
         
     const { data, error } = await supabase
 
-      .from('services')
-      .insert({...service, client_id: uid});
+      .from('home')
+      .insert({...home, client_id: uid});
       //.select();
                 
 
@@ -42,28 +36,55 @@ function Services() { // aqui é JavaScript
     
   } 
 
-    async function readServices(){
+    async function readHome(filtro){
       
-      let { data: dataServices, error } = await supabase
-      .from('services')
-      .select('*');
+      if(filtro){
 
-      setServices(dataServices);
+        let { data: dataHome, error } = await supabase
+        .from('home')
+        .select('*');
+        eq('funcao', filtro)
+        
+        setHome(dataHome);
+
+      }else{
+
+        let { data: dataHome, error } = await supabase
+        .from('home')
+        .select('*');
+        
+        
+        setHome(dataHome);
+
+      }
+
+
         
     }
 
   return ( // Aqui é html
-    <div className="screen">
-      <form onSubmit={(e)=> e.preventDefault()}>
-        <input type ="text" placeholder= 'status' onChange={(e) => setService({ ...service, status: e.target.value })}/>
-        <input type ="text" placeholder= 'review' onChange={(e) => setService({ ...service, review: e.target.value })}/>
-        <input type ="text" placeholder= 'star' onChange={(e) => setService({ ...service, star: e.target.value })}/>
-        <input type ="number" placeholder= '1' onChange={(e) => setService({ ...service, professional_id: e.target.value })}/>
-
-        <button onClick ={createServices}> Salvar</button>
-      </form>
-
-      <button onClick ={readServices}> Salvar</button>
+    <div className='card'>
+        <div className='cardProfissional'>
+          <img src='https://placehold.com/50x50'/>
+          <p>Pedreiro</p>
+        </div>
+        <div className='cardProfissional'>
+          <img src='https://placehold.com/50x50'/>
+          <p>Encanador</p>
+        </div>
+        <div className='cardProfissional'>
+          <img src='https://placehold.com/50x50'/>
+          <p>Pintor</p>
+        </div>
+        <div className='cardProfissional'>
+          <img src='https://placehold.com/50x50'/>
+          <p>Eletrecista</p>
+        </div>
+        <div className='cardProfissional'>
+          <img src='https://placehold.com/50x50'/>
+          <p>Marceneiro</p>
+        </div>
+    <div/>
 
       {services.map(
           s => (
@@ -84,4 +105,4 @@ function Services() { // aqui é JavaScript
   );
 }
 
-export default Services;
+export default Home;
