@@ -54,6 +54,18 @@
   border-radius: 5px;
 }
 
+button.ative{
+  background-color: #DBE2EF;
+  height: 30px;
+  padding: 7px;
+  margin: 20px;
+  color: #112D4E;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
@@ -94,9 +106,7 @@ nav a:hover {
   color: #112D4E;
 }
 
-button.ative{
-  background-color: #fff;
-}
+
 
 .fundoCadastro {
   display: flex;
@@ -122,12 +132,12 @@ button.ative{
   align-items: center;
   margin-bottom: 5px;
   margin-left: 0;
+  color:#DBE2EF
 }
 
 .row{
   display: flex
 }
-
 
 
 .login {

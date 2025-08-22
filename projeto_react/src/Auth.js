@@ -77,7 +77,7 @@ function Auth() { // aqui é JavaScript
       if (data.status == 400) throw data.message //podemos colocar outros erros aqui, mas inicialmente usaremos apenas o 400 por ser o mais comum
 
       const uid = data?.user?.id;
-      if(!uid) throw 'deu ruim';
+      if (!uid) throw 'deu ruim';
 
       const senduser = {
         phone: user.phone,
@@ -87,11 +87,11 @@ function Auth() { // aqui é JavaScript
         cpf: user.cpf,
         auth_id: uid
       }
-      
+
       const { data: dU, error: eU } = await supabase
         .from('users')
         .insert(senduser)
-        // .select()
+      // .select()
 
 
       setMsg("Cadastro realizado com sucesso!")
@@ -111,29 +111,27 @@ function Auth() { // aqui é JavaScript
       <div className="fundoCadastro">
         <div className="card">
 
-{         !isLogin &&
-          (<div>
-          <p>Você deseja se cadastrar como: </p>
-          <button className={isProfessional? '': 'ative'} onClick={() => setIsProfessional(false)}>CLIENTE</button>
-          <button className={isProfessional? 'ative': '' } onClick={() => setIsProfessional(true)}>PROFISSIONAL</button>
-          </div>
-          )
+          {!isLogin &&
+            (<div>
+              <p>Você deseja se cadastrar como: </p>
+              <button className={isProfessional ? 'buttonSuccess' : 'ative'} onClick={() => setIsProfessional(false)}>CLIENTE</button>
+              <button className={isProfessional ? 'ative' : 'buttonSuccess'} onClick={() => setIsProfessional(true)}>PROFISSIONAL</button>
+            </div>
+            )
           }
 
 
-        {!isLogin && isProfessional && (
+          {!isLogin && isProfessional && (
             <form className="register">
-              <label for="funcao">
-              Função <br />
+              <label for="funcao">Escolha sua especialidade: </label>
                 <select name="funcao" placeholder="Função" onChange={(e) => setUser({ ...user, funcao: e.target.value })}><br />
-                <option value="inicial">Escolha sua especialidade: </option>
-                <option value="pedreiro">Pedreiro</option>
-                <option value="encanador">Encanador</option>
-                <option value="pintor">Pintor</option>
-                <option value="eletricista">Eletricista</option>
-                <option value="marceneiro">Marceneiro</option>
+                  <option value="pedreiro">Pedreiro</option>
+                  <option value="encanador">Encanador</option>
+                  <option value="pintor">Pintor</option>
+                  <option value="eletricista">Eletricista</option>
+                  <option value="marceneiro">Marceneiro</option>
                 </select>
-              </label>
+
 
               <label>
                 Nome <br />

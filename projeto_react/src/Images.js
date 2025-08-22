@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
+import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
+//useEffect muda a tela quando entra ou atualiza a tela
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom'
 
@@ -19,6 +20,10 @@ function Images() { // aqui é JavaScript
   })
 
   const [images, setImages] = useState([])
+
+  useEffect( () => {
+    readImage()
+  }, [] )
 
    async function createImage(){
      
