@@ -121,6 +121,10 @@ nav a:hover {
   margin-left: 0;
 }
 
+.row{
+  display: flex
+}
+
 
 
 .login {
