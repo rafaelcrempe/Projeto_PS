@@ -1,0 +1,184 @@
+.App {
+  min-height: calc(100vh - 30px);
+  margin-top: 180px;
+  display: flex;
+
+  justify-content: center;
+  background-color: #DBE2EF;
+  font-family: "Open Sans", sans-serif;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.buttonSuccess {
+  background-color: #DBE2EF;
+  height: 30px;
+  padding: 7px;
+  margin: 20px;
+  color: #112D4E;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 100;
+  overflow: scroll;
+  background-color: #DBE2EF;
+  margin-left: 0;
+}
+
+/* Barra de navegação fixa no topo */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background-color: #112D4E;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 1000;
+}
+
+/* Estilo dos links */
+nav a {
+  color:#DBE2EF;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover com highlight*/
+nav a:hover {
+  background-color: #DBE2EF;
+  color: #112D4E;
+}
+
+.fundoCadastro {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height:0%;
+}
+
+/*Card central*/
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid;
+  border-color: #112D4E;
+  background-color: #112D4E;
+  padding: 50px;
+  border-radius: 25px;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-left: 0;
+}
+
+
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: #DBE2EF;
+  text-align: left;
+}
+
+.login label {
+  margin: 10px;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  color: #DBE2EF;
+  text-align: left;
+}
+
+.register label {
+  margin: 10px;
+}
+
+.alterarLoginCadastro {
+  color: #DBE2EF;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #333;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0,0.2);
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: toastFadeInOut 3s forwards;
+  z-index: 9999;
+}
+
+@keyframes toastFadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  10%, 90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
