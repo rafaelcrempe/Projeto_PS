@@ -1,9 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
-import { createClient } from "@supabase/supabase-js";
+import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
+import { createClient} from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
-import Professionals from './Professionals';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -14,31 +13,35 @@ function Home() { // aqui é JavaScript
   const nav = useNavigate();
 
   
-  const [professionals, setProfessionals]= useState([])
+  const [users, setUsers]= useState([])
 
+    useEffect(()=>{
+      readUsers()
+    }, [])
 
-
-    async function readProfessionals(filtro){
+    async function readUsers(filtro){
       
       if(filtro){
 
-        let { data: dataProfessionals, error } = await supabase
-        .from('professionals')
-        .select('*');
-        eq('funcao', filtro)
+        let { data: dataUsers, error } = await supabase
+        .from('users')
+        .select('*')
+        .eq('funcao', filtro)
         
-        setProfessionals(dataProfessionals);
+        setUsers(dataUsers);
 
       }else{
 
-        let { data: dataProfessionals, error } = await supabase
-        .from('professionals')
+        let { data: dataUsers, error } = await supabase
+        .from('users')
         .select('*');
         
         
-        setProfessionals(dataProfessionals);
+        setUsers(dataUsers);
 
       }
+
+
 
 
         
@@ -68,14 +71,16 @@ function Home() { // aqui é JavaScript
         </div>
     <div/>
 
-      {professionals.map(
-          s => (
+      {users.map(
+          u => (
 
-            <div key={s.id}>
+            <div key={u.id}>
+              <img src={u.url}/>
+              <p>(u.funcao)</p>
 
               
               
-            {s.star}
+            {u.Users}
             </div>
 
           )
