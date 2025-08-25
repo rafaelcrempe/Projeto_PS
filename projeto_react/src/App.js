@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import Clients from './Views/Users/Clients'
-import Images from './Views/Images/Images';
+import Images from './Views/Images/Index';
 import Auth from './Views/Users/Auth';
 import Professionals from './Views/Users/Professionals';
-import Services from './Views/Services/Services';
-import Users from './Views/Users/Users';
+import Services from './Views/Services/Index';
+import Users from './Views/Users/Index';
 import Home from './Views/Home';
 import Profile from './Views/Users/Profile';
 import {BrowserRouter as Router, Routes, Route, Navigate, Link, Outlet} from 'react-router-dom';

@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import './Images.css';
+import './Style.css';
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 //useEffect muda a tela quando entra ou atualiza a tela
 import { createClient } from "@supabase/supabase-js";
