@@ -1,13 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import Clients from './Clients'
-import Images from './Images';
-import Auth from './Auth';
-import Professionals from './Professionals';
-import Services from './Services';
-import Users from './Users';
-import Home from './Home';
-import Profile from './Profile';
+import Clients from './Views/Users/Clients'
+import Images from './Views/Images/Images';
+import Auth from './Views/Users/Auth';
+import Professionals from './Views/Users/Professionals';
+import Services from './Views/Services/Services';
+import Users from './Views/Users/Users';
+import Home from './Views/Home';
+import Profile from './Views/Users/Profile';
 import {BrowserRouter as Router, Routes, Route, Navigate, Link, Outlet} from 'react-router-dom';
 
 function PrivateSession(){
