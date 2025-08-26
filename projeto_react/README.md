@@ -77,3 +77,5 @@ npx create-react-app
 <!-- se não tiver aparecendo a node modules falta -->
 
 npm install
+
+agora ta certo
