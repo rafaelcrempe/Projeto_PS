@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Clients from './Views/Users/Clients'
 import Images from './Views/Images/Index';
+import ImagesShow from './Views/Images/Show';
 import Auth from './Views/Users/Auth';
 import Professionals from './Views/Users/Professionals';
 import Services from './Views/Services/Index';
@@ -68,6 +69,7 @@ function App() { // aqui é JavaScript
           <Route path='/clients' element={< Clients/>} />
           <Route path='/services' element={< Services/>} />
           <Route path='/users' element={< Users/>} />
+          <Route path='/images:id' element={< ImagesShow/>} />
 
 
 
