@@ -1,9 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
 import { useState } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
-import Professionals from './Professionals';
+// import Professionals from './Views/Users/Professionals.js';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -25,7 +25,7 @@ function Home() { // aqui é JavaScript
         let { data: dataProfessionals, error } = await supabase
         .from('professionals')
         .select('*');
-        eq('funcao', filtro)
+        // .eq('funcao', filtro);
         
         setProfessionals(dataProfessionals);
 

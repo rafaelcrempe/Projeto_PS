@@ -1,13 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import Clients from './Clients'
-import Images from './Images';
-import Auth from './Auth';
-import Professionals from './Professionals';
-import Services from './Services';
-import Users from './Users';
-import Home from './Home';
-import Profile from './Profile';
+import Clients from './Views/Users/Clients'
+import Images from './Views/Images/Index';
+import ImagesShow from './Views/Images/Show';
+import Auth from './Views/Users/Auth';
+import Professionals from './Views/Users/Professionals';
+import Services from './Views/Services/Index';
+import Users from './Views/Users/Index';
+import Home from './Views/Home';
+import Profile from './Views/Users/Profile';
 import {BrowserRouter as Router, Routes, Route, Navigate, Link, Outlet} from 'react-router-dom';
 
 function PrivateSession(){
@@ -54,7 +55,7 @@ function App() { // aqui é JavaScript
 
         <Routes>
           {/* Rotas Públicas */}
-          <Route path='/profile' element={< Profile/>} />
+          <Route path='/profile/:id' element={< Profile/>} />
           <Route path='/home' element={< Home/>} />
           <Route path='/images' element={< Images/>} />
           <Route path='/professionals' element={< Professionals/>} />
@@ -68,6 +69,7 @@ function App() { // aqui é JavaScript
           <Route path='/clients' element={< Clients/>} />
           <Route path='/services' element={< Services/>} />
           <Route path='/users' element={< Users/>} />
+          <Route path='/images:id' element={< ImagesShow/>} />
 
 
 

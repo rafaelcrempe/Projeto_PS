@@ -1,5 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import './Style.css';
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 //useEffect muda a tela quando entra ou atualiza a tela
 import { createClient } from "@supabase/supabase-js";
@@ -70,10 +70,9 @@ function Images() { // aqui é JavaScript
         <div className='row'>
         {images.map(
           i => (
-            <div key={i.id}>
+            <div key={i.id} onClick={() => nav(`/image/${i.id}`, {replace: true})}>
             <img src={i.url}/>
-            </div>
-            
+            </div>   
           )
         )}
         </div>    
