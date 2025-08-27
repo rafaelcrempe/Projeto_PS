@@ -42,7 +42,7 @@ function Profile(){
         
     }
 
-    const [services, setServices]= useState([]) // essa função useEfFect, serve, para quando entrar na tela, ja acontece!
+    const [services, setServices]= useState([]) // essa função useEffect, serve, para quando entrar na tela, ja acontece!
     useEffect(()=> {
         readServices()
     }, [])
@@ -65,14 +65,11 @@ function Profile(){
         let { data: dataImages, error } = await supabase
         .from('images')
         .select('*')
-        .eq('professional_id', id);
+        .eq('auth_id', id);
 
         setImages(dataImages);        
     }
     
-
-
-
 
     return(
     <div className='card'>
