@@ -1,9 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import './Style.css';
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 //useEffect muda a tela quando entra ou atualiza a tela
 import { createClient } from "@supabase/supabase-js";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import CloseButton from 'react-bootstrap/CloseButton';
+import Button from 'react-bootstrap/Button';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -52,6 +54,15 @@ function Images() { // aqui é JavaScript
           setImages(dataImages);        
       }
       
+      async function delImage(id){
+        const { error } = await supabase
+          .from('images')
+          .delete()
+          .eq('id', id);
+
+          readImage()
+
+      }
     
 
     
@@ -71,9 +82,12 @@ function Images() { // aqui é JavaScript
         {images.map(
           i => (
             <div key={i.id}>
-            <img src={i.url}/>
-            </div>
-            
+              <img src={i.url}/>
+              <br/>
+              <Button variant="danger" onClick={ ()=> delImage(i.id) } >Excluir</Button>
+              <Button variant="primary" onClick={ () => nav(`/images/${i.id}`, {replace: true}) } >Ver</Button>
+              <Button variant="warning" onClick={ () => nav(`/images/edit/${i.id}`, {replace: true}) } >Editar</Button>
+            </div>   
           )
         )}
         </div>    
