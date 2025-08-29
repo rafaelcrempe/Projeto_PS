@@ -10,6 +10,8 @@ import Services from './Views/Services/Index';
 import Users from './Views/Users/Index';
 import Home from './Views/Home';
 import Profile from './Views/Users/Profile';
+import ProfileEdit from './Views/Users/Edit';
+
 import {BrowserRouter as Router, Routes, Route, Navigate, Link, Outlet} from 'react-router-dom';
 
 
@@ -74,6 +76,8 @@ function App() { // aqui é JavaScript
           <Route path='/images/edit/:id' element={< ImagesEdit/>} />
           <Route path='/images/:id' element={< ImagesShow/>} />
           <Route path='/images' element={< Images/>} />
+          <Route path='/images:id' element={< ImagesShow/>} />
+          <Route path='/profile/edit/:id' element={< ProfileEdit/>} />
 
 
 
