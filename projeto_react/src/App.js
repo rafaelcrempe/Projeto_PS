@@ -6,6 +6,9 @@ import ImagesShow from './Views/Images/Show';
 import Auth from './Views/Users/Auth';
 import Professionals from './Views/Users/Professionals';
 import Services from './Views/Services/Index';
+import ServicesShow from './Views/Services/Show';
+import ServicesEdit from './Views/Services/Edit';
+
 import Users from './Views/Users/Index';
 import Home from './Views/Home';
 import Profile from './Views/Users/Profile';
@@ -67,6 +70,8 @@ function App() { // aqui é JavaScript
           {/* Rotas Logado */}
 
           <Route path='/clients' element={< Clients/>} />
+          <Route path='/services/edit/:id' element={< ServicesEdit/>} />
+          <Route path='/services/:id' element={< ServicesShow/>} />
           <Route path='/services' element={< Services/>} />
           <Route path='/users' element={< Users/>} />
           <Route path='/images:id' element={< ImagesShow/>} />

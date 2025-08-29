@@ -10,9 +10,9 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 
-function Profile(){
+function Profile() {
 
-    const {id} = useParams()
+    const { id } = useParams()
 
     const [user, setUser] = useState({
         email: "",
@@ -26,90 +26,90 @@ function Profile(){
         url: ""
     });
 
-    useEffect(()=> {
+    useEffect(() => {
         showUser(id)
     }, [])
-    
 
-    async function showUser(id){
-        
+
+    async function showUser(id) {
+
         let { data: dataUser, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('auth_id', id);
+            .from('users')
+            .select('*')
+            .eq('auth_id', id);
 
         setUser(dataUser);
-        
+
     }
 
-    const [services, setServices]= useState([]) // essa função useEfFect, serve, para quando entrar na tela, ja acontece!
-    useEffect(()=> {
+    const [services, setServices] = useState([]) // essa função useEfFect, serve, para quando entrar na tela, ja acontece!
+    useEffect(() => {
         readServices()
     }, [])
-    async function readServices(){
-        
+    async function readServices() {
+
         let { data: dataServices, error } = await supabase
-        .from('services')
-        .select('*')
-        .eq('professional_id', id);
+            .from('services')
+            .select('*')
+            .eq('professional_id', id);
 
         setServices(dataServices);
-        
+
     }
 
     const [images, setImages] = useState([])
-    useEffect( () => {
+    useEffect(() => {
         readImage()
-    }, [] )
-    async function readImage(){
+    }, [])
+    async function readImage() {
         let { data: dataImages, error } = await supabase
-        .from('images')
-        .select('*')
-        .eq('professional_id', id);
+            .from('images')
+            .select('*')
+            .eq('professional_id', id);
 
-        setImages(dataImages);        
+        setImages(dataImages);
     }
-    
 
 
 
 
-    return(
-    <div className='card'>
-        <div> {/* User */}
-            <img src={user.url}/>
-            <h1>{user.name}</h1>
-            <div className='row'>
-                <p>{user.funcao}</p>
-                <p><a url={"http://api.whatsapp/?phone="+user.phone}>{user.phone}</a></p>
+
+    return (
+        <div className='card'>
+            <div> {/* User */}
+                <img src={user.url} />
+                <h1>{user.name}</h1>
+                <div className='row'>
+                    <p>{user.funcao}</p>
+                    <p><a url={"http://api.whatsapp/?phone=" + user.phone}>{user.phone}</a></p>
+                </div>
+            </div>
+            <div> {/* Services */}
+                {services.map(
+                    s => (
+
+                        <div key={s.id}>
+
+
+
+                            {s.star}
+                        </div>
+
+                    )
+                )}
+
+            </div>
+            <div> {/* Images */}
+                {images.map(
+                    i => (
+                        <div key={i.id}>
+                            <img src={i.url} />
+                        </div>
+
+                    )
+                )}
             </div>
         </div>
-        <div> {/* Services */}
-        {services.map(
-          s => (
-
-            <div key={s.id}>
-
-              
-              
-            {s.star}
-            </div>
-
-          )
-      )}
-
-        </div>
-        <div> {/* Images */}
-        {images.map(
-          i => (
-            <div key={i.id}>
-            <img src={i.url}/>
-            </div>
-            
-          )
-        )}
-        </div>
-    </div>    
     );
 
 
