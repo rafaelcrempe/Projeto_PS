@@ -152,7 +152,7 @@ function Auth() { // aqui é JavaScript
               </label>
               <label>
                 CPF <br />
-                <input type="text" placeholder="CPF" onChange={(e) => setUser({ ...user, cpf: e.target.value })} /><br />
+                <input type="text" placeholder="CPF" minLength={11} onChange={(e) => setUser({ ...user, cpf: e.target.value })} /><br />
               </label>
               <label>
                 Telefone <br />
@@ -164,11 +164,11 @@ function Auth() { // aqui é JavaScript
               </label>
               <label>
                 Senha <br />
-                <input type="password" placeholder="Senha" onChange={(e) => setUser({ ...user, password: e.target.value })} /><br />
+                <input type="password" placeholder="Senha" minLength={6} onChange={(e) => setUser({ ...user, password: e.target.value })} /><br />
               </label>
               <label>
                 Confirmar Senha <br />
-                <input type="password" placeholder="Confirmar Senha" /><br />
+                <input type="password" placeholder="Confirmar Senha" minLength={6}/><br />
               </label>
               <button className="buttonSuccess" onClick={register} disabled={loading}>
                 {loading ? "CADASTRANDO..." : "CADASTRAR"}

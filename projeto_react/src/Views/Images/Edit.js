@@ -3,9 +3,7 @@ import './Style.css';
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 //useEffect muda a tela quando entra ou atualiza a tela
 import { createClient } from "@supabase/supabase-js";
-import { useNavigate } from 'react-router-dom';
-import CloseButton from 'react-bootstrap/CloseButton';
-import Button from 'react-bootstrap/Button';
+import { useNavigate, useParams } from 'react-router-dom'
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -15,19 +13,18 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 function Images() { // aqui é JavaScript
 
   const nav = useNavigate();
+  const {id} = useParams();
 
   const [image, setImage] = useState({
     url:"",
     professional_id: ""
   })
 
-  const [images, setImages] = useState([])
-
   useEffect( () => {
     readImage()
   }, [] )
 
-   async function createImage(){
+   async function updateImage(){
      
      
      const {data: dataUser, error: errorUser} = await supabase.auth.getUser();
@@ -40,7 +37,8 @@ function Images() { // aqui é JavaScript
       
       const { data, error } = await supabase
       .from('images')
-      .insert({...image, professional_id: uid })
+      .update({...image, professional_id: uid })
+      .eq('id', id);
       // .select();
 
     }
@@ -50,51 +48,23 @@ function Images() { // aqui é JavaScript
         let { data: dataImages, error } = await supabase
           .from('images')
           .select('*')
+          .eq('id', id)
+          .single();
 
-          setImages(dataImages);        
+          setImage(dataImages);        
       }
       
-      async function delImage(id){
-        const { error } = await supabase
-          .from('images')
-          .delete()
-          .eq('id', id);
-
-          readImage()
-
-      }
     
 
     
     return ( // Aqui é html
       <div className="screen">
-      <form onSubmit={(e) => e.preventDefault()} >
-        <input type="text" placeholder='url imagem ' onChange={(e) => setImage({...image, url: e.target.value})}/><> </>
+        <form onSubmit={(e) => e.preventDefault()} >
+          <input type="text" value={image.url} placeholder='url imagem ' onChange={(e) => setImage({...image, url: e.target.value})}/><> </>
 
-        <button onClick={createImage} >SALVAR</button><>               </>
-        <button onClick={readImage} >BUSCAR</button>
-
-      </form>
-      
-
-
-        <div className='row'>
-        {images.map(
-          i => (
-            <div key={i.id}>
-              <img src={i.url}/>
-              <br/>
-              <Button variant="danger" onClick={ ()=> delImage(i.id) } >Excluir</Button>
-              <Button variant="primary" onClick={ () => nav(`/images/${i.id}`, {replace: true}) } >Ver</Button>
-              <Button variant="warning" onClick={ () => nav(`/images/edit/${i.id}`, {replace: true}) } >Editar</Button>
-            </div>   
-          )
-        )}
-        </div>    
-
-      
-
-    </div>
+          <button onClick={updateImage} >SALVAR</button>
+        </form>
+      </div>
   );
 }
 
