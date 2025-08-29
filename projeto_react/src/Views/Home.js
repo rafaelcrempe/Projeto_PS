@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 // import Professionals from './Views/Users/Professionals.js';
 
 
@@ -16,9 +17,20 @@ function Home() { // aqui é JavaScript
   const [isFiltered, setIsFiltered] = useState(false);
   const nav = useNavigate();
   const [professionals, setProfessionals] = useState([])
+  const [logado, setLogado] = useState(-1) 
 
 
+  useEffect( () => {
+    isLogado()
+  })
 
+  async function isLogado() {
+    const {data: dataUser, error: errorUser} = await supabase.auth.getUser();
+     
+    const uid = dataUser?.user?.id;
+
+    setLogado(uid);
+  }
 
   async function readProfessionals(filtro) {
     
@@ -77,14 +89,18 @@ function Home() { // aqui é JavaScript
       
 
       {isFiltered && (
-        <div className='row'>
+        <div className='column'>
 
         <button onClick={() => setIsFiltered(false)}>Voltar</button>
 
           {professionals.map(
             u => (
-              <div className='cardLista' key={u.auth_id} onClick={() => nav(`/profile/${u.auth_id}`, { replace: true })}>
+              <div className='cardLista' key={u.auth_id}>
                 Nome: {u.name}<br />
+                <Button variant="danger">Excluir</Button>
+                { logado == u.auth_id &&
+                  (<Button variant="warning" onClick={() => nav(`/profile/edit/${u.auth_id}`, { replace: true })}>Editar</Button>
+                )}
               </div>
             )
           )}
