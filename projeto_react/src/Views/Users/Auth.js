@@ -86,7 +86,8 @@ function Auth() { // aqui é JavaScript
         last_name: user.last_name,
         birth: user.birth,
         cpf: user.cpf,
-        auth_id: uid
+        auth_id: uid,
+        funcao: user.funcao
       }
 
       const { data: dU, error: eU } = await supabase
@@ -94,27 +95,7 @@ function Auth() { // aqui é JavaScript
         .insert(senduser)
       // .select()
 
-      if (user.funcao == "cliente") {
-        const sendClient = {
-          client_id: dU.auth_id
-        }
-
-        const { data: dU, error: eU } = await supabase
-          .from('clients')
-          .insert(sendClient)
-      } else {
-        const sendProfessional = {
-          funcao: user.funcao,
-          professional_id: dU.auth_id
-          
-        }
-
-        const { data: dU, error: eU } = await supabase
-          .from('professionals')
-          .insert(sendProfessional)
-      }
-
-
+  
       setMsg("Cadastro realizado com sucesso!")
     } catch (e) {
       setMsg(`Erro: ${e.message}`)
@@ -135,7 +116,10 @@ function Auth() { // aqui é JavaScript
           {!isLogin &&
             (<div>
               <p>Você deseja se cadastrar como: </p>
-              <button className={isProfessional ? 'buttonSuccess' : 'active'} onClick={() => setIsProfessional(false)}>CLIENTE</button>
+              <button className={isProfessional ? 'buttonSuccess' : 'active'} onClick={() => {
+                setIsProfessional(false);
+                setUser({ ...user, funcao: "cliente" })
+                }}>CLIENTE</button>
               <button className={isProfessional ? 'active' : 'buttonSuccess'} onClick={() => setIsProfessional(true)}>PROFISSIONAL</button>
             </div>
             )
@@ -168,7 +152,7 @@ function Auth() { // aqui é JavaScript
               </label>
               <label>
                 CPF <br />
-                <input type="text" placeholder="CPF" onChange={(e) => setUser({ ...user, cpf: e.target.value })} /><br />
+                <input type="text" placeholder="CPF" minLength={11} onChange={(e) => setUser({ ...user, cpf: e.target.value })} /><br />
               </label>
               <label>
                 Telefone <br />
@@ -180,11 +164,11 @@ function Auth() { // aqui é JavaScript
               </label>
               <label>
                 Senha <br />
-                <input type="password" placeholder="Senha" onChange={(e) => setUser({ ...user, password: e.target.value })} /><br />
+                <input type="password" placeholder="Senha" minLength={6} onChange={(e) => setUser({ ...user, password: e.target.value })} /><br />
               </label>
               <label>
                 Confirmar Senha <br />
-                <input type="password" placeholder="Confirmar Senha" /><br />
+                <input type="password" placeholder="Confirmar Senha" minLength={6}/><br />
               </label>
               <button className="buttonSuccess" onClick={register} disabled={loading}>
                 {loading ? "CADASTRANDO..." : "CADASTRAR"}

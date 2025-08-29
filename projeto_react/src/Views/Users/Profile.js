@@ -36,13 +36,15 @@ function Profile(){
         let { data: dataUser, error } = await supabase
         .from('users')
         .select('*')
-        .eq('auth_id', id);
+        .eq('auth_id', id)
+        .single();
 
+        console.log(dataUser)
         setUser(dataUser);
         
     }
 
-    const [services, setServices]= useState([]) // essa função useEfFect, serve, para quando entrar na tela, ja acontece!
+    const [services, setServices]= useState([]) // essa função useEffect, serve, para quando entrar na tela, ja acontece!
     useEffect(()=> {
         readServices()
     }, [])
@@ -65,25 +67,24 @@ function Profile(){
         let { data: dataImages, error } = await supabase
         .from('images')
         .select('*')
-        .eq('professional_id', id);
+        .eq('auth_id', id);
 
         setImages(dataImages);        
     }
     
 
-
-
-
     return(
     <div className='card'>
         <div> {/* User */}
+
             <img src={user.url}/>
             <h1>{user.name}</h1>
-            <div className='row'>
+            <div className='column'>
                 <p>{user.funcao}</p>
                 <p><a url={"http://api.whatsapp/?phone="+user.phone}>{user.phone}</a></p>
             </div>
         </div>
+
         <div> {/* Services */}
         {services.map(
           s => (
@@ -99,6 +100,7 @@ function Profile(){
       )}
 
         </div>
+
         <div> {/* Images */}
         {images.map(
           i => (
