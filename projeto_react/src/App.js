@@ -3,6 +3,7 @@ import './App.css';
 import Clients from './Views/Users/Clients'
 import Images from './Views/Images/Index';
 import ImagesShow from './Views/Images/Show';
+import ImagesEdit from './Views/Images/Edit';
 import Auth from './Views/Users/Auth';
 import Professionals from './Views/Users/Professionals';
 import Services from './Views/Services/Index';
@@ -10,6 +11,7 @@ import Users from './Views/Users/Index';
 import Home from './Views/Home';
 import Profile from './Views/Users/Profile';
 import {BrowserRouter as Router, Routes, Route, Navigate, Link, Outlet} from 'react-router-dom';
+
 
 function PrivateSession(){
   const hasSession = !!localStorage.getItem('supaSession'); //pega a chave de sessão do supabase e guarda dentro do armazenamento local
@@ -69,7 +71,9 @@ function App() { // aqui é JavaScript
           <Route path='/clients' element={< Clients/>} />
           <Route path='/services' element={< Services/>} />
           <Route path='/users' element={< Users/>} />
-          <Route path='/images:id' element={< ImagesShow/>} />
+          <Route path='/images/edit/:id' element={< ImagesEdit/>} />
+          <Route path='/images/:id' element={< ImagesShow/>} />
+          <Route path='/images' element={< Images/>} />
 
 
 
