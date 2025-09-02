@@ -185,6 +185,19 @@ nav a:hover {
   z-index: 9999;
 }
 
+Input {
+border: 5px solid #F9F7F7;
+background-color: #F9F7F7;
+border-radius: 5px;
+}
+
+Select {
+  border: 5px solid #F9F7F7;
+  background-color: #F9F7F7;
+  border-radius: 5px;
+
+  }
+
 @keyframes toastFadeInOut {
   0% {
     opacity: 0;

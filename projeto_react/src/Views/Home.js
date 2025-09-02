@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+
+
 // import Professionals from './Views/Users/Professionals.js';
 
 
@@ -97,9 +98,9 @@ function Home() { // aqui é JavaScript
             u => (
               <div className='cardLista' key={u.auth_id}>
                 Nome: {u.name}<br />
-                <Button variant="danger">Excluir</Button>
+                <button variant="danger">Excluir</button>
                 { logado == u.auth_id &&
-                  (<Button variant="warning" onClick={() => nav(`/profile/edit/${u.auth_id}`, { replace: true })}>Editar</Button>
+                  (<button variant="warning" onClick={() => nav(`/profile/edit/${u.auth_id}`, { replace: true })}>Editar</button>
                 )}
               </div>
             )

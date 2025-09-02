@@ -3,11 +3,14 @@
 import { useState } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
+import { Input } from '../../Components/Input'
+import { Select } from '../../Components/Select';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8"
 const supabase = createClient(supabaseUrl, supabaseKey);
+
 
 function Auth() { // aqui é JavaScript
 
@@ -95,7 +98,7 @@ function Auth() { // aqui é JavaScript
         .insert(senduser)
       // .select()
 
-  
+
       setMsg("Cadastro realizado com sucesso!")
     } catch (e) {
       setMsg(`Erro: ${e.message}`)
@@ -119,7 +122,7 @@ function Auth() { // aqui é JavaScript
               <button className={isProfessional ? 'buttonSuccess' : 'active'} onClick={() => {
                 setIsProfessional(false);
                 setUser({ ...user, funcao: "cliente" })
-                }}>CLIENTE</button>
+              }}>CLIENTE</button>
               <button className={isProfessional ? 'active' : 'buttonSuccess'} onClick={() => setIsProfessional(true)}>PROFISSIONAL</button>
             </div>
             )
@@ -128,48 +131,87 @@ function Auth() { // aqui é JavaScript
 
           {!isLogin && isProfessional && (
             <form className="register">
-              <label for="funcao">Escolha sua especialidade: </label>
-              <select name="funcao" placeholder="Função" onChange={(e) => setUser({ ...user, funcao: e.target.value })}><br />
-                <option value="pedreiro">Pedreiro</option>
-                <option value="encanador">Encanador</option>
-                <option value="pintor">Pintor</option>
-                <option value="eletricista">Eletricista</option>
-                <option value="marceneiro">Marceneiro</option>
-              </select>
 
+              <Select 
+                label="Escolha sua especialidade"
+                name="funcao"
+                placeholder="Função"
+                onChange={setUser}
+                objeto={user}
+                campo="funcao"
+                options={[
+                  {value: 'pedreiro', label:'Pedreiro'},
+                  {value: 'encanador', label:'Encanador'},
+                  {value: 'pintor', label:'Pintor'},
+                  {value: 'eletricista', label:'Eletricista'},
+                  {value: 'marceneiro', label:'Marceneiro'},
+                ]}
+              />
 
-              <label>
-                Nome <br />
-                <input type="text" placeholder="Nome" onChange={(e) => setUser({ ...user, name: e.target.value })} /><br />
-              </label>
-              <label>
-                Sobrenome <br />
-                <input type="text" placeholder="Sobrenome" onChange={(e) => setUser({ ...user, last_name: e.target.value })} /><br />
-              </label>
-              <label>
-                Data de Nascimento <br />
-                <input type="date" placeholder="Data Nascimento" onChange={(e) => setUser({ ...user, birth: e.target.value })} /><br />
-              </label>
-              <label>
-                CPF <br />
-                <input type="text" placeholder="CPF" minLength={11} onChange={(e) => setUser({ ...user, cpf: e.target.value })} /><br />
-              </label>
-              <label>
-                Telefone <br />
-                <input type="tel" placeholder="Telefone" onChange={(e) => setUser({ ...user, phone: e.target.value })} /><br />
-              </label>
-              <label>
-                Email <br />
-                <input type="email" placeholder="E-mail" onChange={(e) => setUser({ ...user, email: e.target.value })} /><br />
-              </label>
-              <label>
-                Senha <br />
-                <input type="password" placeholder="Senha" minLength={6} onChange={(e) => setUser({ ...user, password: e.target.value })} /><br />
-              </label>
-              <label>
-                Confirmar Senha <br />
-                <input type="password" placeholder="Confirmar Senha" minLength={6}/><br />
-              </label>
+              <Input
+                label="Nome"
+                type="text"
+                placeholder="Nome"
+                onChange={setUser}
+                objeto={user}
+                campo="name"
+              />
+
+              <Input
+                label="Sobrenome"
+                type="text"
+                placeholder="Sobrenome"
+                onChange={setUser}
+                objeto={user}
+                campo='last_name' /><br />
+
+              <Input
+                label="Data de Nascimento"
+                type="date"
+                placeholder="Data de Nascimento"
+                onChange={setUser}
+                objeto={user}
+                campo='birth' /><br />
+
+              <Input
+                label="CPF"
+                type="text"
+                placeholder="CPF"
+                onChange={setUser}
+                objeto={user}
+                campo='cpf' /><br />
+
+              <Input
+                label="Telefone"
+                type="tel"
+                placeholder="Telefone"
+                onChange={setUser}
+                objeto={user}
+                campo='phone' /><br />
+
+              <Input
+                label="Email"
+                type="email"
+                placeholder="E-mail"
+                onChange={setUser}
+                objeto={user}
+                campo='email'
+              /><br />
+
+              <Input
+                label="Senha"
+                type="password"
+                placeholder="Senha"
+                onChange={setUser}
+                objeto={user}
+                campo='password'
+              /><br />
+
+              <Input
+                label="Confirmar Senha"
+                type="password"
+                placeholder="Confirmar Senha" /><br />
+
               <button className="buttonSuccess" onClick={register} disabled={loading}>
                 {loading ? "CADASTRANDO..." : "CADASTRAR"}
               </button>
@@ -179,38 +221,71 @@ function Auth() { // aqui é JavaScript
           {!isLogin && !isProfessional && (
             <form className="register">
 
-              <label>
-                Nome <br />
-                <input type="text" placeholder="Nome" onChange={(e) => setUser({ ...user, name: e.target.value })} /><br />
-              </label>
-              <label>
-                Sobrenome <br />
-                <input type="text" placeholder="Sobrenome" onChange={(e) => setUser({ ...user, last_name: e.target.value })} /><br />
-              </label>
-              <label>
-                Data de Nascimento <br />
-                <input type="date" placeholder="Data Nascimento" onChange={(e) => setUser({ ...user, birth: e.target.value })} /><br />
-              </label>
-              <label>
-                CPF <br />
-                <input type="text" placeholder="CPF" onChange={(e) => setUser({ ...user, cpf: e.target.value })} /><br />
-              </label>
-              <label>
-                Telefone <br />
-                <input type="tel" placeholder="Telefone" onChange={(e) => setUser({ ...user, phone: e.target.value })} /><br />
-              </label>
-              <label>
-                Email <br />
-                <input type="email" placeholder="E-mail" onChange={(e) => setUser({ ...user, email: e.target.value })} /><br />
-              </label>
-              <label>
-                Senha <br />
-                <input type="password" placeholder="Senha" onChange={(e) => setUser({ ...user, password: e.target.value })} /><br />
-              </label>
-              <label>
-                Confirmar Senha <br />
-                <input type="password" placeholder="Confirmar Senha" /><br />
-              </label>
+
+              <Input
+                label="Nome"
+                type="text"
+                placeholder="Nome"
+                onChange={setUser}
+                objeto={user}
+                campo="name"
+              />
+
+              <Input
+                label="Sobrenome"
+                type="text"
+                placeholder="Sobrenome"
+                onChange={setUser}
+                objeto={user}
+                campo='last_name' /><br />
+
+              <Input
+                label="Data de Nascimento"
+                type="date"
+                placeholder="Data de Nascimento"
+                onChange={setUser}
+                objeto={user}
+                campo='birth' /><br />
+
+              <Input
+                label="CPF"
+                type="text"
+                placeholder="CPF"
+                onChange={setUser}
+                objeto={user}
+                campo='cpf' /><br />
+
+              <Input
+                label="Telefone"
+                type="tel"
+                placeholder="Telefone"
+                onChange={setUser}
+                objeto={user}
+                campo='phone' /><br />
+
+              <Input
+                label="Email"
+                type="email"
+                placeholder="E-mail"
+                onChange={setUser}
+                objeto={user}
+                campo='email'
+              /><br />
+
+              <Input
+                label="Senha"
+                type="password"
+                placeholder="Senha"
+                onChange={setUser}
+                objeto={user}
+                campo='password'
+              /><br />
+
+              <Input
+                label="Confirmar Senha"
+                type="password"
+                placeholder="Confirmar Senha" /><br />
+
               <button className="buttonSuccess" onClick={register} disabled={loading}>
                 {loading ? "CADASTRANDO..." : "CADASTRAR"}
               </button>
@@ -220,14 +295,26 @@ function Auth() { // aqui é JavaScript
 
           {isLogin && (
             <form className="login">
-              <label>
-                Email<br />
-                <input className="inputEmailLogin" name="Email" type="email" placeholder="Digite o seu email" onChange={(e) => setUser({ ...user, email: e.target.value })} /><br />
-              </label>
-              <label>
-                Senha<br />
-                <input className="inputSenhaLogin" name="Senha" type="password" placeholder="Digite a sua senha" onChange={(e) => setUser({ ...user, password: e.target.value })} /><br />
-              </label>
+
+              <Input
+                label="Email"
+                className="inputEmailLogin"
+                name="Email" type="email"
+                placeholder="Digite o seu email"
+                onChange={setUser}
+                objeto={user}
+                campo='email' /><br />
+
+
+              <Input
+                label="Senha"
+                className="inputSenhaLogin"
+                name="Senha" type="password"
+                placeholder="Digite a sua senha"
+                onChange={setUser}
+                objeto={user}
+                campo='senha' /><br />
+
 
               <button className="buttonSuccess" onClick={logar} disabled={loading} >
                 {loading ? "ENTRANDO..." : "LOGIN"}
