@@ -68,10 +68,11 @@ function Services() { // aqui é JavaScript
       <h1 className="page-title">Avaliações de Serviço</h1>
       <form onSubmit={(e)=> e.preventDefault()}>
   
-        <input type ="text" placeholder= 'status' onChange={(e) => setService({ ...service, status: e.target.value })}/>
-        <input type ="text" placeholder= 'review' onChange={(e) => setService({ ...service, review: e.target.value })}/>
-        <input type ="text" placeholder= 'star' onChange={(e) => setService({ ...service, star: e.target.value })}/>
-        <input type ="number" placeholder= '1' onChange={(e) => setService({ ...service, professional_id: e.target.value })}/>
+        <Input type ="text" placeholder= 'status' onChange={setService} objeto={service} campo='status'/>
+        <Input type ="text" placeholder= 'review' onChange={setService} objeto={service} campo='review'/>
+        <Input type ="text" placeholder= 'star' onChange={setService} objeto={service} campo='star'/>
+        <Input type ="number" placeholder= '1' onchange={setService} objeto={service} campo='professional_id'/>
+        
 
         <button onClick ={updateServices}> Salvar</button>
       </form>
