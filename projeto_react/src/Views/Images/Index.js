@@ -6,6 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
 import CloseButton from 'react-bootstrap/CloseButton';
 import Button from 'react-bootstrap/Button';
+import {Input} from '../../Components/Input';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -69,7 +70,7 @@ function Images() { // aqui é JavaScript
     return ( // Aqui é html
       <div className="screen">
       <form onSubmit={(e) => e.preventDefault()} >
-        <input type="text" placeholder='url imagem ' onChange={(e) => setImage({...image, url: e.target.value})}/><> </>
+        <Input type="text" placeholder='url imagem ' onChange={setImage} obejto={image} campo='url' /><> </>
 
         <button onClick={createImage} >SALVAR</button><>               </>
         <button onClick={readImage} >BUSCAR</button>
