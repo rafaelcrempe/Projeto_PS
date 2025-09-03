@@ -5,7 +5,7 @@ import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
 import CloseButton from 'react-bootstrap/CloseButton';
 import Button from 'react-bootstrap/Button';
-import {Input} from '../../Components/Input'
+import {Input} from '../../Components/Input';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
