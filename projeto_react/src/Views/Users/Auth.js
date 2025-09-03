@@ -5,6 +5,7 @@ import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../../Components/Input'
 import { Select } from '../../Components/Select';
+import { Form } from '../../Components/Form';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -56,7 +57,7 @@ function Auth() { // aqui é JavaScript
 
       setTimeout(
         nav('/home', { replace: true }),
-        5002
+        5000
       )
 
     } catch (err) {
@@ -110,6 +111,9 @@ function Auth() { // aqui é JavaScript
     // Permite que a mensagem seja exibida de novo
   }
 
+  function verifyPass(pass) {
+    return user.password.includes(pass)
+  }
 
   return ( // Aqui é html
     <div className="screen">
@@ -130,9 +134,9 @@ function Auth() { // aqui é JavaScript
 
 
           {!isLogin && isProfessional && (
-            <form className="register">
+            <Form func={register}>
 
-              <Select 
+              <Select
                 label="Escolha sua especialidade"
                 name="funcao"
                 placeholder="Função"
@@ -140,11 +144,11 @@ function Auth() { // aqui é JavaScript
                 objeto={user}
                 campo="funcao"
                 options={[
-                  {value: 'pedreiro', label:'Pedreiro'},
-                  {value: 'encanador', label:'Encanador'},
-                  {value: 'pintor', label:'Pintor'},
-                  {value: 'eletricista', label:'Eletricista'},
-                  {value: 'marceneiro', label:'Marceneiro'},
+                  { value: 'pedreiro', label: 'Pedreiro' },
+                  { value: 'encanador', label: 'Encanador' },
+                  { value: 'pintor', label: 'Pintor' },
+                  { value: 'eletricista', label: 'Eletricista' },
+                  { value: 'marceneiro', label: 'Marceneiro' },
                 ]}
               />
 
@@ -163,7 +167,7 @@ function Auth() { // aqui é JavaScript
                 placeholder="Sobrenome"
                 onChange={setUser}
                 objeto={user}
-                campo='last_name' /><br />
+                campo='last_name' />
 
               <Input
                 label="Data de Nascimento"
@@ -171,7 +175,7 @@ function Auth() { // aqui é JavaScript
                 placeholder="Data de Nascimento"
                 onChange={setUser}
                 objeto={user}
-                campo='birth' /><br />
+                campo='birth' />
 
               <Input
                 label="CPF"
@@ -179,7 +183,7 @@ function Auth() { // aqui é JavaScript
                 placeholder="CPF"
                 onChange={setUser}
                 objeto={user}
-                campo='cpf' /><br />
+                campo='cpf' />
 
               <Input
                 label="Telefone"
@@ -187,7 +191,7 @@ function Auth() { // aqui é JavaScript
                 placeholder="Telefone"
                 onChange={setUser}
                 objeto={user}
-                campo='phone' /><br />
+                campo='phone' />
 
               <Input
                 label="Email"
@@ -196,7 +200,7 @@ function Auth() { // aqui é JavaScript
                 onChange={setUser}
                 objeto={user}
                 campo='email'
-              /><br />
+              />
 
               <Input
                 label="Senha"
@@ -205,21 +209,22 @@ function Auth() { // aqui é JavaScript
                 onChange={setUser}
                 objeto={user}
                 campo='password'
-              /><br />
+              />
 
-              <Input
-                label="Confirmar Senha"
-                type="password"
-                placeholder="Confirmar Senha" /><br />
+              <label>
+                Confirmar Senha:
+                <input
+                  type="password"
+                  placeholder="Confirmar Senha"
+                  onChange={(e) => verifyPass(e.target.value)}
+                />
+              </label>
 
-              <button className="buttonSuccess" onClick={register} disabled={loading}>
-                {loading ? "CADASTRANDO..." : "CADASTRAR"}
-              </button>
-
-            </form>
+            </Form>
           )}
+
           {!isLogin && !isProfessional && (
-            <form className="register">
+            <Form func={register}>
 
 
               <Input
@@ -237,7 +242,7 @@ function Auth() { // aqui é JavaScript
                 placeholder="Sobrenome"
                 onChange={setUser}
                 objeto={user}
-                campo='last_name' /><br />
+                campo='last_name' />
 
               <Input
                 label="Data de Nascimento"
@@ -245,7 +250,7 @@ function Auth() { // aqui é JavaScript
                 placeholder="Data de Nascimento"
                 onChange={setUser}
                 objeto={user}
-                campo='birth' /><br />
+                campo='birth' />
 
               <Input
                 label="CPF"
@@ -253,7 +258,7 @@ function Auth() { // aqui é JavaScript
                 placeholder="CPF"
                 onChange={setUser}
                 objeto={user}
-                campo='cpf' /><br />
+                campo='cpf' />
 
               <Input
                 label="Telefone"
@@ -261,7 +266,7 @@ function Auth() { // aqui é JavaScript
                 placeholder="Telefone"
                 onChange={setUser}
                 objeto={user}
-                campo='phone' /><br />
+                campo='phone' />
 
               <Input
                 label="Email"
@@ -270,7 +275,7 @@ function Auth() { // aqui é JavaScript
                 onChange={setUser}
                 objeto={user}
                 campo='email'
-              /><br />
+              />
 
               <Input
                 label="Senha"
@@ -279,22 +284,22 @@ function Auth() { // aqui é JavaScript
                 onChange={setUser}
                 objeto={user}
                 campo='password'
-              /><br />
+              />
 
-              <Input
-                label="Confirmar Senha"
-                type="password"
-                placeholder="Confirmar Senha" /><br />
+              <label>
+                Confirmar Senha:
+                <input
+                  type="password"
+                  placeholder="Confirmar Senha"
+                  onChange={(e) => verifyPass(e.target.value)}
+                />
+              </label>
 
-              <button className="buttonSuccess" onClick={register} disabled={loading}>
-                {loading ? "CADASTRANDO..." : "CADASTRAR"}
-              </button>
-
-            </form>
+            </Form>
           )}
 
           {isLogin && (
-            <form className="login">
+            <Form func={register}>
 
               <Input
                 label="Email"
@@ -303,7 +308,7 @@ function Auth() { // aqui é JavaScript
                 placeholder="Digite o seu email"
                 onChange={setUser}
                 objeto={user}
-                campo='email' /><br />
+                campo='email' />
 
 
               <Input
@@ -313,13 +318,8 @@ function Auth() { // aqui é JavaScript
                 placeholder="Digite a sua senha"
                 onChange={setUser}
                 objeto={user}
-                campo='senha' /><br />
-
-
-              <button className="buttonSuccess" onClick={logar} disabled={loading} >
-                {loading ? "ENTRANDO..." : "LOGIN"}
-              </button>
-            </form>
+                campo='password' />
+            </Form>
           )}
 
 

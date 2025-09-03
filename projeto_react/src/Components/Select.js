@@ -10,7 +10,10 @@ function Select({
     return (
         <>
             {label && (
+                <>
                 <label>{label}:</label>
+                <br/>
+                </>
             )} 
             <select name={name} value={objeto[campo]} placeholder={placeholder} onChange={(e) => onChange({...objeto, [campo]: e.target.value})}><br />
                 {options.map(
@@ -21,6 +24,8 @@ function Select({
 
 
             </select>
+            <br/>
+            <br/>
         </>
     );
 }

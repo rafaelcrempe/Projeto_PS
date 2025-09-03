@@ -11,11 +11,16 @@ function Input({
         <>
            { label && 
             (
+                <>
                 <label>{label} :</label>
+                <br/>
+                </>
             )
            }
 
            <input type={type} placeholder={placeholder} className={className} onChange={(e) => onChange({...objeto, [campo]: e.target.value})} />
+           <br/>
+           <br/>
         </>
     );
 }
