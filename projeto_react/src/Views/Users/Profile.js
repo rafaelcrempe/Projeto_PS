@@ -48,6 +48,7 @@ function Profile(){
     useEffect(()=> {
         readServices()
     }, [])
+
     async function readServices(){
         
         let { data: dataServices, error } = await supabase
@@ -63,6 +64,7 @@ function Profile(){
     useEffect( () => {
         readImage()
     }, [] )
+
     async function readImage(){
         let { data: dataImages, error } = await supabase
         .from('images')
@@ -74,14 +76,14 @@ function Profile(){
     
 
     return(
-    <div className='card'>
+    <div className='backgroundScreen'>
         <div> {/* User */}
 
             <img src={user.url}/>
-            <h1>{user.name}</h1>
+            <h1>{user.name} {user.last_name}</h1>
             <div className='column'>
                 <p>{user.funcao}</p>
-                <p><a url={"http://api.whatsapp/?phone="+user.phone}>{user.phone}</a></p>
+                <p><a href={"http://api.whatsapp/?phone="+user.phone}>{user.phone}</a></p>
             </div>
         </div>
 
