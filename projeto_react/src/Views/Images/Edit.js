@@ -3,7 +3,9 @@ import './Style.css';
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 //useEffect muda a tela quando entra ou atualiza a tela
 import { createClient } from "@supabase/supabase-js";
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom';
+import {Input} from '../../Components/Input';
+
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -38,8 +40,7 @@ function Images() { // aqui é JavaScript
       const { data, error } = await supabase
       .from('images')
       .update({...image, professional_id: uid })
-      .eq('id', id);
-      // .select();
+      .eq('auth_id', id);
 
     }
 
@@ -48,7 +49,7 @@ function Images() { // aqui é JavaScript
         let { data: dataImages, error } = await supabase
           .from('images')
           .select('*')
-          .eq('id', id)
+          .eq('auth_id', id)
           .single();
 
           setImage(dataImages);        
@@ -60,9 +61,10 @@ function Images() { // aqui é JavaScript
     return ( // Aqui é html
       <div className="screen">
         <form onSubmit={(e) => e.preventDefault()} >
-          <input type="text" value={image.url} placeholder='url imagem ' onChange={(e) => setImage({...image, url: e.target.value})}/><> </>
+        <Input type="text" placeholder='url imagem ' onChange={setImage} obejto={image} campo='url' /><> </>
 
-          <button onClick={updateImage} >SALVAR</button>
+          <button onClick={updateImage} >SALVAR</button><br/>
+          <button onClick={ () => nav(`/images`, {replace: true}) } >Voltar</button>
         </form>
       </div>
   );

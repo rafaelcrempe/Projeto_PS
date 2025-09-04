@@ -2,52 +2,44 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 
-    function Form({
-        onSubmit,
-        func,
-        title,
-        children
+function Form({
+    func,
+    title,
+    children, //variável reservada pelo React, sempre é o que vai dentro do formulário
+    buttonText
+}) {
 
-    }){
-        const[loading, setloading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-        async function send(){
-            setloading(true)
-            var any = await func()
-            setloading(false)
-            return any
-        }
-
-        return(
-            <div className='cardForm'>
-                <h3>{title}</h3>
-            
-
-                <form onSubmit={(e) => e.preventDefault()}>
-                    {children}
-
-                    
-
-                    <Button onClick ={() => send()} disabled={loading}> 
-                        {loading? (
-                            <Spinner animation="border" role="status">
-                                 <span className="visually-hidden">
-                                    Loading...
-                                 </span>
-                      </Spinner>
-                    ):(
-
-                        <>Salvar</>
-                    )}
-
-                    
-                    
-                    </Button>
-                </form>
-
-            </div>
-        );
-
+    async function send() {
+        setLoading(true)
+        var any = await func()
+        setLoading(false)
+        return any
     }
 
-    export{Form}
+    return (
+
+        <div className='cardForm'>
+            <h2>{title}</h2>
+            <form onSubmit={(e) => e.preventDefault()}>
+                {children}
+
+
+                <Button onClick={() => send()} disabled={loading}>
+                    {loading ? (
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+
+                    ) : (
+                        <>{buttonText? buttonText : 'SALVAR'}</>
+                    )}
+                </Button>
+            </form>
+        </div>
+
+    );
+}
+
+export { Form }

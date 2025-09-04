@@ -10,7 +10,8 @@ const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8"
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-
+// Profile()
+function Profile(){
 
 const StarRating = ({ rating, onRatingChange, readonly = false }) => {
     const fullStar = '★';
@@ -70,8 +71,9 @@ function Profile() {
     useEffect(()=> {
         readServices()
     }, [])
-    async function readServices() {
 
+    async function readServices(){
+        
         let { data: dataServices, error } = await supabase
             .from('services')
             .select('*')
@@ -84,8 +86,9 @@ function Profile() {
     const [images, setImages] = useState([])
     useEffect(() => {
         readImage()
-    }, [])
-    async function readImage() {
+    }, [] )
+
+    async function readImage(){
         let { data: dataImages, error } = await supabase
         .from('images')
         .select('*')
@@ -95,14 +98,14 @@ function Profile() {
     }
 
     return(
-    <div className='card'>
+    <div className='backgroundScreen'>
         <div> {/* User */}
 
             <img src={user.url}/>
-            <h1>{user.name}</h1>
+            <h1>{user.name} {user.last_name}</h1>
             <div className='column'>
                 <p>{user.funcao}</p>
-                <p><a url={"http://api.whatsapp/?phone="+user.phone}>{user.phone}</a></p>
+                <p><a href={"http://api.whatsapp/?phone="+user.phone}>{user.phone}</a></p>
             </div>
         </div>
 
@@ -127,7 +130,6 @@ function Profile() {
 
           )
       )}
-
         </div>
 
         <div> {/* Images */}
@@ -142,7 +144,6 @@ function Profile() {
         </div>
     </div>    
     );
-
 
 }
 
