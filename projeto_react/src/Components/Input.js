@@ -17,12 +17,10 @@ function Input({
                 </>
             )
            }
-
            <input type={type} placeholder={placeholder} className={className} onChange={(e) => onChange({...objeto, [campo]: e.target.value})} />
            <br/>
            <br/>
         </>
     );
 }
-
 export {Input}

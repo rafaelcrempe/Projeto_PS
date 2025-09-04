@@ -20,7 +20,8 @@ function Home() { // aqui é JavaScript
   const [professionals, setProfessionals] = useState([])
   const [logado, setLogado] = useState(-1) 
 
-
+    
+     
   useEffect( () => {
     isLogado()
   })
