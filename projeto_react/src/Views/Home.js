@@ -102,7 +102,7 @@ function Home() { // aqui é JavaScript
 
           {professionals.map(
             u => (
-              <div className='cardLista' key={u.auth_id}>
+              <div onClick={() => nav(`/profile/${u.auth_id}`, { replace: true })} className='cardLista' key={u.auth_id}>
                 Nome: {u.name}<br />
                 <button variant="danger">Excluir</button>
                 { logado == u.auth_id &&
