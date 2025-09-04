@@ -85,7 +85,7 @@ function Images() { // aqui é JavaScript
             <div key={i.id}>
               <img src={i.url}/>
               <br/>
-              <Button variant="danger" onClick={ ()=> delImage(i.id) } >Excluir</Button>
+              <Button variant="danger"  onClick={ ()=> delImage(i.id) } >Excluir</Button>
               <Button variant="primary" onClick={ () => nav(`/images/${i.id}`, {replace: true}) } >Ver</Button>
               <Button variant="warning" onClick={ () => nav(`/images/edit/${i.id}`, {replace: true}) } >Editar</Button>
             </div>   

@@ -49,7 +49,7 @@ function Images() { // aqui é JavaScript
         let { data: dataImages, error } = await supabase
           .from('images')
           .select('*')
-          .eq('id', id)
+          .eq('auth_id', id)
           .single();
 
           setImage(dataImages);        
@@ -63,7 +63,8 @@ function Images() { // aqui é JavaScript
         <form onSubmit={(e) => e.preventDefault()} >
         <Input type="text" placeholder='url imagem ' onChange={setImage} obejto={image} campo='url' /><> </>
 
-          <button onClick={createImage} >SALVAR</button>
+          <button onClick={createImage} >Ver</button><br/>
+          <button onClick={ () => nav(`/images`, {replace: true}) } >Voltar</button>
         </form>
       </div>
   );
