@@ -48,6 +48,7 @@ function Profile(){
     useEffect(()=> {
         readServices()
     }, [])
+
     async function readServices(){
         
         let { data: dataServices, error } = await supabase
@@ -63,6 +64,7 @@ function Profile(){
     useEffect( () => {
         readImage()
     }, [] )
+    
     async function readImage(){
         let { data: dataImages, error } = await supabase
         .from('images')

@@ -61,29 +61,35 @@ function Home() { // aqui é JavaScript
 
   return ( // Aqui é html
 
-    <div className='card'>
+    <div className='backgroundScreen'>
       {!isFiltered && (
         <>
-          <div className='cardProfissional'>
-            <img width='50px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/pedreiro.webp' />
-            <button onClick={() => readProfessionals('pedreiro')}>Pedreiro</button>
+        <div>
+            <img src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/texto_1.png'/>
+        </div>
+
+        <div className='homeProfessional'>
+          <div onClick={() => readProfessionals('pedreiro')} className='cardProfissao'>
+            <img width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/pedreiro.png' />
+            <label>PEDREIRO</label>
           </div>
-          <div className='cardProfissional'>
-            <img src='https://placehold.co/50x50' />
-            <button onClick={() => readProfessionals('encanador')}>Encanador</button>
+          <div onClick={() => readProfessionals('encanador')} className='cardProfissao'>
+            <img  width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/encanador.png' />
+            <label>ENCANADOR</label>
           </div>
-          <div className='cardProfissional'>
-            <img src='https://placehold.co/50x50' />
-            <button onClick={() => readProfessionals('pintor')}>Pintor</button>
+          <div onClick={() => readProfessionals('pintor')} className='cardProfissao'>
+            <img width='100px'  src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/pintor.png' />
+            <label>PINTOR</label>
           </div>
-          <div className='cardProfissional'>
-            <img src='https://placehold.co/50x50' />
-            <button onClick={() => readProfessionals('eletricista')}>Eletricista</button>
+          <div onClick={() => readProfessionals('eletricista')} className='cardProfissao'>
+            <img  width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/eletricista.png' />
+            <label>ELETRICISTA</label>
           </div>
-          <div className='cardProfissional'>
-            <img src='https://placehold.co/50x50' />
-            <button onClick={() => readProfessionals('marceneiro')}>Marceneiro</button>
+          <div onClick={() => readProfessionals('marceneiro')} className='cardProfissao'>
+            <img  width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/marceneiro.png' />
+            <label>MARCENEIRO</label>
           </div>
+        </div>
         </>
       )}
 

@@ -118,16 +118,16 @@ function Auth() { // aqui é JavaScript
   return ( // Aqui é html
     <div className="screen">
       <div className="fundoCadastro">
-        <div className="card">
+        <div className="backgroundScreen">
 
           {!isLogin &&
             (<div>
               <p>Você deseja se cadastrar como: </p>
-              <button className={isProfessional ? 'buttonSuccess' : 'active'} onClick={() => {
+              <button className={isProfessional ? 'buttonBase' : 'active'} onClick={() => {
                 setIsProfessional(false);
                 setUser({ ...user, funcao: "cliente" })
               }}>CLIENTE</button>
-              <button className={isProfessional ? 'active' : 'buttonSuccess'} onClick={() => setIsProfessional(true)}>PROFISSIONAL</button>
+              <button className={isProfessional ? 'active' : 'buttonBase'} onClick={() => setIsProfessional(true)}>PROFISSIONAL</button>
             </div>
             )
           }
@@ -212,13 +212,14 @@ function Auth() { // aqui é JavaScript
               />
 
               <label>
-                Confirmar Senha:
+                Confirmar Senha: <br/>
                 <input
                   type="password"
                   placeholder="Confirmar Senha"
                   onChange={(e) => verifyPass(e.target.value)}
                 />
               </label>
+              <br/>
 
             </Form>
           )}
@@ -287,19 +288,20 @@ function Auth() { // aqui é JavaScript
               />
 
               <label>
-                Confirmar Senha:
+                Confirmar Senha: <br/>
                 <input
                   type="password"
                   placeholder="Confirmar Senha"
                   onChange={(e) => verifyPass(e.target.value)}
                 />
+                <br/>
               </label>
 
             </Form>
           )}
 
           {isLogin && (
-            <Form func={register}>
+            <Form func={register} buttonText='LOGIN'>
 
               <Input
                 label="Email"

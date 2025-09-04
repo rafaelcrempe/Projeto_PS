@@ -5,7 +5,8 @@ import Spinner from 'react-bootstrap/Spinner';
 function Form({
     func,
     title,
-    children //variável reservada pelo React, sempre é o que vai dentro do formulário
+    children, //variável reservada pelo React, sempre é o que vai dentro do formulário
+    buttonText
 }) {
 
     const [loading, setLoading] = useState(false);
@@ -32,7 +33,7 @@ function Form({
                         </Spinner>
 
                     ) : (
-                        <>SALVAR</>
+                        <>{buttonText? buttonText : 'SALVAR'}</>
                     )}
                 </Button>
             </form>

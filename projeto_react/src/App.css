@@ -43,7 +43,7 @@
   }
 }
 
-.buttonSuccess {
+.buttonBase {
   background-color: #DBE2EF;  
   height: 30px;
   padding: 7px;
@@ -120,7 +120,7 @@ nav a:hover {
 
 /*Card central*/
 
-.card {
+.backgroundScreen {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -133,6 +133,31 @@ nav a:hover {
   margin-bottom: 5px;
   margin-left: 0;
   color:#DBE2EF
+}
+
+.homeProfessional {
+  display: flex;
+  flex-direction: row;
+}
+
+.cardProfissao {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardProfissao img {
+  width: 100%;
+}
+
+.cardProfissao img:hover {
+  transform: scale(1.3);
+}
+
+.cardProfissao label {
+  font-weight: 500;
+  font-size: 25px;
 }
 
 .row{
