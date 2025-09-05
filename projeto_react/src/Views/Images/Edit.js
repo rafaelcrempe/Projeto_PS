@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react'; //useState permite criar variável,
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate, useParams } from 'react-router-dom';
 import {Input} from '../../Components/Input';
+import Upload from '../../Components/Upload';
+
 
 
 
@@ -62,7 +64,6 @@ function Images() { // aqui é JavaScript
       <div className="screen">
         <form onSubmit={(e) => e.preventDefault()} >
         <Input type="text" placeholder='url imagem ' onChange={setImage} obejto={image} campo='url' /><> </>
-
           <button onClick={updateImage} >SALVAR</button><br/>
           <button onClick={ () => nav(`/images`, {replace: true}) } >Voltar</button>
         </form>
