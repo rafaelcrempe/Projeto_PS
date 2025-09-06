@@ -47,8 +47,3 @@
 
 
 
-// {/* <p>{s.review}</p>
-// {/*<Button variant="danger"onclick={() => delServices(s.id)}>Excluir</Button>*/}
- //<Button variant="primary" onClick={() => nav( `/services/${s.id}`, {replace: true})}>Ver</Button>
- //<Button variant="warning" onClick={() => nav( `/services/edit/${s.id}`, {replace: true})}>Editar</Button>
-// </div> */}
