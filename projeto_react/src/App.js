@@ -41,11 +41,11 @@ function App() { // aqui é JavaScript
 
         <Routes>
           {/* Rotas Públicas */}
-          <Route path='/profile/:id' element={< Profile/>} />
           <Route path='/home' element={< Home/>} />
+          <Route path='/login' element={< Auth/>} />
+          <Route path='/profile/:id' element={< Profile/>} />
           <Route path='/images' element={< Images/>} />
           <Route path='/professionals' element={< Professionals/>} />
-          <Route path='/login' element={< Auth/>} />
 
 
 
@@ -67,7 +67,7 @@ function App() { // aqui é JavaScript
 
 
           </Route>
-          <Route path='/'element={< Navigate to='/login'/>} />
+          <Route path='/'element={< Navigate to='/home'/>} />
         </Routes>
 
       </main>

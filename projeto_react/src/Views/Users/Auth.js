@@ -60,6 +60,8 @@ function Auth() { // aqui é JavaScript
         5000
       )
 
+      window.location.reload();
+
     } catch (err) {
       setMsg('Error: ' + err);
     }
@@ -301,7 +303,7 @@ function Auth() { // aqui é JavaScript
           )}
 
           {isLogin && (
-            <Form func={register} buttonText='LOGIN'>
+            <Form func={logar} buttonText='LOGIN'>
 
               <Input
                 label="Email"

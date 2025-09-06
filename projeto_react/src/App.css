@@ -66,6 +66,15 @@ button.active{
 
 }
 
+nav{
+  display: flex;
+  flex-direction: row;
+}
+
+nav .principal{
+  flex-grow: 1;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   font-optical-sizing: auto;
