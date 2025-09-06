@@ -110,8 +110,8 @@ function Services() { // aqui é JavaScript
         <buton onClick={() => readServices("services")}>Busca Todos</buton>
         <listSevices
           services={services}
-          funcVer={() => nav( `/services/${s.id}`, {replace: true})}
-          funcEditar={() => nav( `/services/edit${s.id}`, {replace: true})}
+  
+  
 
 
       />
