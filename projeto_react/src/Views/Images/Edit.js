@@ -1,73 +1,89 @@
-// import logo from './logo.svg';
 import './Style.css';
-import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
-//useEffect muda a tela quando entra ou atualiza a tela
+import { useState, useEffect } from 'react';
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate, useParams } from 'react-router-dom';
-import {Input} from '../../Components/Input';
-import Upload from '../../Components/Upload';
+import { Input } from '../../Components/Input';
+import { Upload } from '../../Components/Upload';
 
-
-
-
-const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8"
+const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-function Images() { // aqui é JavaScript
-
+function Images() {
   const nav = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams();
 
   const [image, setImage] = useState({
-    url:"",
+    url: "",
     professional_id: ""
-  })
+  });
 
-  useEffect( () => {
-    readImage()
-  }, [] )
+  useEffect(() => {
+    readImage();
+  }, []);
 
-   async function updateImage(){
-     
-     
-     const {data: dataUser, error: errorUser} = await supabase.auth.getUser();
-     
-     const uid = dataUser?.user?.id;
-     
-     if(!uid) nav('/login', {replace: true})
-      
-      console.log(uid)
-      
-      const { data, error } = await supabase
-      .from('images')
-      .update({...image, professional_id: uid })
-      .eq('auth_id', id);
+  async function updateImage(newUrl) {
+    const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
+    const uid = dataUser?.user?.id;
+    console.log('UID:', uid);
 
+    if (!uid) {
+      nav('/login', { replace: true });
+      return;
     }
 
-      async function readImage(){
-       
-        let { data: dataImages, error } = await supabase
-          .from('images')
-          .select('*')
-          .eq('auth_id', id)
-          .single();
+    console.log('Usuário logado:', uid);
 
-          setImage(dataImages);        
-      }
-      
-    
+    // Usar uid do usuário logado para atualizar
+    const { data, error } = await supabase
+      .from('images')
+      .update({
+        url: newUrl,
+        professional_id: uid
+      })
+      .eq('auth_id', uid);
 
-    
-    return ( // Aqui é html
-      <div className="screen">
-        <form onSubmit={(e) => e.preventDefault()} >
-        <Input type="text" placeholder='url imagem ' onChange={setImage} obejto={image} campo='url' /><> </>
-          <button onClick={updateImage} >SALVAR</button><br/>
-          <button onClick={ () => nav(`/images`, {replace: true}) } >Voltar</button>
-        </form>
-      </div>
+    if (error) {
+      console.error('Erro ao atualizar imagem:', error);
+      alert('Erro ao atualizar imagem: ' + error.message);
+      return;
+    }
+
+    console.log('Imagem atualizada com sucesso:', data);
+    setImage(prev => ({ ...prev, url: newUrl }));
+  }
+
+  async function readImage() {
+    const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
+    const uid = dataUser?.user?.id;
+
+    if (!uid) {
+      nav('/login', { replace: true });
+      return;
+    }
+
+    let { data: dataImages, error } = await supabase
+      .from('images')
+      .select('*')
+      .eq('auth_id', uid)  // Usar uid para buscar imagem do usuário logado
+      .single();
+
+    if (error) {
+      console.error('Erro ao ler imagem:', error);
+      return;
+    }
+
+    setImage(dataImages);
+  }
+
+  return (
+    <div className="screen">
+      <form onSubmit={(e) => e.preventDefault()}>
+        {/* Passa a callback onUploadSuccess para o Upload */}
+        <Upload onUploadSuccess={updateImage} /><br />
+        <button onClick={() => nav(`/images`, { replace: true })}>Voltar</button>
+      </form>
+    </div>
   );
 }
 
