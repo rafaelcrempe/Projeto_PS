@@ -43,6 +43,10 @@
   }
 }
 
+.CardServico{
+  border-bottom: #DBE2EF;
+}
+
 .buttonBase {
   background-color: #DBE2EF;  
   padding: 7px;
