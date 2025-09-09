@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 
 function Form({
@@ -20,22 +19,22 @@ function Form({
 
     return (
 
-        <div className='cardForm'>
+        <div className=''>
             <h2>{title}</h2>
             <form onSubmit={(e) => e.preventDefault()}>
                 {children}
 
 
-                <Button onClick={() => send()} disabled={loading}>
+                <button className='buttonBase' onClick={() => send()} disabled={loading}>
                     {loading ? (
                         <Spinner animation="border" role="status">
                             <span className="visually-hidden">Loading...</span>
                         </Spinner>
 
                     ) : (
-                        <>{buttonText? buttonText : 'SALVAR'}</>
+                        <>{buttonText? buttonText : 'CADASTRAR'}</>
                     )}
-                </Button>
+                </button>
             </form>
         </div>
 

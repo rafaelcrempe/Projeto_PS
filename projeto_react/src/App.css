@@ -45,7 +45,18 @@
 
 .buttonBase {
   background-color: #DBE2EF;  
-  height: 30px;
+  padding: 7px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #112D4E;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  align-self: center;
+}
+
+button.active{
+  background-color: #DBE2EF;
   padding: 7px;
   margin: 20px;
   color: #112D4E;
@@ -54,16 +65,10 @@
   border-radius: 5px;
 }
 
-button.active{
-  background-color: #DBE2EF;
-  height: 30px;
-  padding: 7px;
-  margin: 20px;
-  color: #112D4E;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-
+.formDisplay {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 }
 
 nav{
@@ -204,6 +209,13 @@ nav a:hover {
   cursor: pointer;
 }
 
+.buttonVoltar {
+  border-radius: 25px;
+  background-color:#112D4E;
+  color: #DBE2EF;
+  border: none;
+}
+
 .toast {
   position: fixed;
   top: 20px;
@@ -223,6 +235,7 @@ Input {
 border: 5px solid #F9F7F7;
 background-color: #F9F7F7;
 border-radius: 5px;
+width: 300px;
 }
 
 Select {
@@ -230,7 +243,13 @@ Select {
   background-color: #F9F7F7;
   border-radius: 5px;
 
-  }
+}
+
+Form {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+}
 
 @keyframes toastFadeInOut {
   0% {

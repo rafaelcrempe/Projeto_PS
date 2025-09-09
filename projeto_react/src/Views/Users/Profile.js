@@ -98,6 +98,8 @@ function Profile() {
 
     return(
     <div className='backgroundScreen'>
+
+      
         <div> {/* User */}
 
             <img src={user.url}/>
