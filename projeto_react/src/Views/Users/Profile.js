@@ -100,15 +100,18 @@ function Profile() {
 
   // Busca os dados do usuário que está logado agora
   async function getLoggedUser() {
+
     const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
 
     if (dataUser.user) {
       setLoggedUser(dataUser.user);
       setIsLogged(true)
+      localStorage.removeItem("paginaSalva")
     }
     else {
       setLoggedUser({});
       setIsLogged(false)
+      localStorage.setItem("paginaSalva", "/profile/"+id)
     }
   }
 
@@ -186,13 +189,13 @@ function Profile() {
                 <p><button onClick={() => createServices(user)}>{user.phone}</button></p>
                 :
                 // Mensagem se o usuário não estiver logado
-                <p>Você não está logado</p>
+                <p><a href="/login">Clique aqui</a> para entrar com sua conta e visualizar</p>
           }
 
         </div>
       </div>
 
-      <div className='column'> {/* Services: Marcos */}
+      <div> {/* Services: Marcos */}
         {
           services.map(
             s => (
