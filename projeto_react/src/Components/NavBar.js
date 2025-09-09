@@ -9,6 +9,8 @@ function NavBar({
 
   const nav = useNavigate();
 
+
+
   function sair() {
     if (hasSession != null) {
       localStorage.removeItem('supaSession')
@@ -17,6 +19,8 @@ function NavBar({
     }
   }
 
+  
+
   return (
     <nav> {/* navegação */}
       {hasSession ? (
@@ -24,7 +28,7 @@ function NavBar({
 
           <div className="principal">
             <Link to="/home">Início</Link>
-            <Link to="/profile">Perfil</Link>
+            <Link to="/profile/${auth_id}">Perfil</Link>
           </div>
           <Link className="buttonSair" onClick={() => sair()}>Sair</Link>
 
@@ -46,6 +50,8 @@ function NavBar({
 
   );
 }
+
+
 
 export default NavBar;
 
