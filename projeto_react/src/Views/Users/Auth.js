@@ -124,7 +124,7 @@ function Auth() { // aqui é JavaScript
 
           {!isLogin &&
             (<div>
-              <p>Você deseja se cadastrar como: </p>
+              <h2>QUERO ME CADASTRAR COMO:  </h2>
               <button className={isProfessional ? 'buttonBase' : 'active'} onClick={() => {
                 setIsProfessional(false);
                 setUser({ ...user, funcao: "cliente" })
@@ -133,7 +133,6 @@ function Auth() { // aqui é JavaScript
             </div>
             )
           }
-
 
           {!isLogin && isProfessional && (
             <Form func={register}>
@@ -153,75 +152,82 @@ function Auth() { // aqui é JavaScript
                   { value: 'marceneiro', label: 'Marceneiro' },
                 ]}
               />
-
-              <Input
-                label="Nome"
-                type="text"
-                placeholder="Nome"
-                onChange={setUser}
-                objeto={user}
-                campo="name"
-              />
-
-              <Input
-                label="Sobrenome"
-                type="text"
-                placeholder="Sobrenome"
-                onChange={setUser}
-                objeto={user}
-                campo='last_name' />
-
-              <Input
-                label="Data de Nascimento"
-                type="date"
-                placeholder="Data de Nascimento"
-                onChange={setUser}
-                objeto={user}
-                campo='birth' />
-
-              <Input
-                label="CPF"
-                type="text"
-                placeholder="CPF"
-                onChange={setUser}
-                objeto={user}
-                campo='cpf' />
-
-              <Input
-                label="Telefone"
-                type="tel"
-                placeholder="Telefone"
-                onChange={setUser}
-                objeto={user}
-                campo='phone' />
-
-              <Input
-                label="Email"
-                type="email"
-                placeholder="E-mail"
-                onChange={setUser}
-                objeto={user}
-                campo='email'
-              />
-
-              <Input
-                label="Senha"
-                type="password"
-                placeholder="Senha"
-                onChange={setUser}
-                objeto={user}
-                campo='password'
-              />
-
-              <label>
-                Confirmar Senha: <br/>
-                <input
-                  type="password"
-                  placeholder="Confirmar Senha"
-                  onChange={(e) => verifyPass(e.target.value)}
+              <div className='formDisplay'>
+                <Input
+                  label="Nome"
+                  type="text"
+                  placeholder="Nome"
+                  onChange={setUser}
+                  objeto={user}
+                  campo="name"
                 />
-              </label>
-              <br/>
+
+                <Input
+                  label="Sobrenome"
+                  type="text"
+                  placeholder="Sobrenome"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='last_name' />
+              </div>
+
+              <div className='formDisplay'>
+                <Input
+                  label="Data de Nascimento"
+                  type="date"
+                  placeholder="Data de Nascimento"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='birth' />
+
+                <Input
+                  label="CPF"
+                  type="text"
+                  placeholder="CPF"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='cpf' />
+              </div>
+
+              <div className='formDisplay'>
+                <Input
+                  label="Telefone"
+                  type="tel"
+                  placeholder="Telefone"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='phone' />
+
+                <Input
+                  label="Email"
+                  type="email"
+                  placeholder="E-mail"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='email'
+                />
+              </div>
+
+              <div className='formDisplay'>
+                <Input
+                  label="Senha"
+                  type="password"
+                  placeholder="Senha"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='password'
+                />
+
+                <label>
+                  Confirmar Senha: <br />
+                  <input
+                    type="password"
+                    placeholder="Confirmar Senha"
+                    onChange={(e) => verifyPass(e.target.value)}
+                  />
+                </label>
+              </div>
+              <br />
 
             </Form>
           )}
@@ -229,81 +235,89 @@ function Auth() { // aqui é JavaScript
           {!isLogin && !isProfessional && (
             <Form func={register}>
 
-
-              <Input
-                label="Nome"
-                type="text"
-                placeholder="Nome"
-                onChange={setUser}
-                objeto={user}
-                campo="name"
-              />
-
-              <Input
-                label="Sobrenome"
-                type="text"
-                placeholder="Sobrenome"
-                onChange={setUser}
-                objeto={user}
-                campo='last_name' />
-
-              <Input
-                label="Data de Nascimento"
-                type="date"
-                placeholder="Data de Nascimento"
-                onChange={setUser}
-                objeto={user}
-                campo='birth' />
-
-              <Input
-                label="CPF"
-                type="text"
-                placeholder="CPF"
-                onChange={setUser}
-                objeto={user}
-                campo='cpf' />
-
-              <Input
-                label="Telefone"
-                type="tel"
-                placeholder="Telefone"
-                onChange={setUser}
-                objeto={user}
-                campo='phone' />
-
-              <Input
-                label="Email"
-                type="email"
-                placeholder="E-mail"
-                onChange={setUser}
-                objeto={user}
-                campo='email'
-              />
-
-              <Input
-                label="Senha"
-                type="password"
-                placeholder="Senha"
-                onChange={setUser}
-                objeto={user}
-                campo='password'
-              />
-
-              <label>
-                Confirmar Senha: <br/>
-                <input
-                  type="password"
-                  placeholder="Confirmar Senha"
-                  onChange={(e) => verifyPass(e.target.value)}
+              <div className='formDisplay'>
+                <Input
+                  label="Nome"
+                  type="text"
+                  placeholder="Nome"
+                  onChange={setUser}
+                  objeto={user}
+                  campo="name"
                 />
-                <br/>
-              </label>
+
+                <Input
+                  label="Sobrenome"
+                  type="text"
+                  placeholder="Sobrenome"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='last_name' />
+              </div>
+
+              <div className='formDisplay'>
+                <Input
+                  label="Data de Nascimento"
+                  type="date"
+                  placeholder="Data de Nascimento"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='birth' />
+
+                <Input
+                  label="CPF"
+                  type="text"
+                  placeholder="CPF"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='cpf' />
+              </div>
+
+              <div className='formDisplay'>
+                <Input
+                  label="Telefone"
+                  type="tel"
+                  placeholder="Telefone"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='phone' />
+
+                <Input
+                  label="Email"
+                  type="email"
+                  placeholder="E-mail"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='email'
+                />
+              </div>
+
+              <div className='formDisplay'>
+                <Input
+                  label="Senha"
+                  type="password"
+                  placeholder="Senha"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='password'
+                />
+
+                <label>
+                  Confirmar Senha: <br />
+                  <input
+                    type="password"
+                    placeholder="Confirmar Senha"
+                    onChange={(e) => verifyPass(e.target.value)}
+                  />
+                </label>
+              </div>
+              <br />
 
             </Form>
           )}
 
           {isLogin && (
             <Form func={logar} buttonText='LOGIN'>
+
 
               <Input
                 label="Email"
