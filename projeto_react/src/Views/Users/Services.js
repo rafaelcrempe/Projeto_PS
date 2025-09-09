@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-
+import "./Services.css"
 
 import Button from "react-bootstrap/esm/Button";
 

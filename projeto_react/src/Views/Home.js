@@ -1,4 +1,4 @@
-// import logo from './logo.svg';
+  // import logo from './logo.svg';
 // import './App.css';
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
