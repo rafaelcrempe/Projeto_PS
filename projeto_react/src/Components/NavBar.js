@@ -28,7 +28,7 @@ function NavBar({
 
           <div className="principal">
             <Link to="/home">Início</Link>
-            <Link to="/profile/${auth_id}">Perfil</Link>
+            <Link to="/profile">Perfil</Link>
           </div>
           <Link className="buttonSair" onClick={() => sair()}>Sair</Link>
 
