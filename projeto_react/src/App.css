@@ -43,8 +43,18 @@
   }
 }
 
+body {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 100;
+  overflow: scroll;
+  background-color: #DBE2EF;
+  margin-left: 0;
+}
+
+
 .buttonBase {
-  background-color: #DBE2EF;  
+  background-color: #DBE2EF;
   padding: 7px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -55,7 +65,7 @@
   align-self: center;
 }
 
-button.inactive{
+button.inactive {
   background-color: #DBE2EF;
   padding: 7px;
   margin: 20px;
@@ -69,7 +79,7 @@ button.inactive{
 
 .buttonVoltar {
   border-radius: 25px;
-  background-color:#112D4E;
+  background-color: #112D4E;
   color: #DBE2EF;
   border: none;
 }
@@ -87,26 +97,10 @@ button.inactive{
 
 }
 
-nav{
-  display: flex;
-  flex-direction: row;
-}
-
-nav .principal{
-  flex-grow: 1;
-}
-
-body {
-  font-family: "Open Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-variation-settings: "wdth" 100;
-  overflow: scroll;
-  background-color: #DBE2EF;
-  margin-left: 0;
-}
-
 /* Barra de navegação fixa no topo */
 nav {
+  display: flex;
+  flex-direction: row;
   position: fixed;
   top: 0;
   left: 0;
@@ -120,9 +114,13 @@ nav {
   z-index: 1000;
 }
 
+nav .principal {
+  flex-grow: 1;
+}
+
 /* Estilo dos links */
 nav a {
-  color:#DBE2EF;
+  color: #DBE2EF;
   text-decoration: none;
   font-weight: 500;
   padding: 6px 10px;
@@ -136,8 +134,6 @@ nav a:hover {
   color: #112D4E;
 }
 
-
-
 .fundoCadastro {
   display: flex;
   flex-direction: row;
@@ -145,7 +141,7 @@ nav a:hover {
   justify-content: space-around;
   margin-top: 50px;
   margin-bottom: 50px;
-  height:0%;
+  height: 0%;
 }
 
 /*Card central*/
@@ -162,7 +158,7 @@ nav a:hover {
   align-items: center;
   margin-bottom: 5px;
   margin-left: 0;
-  color:#DBE2EF
+  color: #DBE2EF
 }
 
 .homeProfessional {
@@ -183,6 +179,7 @@ nav a:hover {
 
 .cardProfissao img:hover {
   transform: scale(1.3);
+  transition: 0.5s ease-in-out;
 }
 
 .cardProfissao label {
@@ -190,7 +187,7 @@ nav a:hover {
   font-size: 25px;
 }
 
-.row{
+.row {
   display: flex
 }
 
@@ -235,7 +232,7 @@ nav a:hover {
   color: #fff;
   padding: 12px 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   opacity: 0;
   transform: translateY(-20px);
   animation: toastFadeInOut 3s forwards;
@@ -243,10 +240,10 @@ nav a:hover {
 }
 
 Input {
-border: 5px solid #F9F7F7;
-background-color: #F9F7F7;
-border-radius: 5px;
-width: 300px;
+  border: 5px solid #F9F7F7;
+  background-color: #F9F7F7;
+  border-radius: 5px;
+  width: 200px;
 }
 
 Select {
@@ -259,18 +256,33 @@ Select {
 Form {
   display: flex;
   flex-direction: column;
-  align-items:flex-start;
 }
+
+Footer {
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #112D4E;
+  color: #DBE2EF;
+  text-align: center;
+  padding: 10px 0;
+}
+
 
 @keyframes toastFadeInOut {
   0% {
     opacity: 0;
     transform: translateY(-20px);
   }
-  10%, 90% {
+
+  10%,
+  90% {
     opacity: 1;
     transform: translateY(0);
   }
+
   100% {
     opacity: 0;
     transform: translateY(-20px);
