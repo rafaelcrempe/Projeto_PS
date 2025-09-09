@@ -43,9 +43,15 @@
   }
 }
 
-.CardServico{
-  border-bottom: #DBE2EF;
+body {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 100;
+  overflow: scroll;
+  background-color: #DBE2EF;
+  margin-left: 0;
 }
+
 
 .buttonBase {
   background-color: #DBE2EF;
