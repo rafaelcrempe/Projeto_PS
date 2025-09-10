@@ -13,6 +13,8 @@ function NavBar({
 
   const nav = useNavigate();
 
+
+
   async function sair() {
     if (hasSession != null) {
       localStorage.removeItem('supaSession')
@@ -40,7 +42,7 @@ function NavBar({
         <>  {/* tags vazia, equivale a uma DIV */}
 
           <Link to="/home">Início</Link>
-          <Link to="#">Quem Somos</Link>
+          <Link to="/quemsomos">Quem Somos</Link>
           <Link to="/login">Entrar</Link>
 
         </>
