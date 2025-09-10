@@ -1,10 +1,9 @@
-// import logo from './logo.svg';
+  // import logo from './logo.svg';
 // import './App.css';
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
-
-
+import Footer from '../Components/Footer';
 // import Professionals from './Views/Users/Professionals.js';
 
 
@@ -61,63 +60,66 @@ function Home() { // aqui é JavaScript
   }
 
   return ( // Aqui é html
-
-    <div className='backgroundScreen'>
-      {!isFiltered && (
-        <>
-          <div>
-            <img src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/texto_1.png' />
-          </div>
-
-          <div className='homeProfessional'>
-            <div onClick={() => readProfessionals('pedreiro')} className='cardProfissao'>
-              <img width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/pedreiro.png' />
-              <label>PEDREIRO</label>
+    <>
+      <div className='backgroundScreen'>
+        {!isFiltered && (
+          <>
+            <div>
+              <img src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/texto_1.png' />
             </div>
-            <div onClick={() => readProfessionals('encanador')} className='cardProfissao'>
-              <img width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/encanador.png' />
-              <label>ENCANADOR</label>
-            </div>
-            <div onClick={() => readProfessionals('pintor')} className='cardProfissao'>
-              <img width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/pintor.png' />
-              <label>PINTOR</label>
-            </div>
-            <div onClick={() => readProfessionals('eletricista')} className='cardProfissao'>
-              <img width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/eletricista.png' />
-              <label>ELETRICISTA</label>
-            </div>
-            <div onClick={() => readProfessionals('marceneiro')} className='cardProfissao'>
-              <img width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/marceneiro.png' />
-              <label>MARCENEIRO</label>
-            </div>
-          </div>
-        </>
-      )}
 
-
-
-      {isFiltered && (
-        <div className='column'>
-
-          <button className='buttonVoltar' onClick={() => setIsFiltered(false)} ><i class="fa-solid fa-circle-left"></i></button>
-  
-          <h2>PROFISSIONAIS</h2>
-
-          {professionals.map(
-            u => (
-
-              <div onClick={() => nav(`/profile/${u.auth_id}`, { replace: true })} className='cardLista' key={u.auth_id}>
-                <img src={u.url}/> {u.name} {u.last_name}<br />
-                {logado == u.auth_id &&
-                  (<button variant="warning" onClick={() => nav(`/profile/edit/${u.auth_id}`, { replace: true })}>Editar</button>
-                  )}
+            <div className='homeProfessional'>
+              <div onClick={() => readProfessionals('pedreiro')} className='cardProfissao'>
+                <img width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/pedreiro.png' />
+                <label>PEDREIRO</label>
               </div>
+              <div onClick={() => readProfessionals('encanador')} className='cardProfissao'>
+                <img width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/encanador.png' />
+                <label>ENCANADOR</label>
+              </div>
+              <div onClick={() => readProfessionals('pintor')} className='cardProfissao'>
+                <img width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/pintor.png' />
+                <label>PINTOR</label>
+              </div>
+              <div onClick={() => readProfessionals('eletricista')} className='cardProfissao'>
+                <img width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/eletricista.png' />
+                <label>ELETRICISTA</label>
+              </div>
+              <div onClick={() => readProfessionals('marceneiro')} className='cardProfissao'>
+                <img width='100px' src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/profissoes/marceneiro.png' />
+                <label>MARCENEIRO</label>
+              </div>
+            </div>
+          </>
+        )}
 
-            )
-          )}
-        </div>
-      )}
-    </div>
+
+
+        {isFiltered && (
+          <div className='column'>
+
+            <button className='buttonVoltar' onClick={() => setIsFiltered(false)} ><i class="fa-solid fa-circle-left"></i></button>
+
+            <h2>PROFISSIONAIS</h2>
+
+            {professionals.map(
+              u => (
+
+                <div onClick={() => nav(`/profile/${u.auth_id}`, { replace: true })} className='cardLista' key={u.auth_id}>
+                  <img src={u.url} width="50px" height="50px" /> {u.name} {u.last_name}<br />
+                  {logado == u.auth_id &&
+                    (<button variant="warning" onClick={() => nav(`/profile/edit/${u.auth_id}`, { replace: true })}>Editar</button>
+                    )}
+                </div>
+              )
+            )}
+          </div>
+        )}
+      </div>
+      <span>
+      <Footer />
+      </span>
+    </>
   );
 }
 

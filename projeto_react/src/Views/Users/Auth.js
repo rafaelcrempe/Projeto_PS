@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Input } from '../../Components/Input'
 import { Select } from '../../Components/Select';
 import { Form } from '../../Components/Form';
+import Footer from '../../Components/Footer';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -63,7 +64,11 @@ function Auth() { // aqui é JavaScript
         5000
       )
 
-      window.location.reload();
+      if(localStorage.getItem("paginaSalva")){
+        window.location.href = localStorage.getItem("paginaSalva")
+      }else{
+        window.location.reload();
+      }
 
     } catch (err) {
       setMsg('Error: ' + err);
@@ -121,6 +126,7 @@ function Auth() { // aqui é JavaScript
   }
 
   return ( // Aqui é html
+    <>
     <div className="screen">
       <div className="fundoCadastro">
         <div className="backgroundScreen">
@@ -206,7 +212,7 @@ function Auth() { // aqui é JavaScript
                   campo='phone' />
 
                 <Input
-                  label="Email"
+                  label="E-mail"
                   type="email"
                   placeholder="E-mail"
                   onChange={setUser}
@@ -292,7 +298,7 @@ function Auth() { // aqui é JavaScript
                   campo='phone' />
 
                 <Input
-                  label="Email"
+                  label="E-mail"
                   type="email"
                   placeholder="E-mail"
                   onChange={setUser}
@@ -363,9 +369,11 @@ function Auth() { // aqui é JavaScript
 
       {msg && (<div className='toast'> {msg} </div>)}     {/* exibe a mensagem de erro na tela */}
 
-
     </div>
-
+      <span>
+      <Footer />
+      </span>
+ </>
   );
 }
 

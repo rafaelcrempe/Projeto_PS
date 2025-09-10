@@ -9,6 +9,7 @@ import Professionals from './Views/Users/Professionals';
 import Services from './Views/Services/Index';
 import ServicesShow from './Views/Services/Show';
 import ServicesEdit from './Views/Services/Edit';
+import QuemSomos from './Views/QuemSomos';
 
 import Users from './Views/Users/Index';
 import Home from './Views/Home';
@@ -46,6 +47,7 @@ function App() { // aqui é JavaScript
           <Route path='/profile/:id' element={< Profile/>} />
           <Route path='/images' element={< Images/>} />
           <Route path='/professionals' element={< Professionals/>} />
+          <Route path='/quemsomos' element={< QuemSomos/>} />
 
 
 
