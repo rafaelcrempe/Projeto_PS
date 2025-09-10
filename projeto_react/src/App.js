@@ -3,15 +3,23 @@ import './App.css';
 import Clients from './Views/Users/Clients'
 import Images from './Views/Images/Index';
 import ImagesShow from './Views/Images/Show';
+import ImagesEdit from './Views/Images/Edit';
 import Auth from './Views/Users/Auth';
 import Professionals from './Views/Users/Professionals';
 import Services from './Views/Services/Index';
+import ServicesShow from './Views/Services/Show';
+import ServicesEdit from './Views/Services/Edit';
+
 import Users from './Views/Users/Index';
 import Home from './Views/Home';
 import Profile from './Views/Users/Profile';
 import ProfileEdit from './Views/Users/Edit';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import {BrowserRouter as Router, Routes, Route, Navigate, Link, Outlet} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './Components/NavBar';
+
 
 function PrivateSession(){
   const hasSession = !!localStorage.getItem('supaSession'); //pega a chave de sessão do supabase e guarda dentro do armazenamento local
@@ -29,39 +37,15 @@ function App() { // aqui é JavaScript
   return ( // Aqui é html
     <Router>
       <main className="App">
-        <nav> {/* navegação */}
-          {hasSession? (
-            <>  {/* tags vazia, equivale a uma DIV */}
-
-              
-              <Link to="/clients">Clientes</Link>
-              <Link to="/images">Imagens</Link>
-              <Link to="/profissionals">Profissionais</Link>
-              <Link to="/services">Serviços</Link>
-              <Link to="/users">Usuários</Link>
-              <Link to="/home">Inicio</Link>
-              <Link to="/login">Entrar</Link>
-              <Link to="/profile">Perfil</Link>
-            </>
-          ):(
-            <>  {/* tags vazia, equivale a uma DIV */}
-
-              <Link to="/home">Inicio</Link>
-              <Link to="/login">Entrar</Link>
-              
-            </>
-          )
-
-          }
-        </nav>
+       <NavBar/>
 
         <Routes>
           {/* Rotas Públicas */}
-          <Route path='/profile/:id' element={< Profile/>} />
           <Route path='/home' element={< Home/>} />
+          <Route path='/login' element={< Auth/>} />
+          <Route path='/profile/:id' element={< Profile/>} />
           <Route path='/images' element={< Images/>} />
           <Route path='/professionals' element={< Professionals/>} />
-          <Route path='/login' element={< Auth/>} />
 
 
 
@@ -69,8 +53,13 @@ function App() { // aqui é JavaScript
           {/* Rotas Logado */}
 
           <Route path='/clients' element={< Clients/>} />
+          <Route path='/services/edit/:id' element={< ServicesEdit/>} />
+          <Route path='/services/:id' element={< ServicesShow/>} />
           <Route path='/services' element={< Services/>} />
           <Route path='/users' element={< Users/>} />
+          <Route path='/images/edit/:id' element={< ImagesEdit/>} />
+          <Route path='/images/:id' element={< ImagesShow/>} />
+          <Route path='/images' element={< Images/>} />
           <Route path='/images:id' element={< ImagesShow/>} />
           <Route path='/profile/edit/:id' element={< ProfileEdit/>} />
 
@@ -78,7 +67,7 @@ function App() { // aqui é JavaScript
 
 
           </Route>
-          <Route path='/'element={< Navigate to='/login'/>} />
+          <Route path='/'element={< Navigate to='/home'/>} />
         </Routes>
 
       </main>

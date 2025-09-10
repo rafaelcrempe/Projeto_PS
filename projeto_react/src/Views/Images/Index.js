@@ -3,7 +3,10 @@ import './Style.css';
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 //useEffect muda a tela quando entra ou atualiza a tela
 import { createClient } from "@supabase/supabase-js";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import CloseButton from 'react-bootstrap/CloseButton';
+import Button from 'react-bootstrap/Button';
+import {Input} from '../../Components/Input';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -52,13 +55,22 @@ function Images() { // aqui é JavaScript
           setImages(dataImages);        
       }
       
+      async function delImage(id){
+        const { error } = await supabase
+          .from('images')
+          .delete()
+          .eq('id', id);
+
+          readImage()
+
+      }
     
 
     
     return ( // Aqui é html
       <div className="screen">
       <form onSubmit={(e) => e.preventDefault()} >
-        <input type="text" placeholder='url imagem ' onChange={(e) => setImage({...image, url: e.target.value})}/><> </>
+        <Input type="text" placeholder='url imagem ' onChange={setImage} obejto={image} campo='url' /><> </>
 
         <button onClick={createImage} >SALVAR</button><>               </>
         <button onClick={readImage} >BUSCAR</button>
@@ -70,8 +82,12 @@ function Images() { // aqui é JavaScript
         <div className='row'>
         {images.map(
           i => (
-            <div key={i.id} onClick={() => nav(`/image/${i.id}`, {replace: true})}>
-            <img src={i.url}/>
+            <div key={i.id}>
+              <img src={i.url}/>
+              <br/>
+              <Button variant="danger"  onClick={ ()=> delImage(i.id) } >Excluir</Button>
+              <Button variant="primary" onClick={ () => nav(`/images/${i.id}`, {replace: true}) } >Ver</Button>
+              <Button variant="warning" onClick={ () => nav(`/images/edit/${i.id}`, {replace: true}) } >Editar</Button>
             </div>   
           )
         )}

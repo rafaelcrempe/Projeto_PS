@@ -8,21 +8,20 @@ function Input({
     campo
 }) {
     return (
-        <>
+        <div>
            { label && 
             (
                 <>
-                <label>{label} :</label>
+                <label>{label} :
                 <br/>
+                <input type={type} placeholder={placeholder} className={className} onChange={(e) => onChange({...objeto, [campo]: e.target.value})} />
+                <br/>
+                <br/>
+                </label>
                 </>
             )
            }
-
-           <input type={type} placeholder={placeholder} className={className} onChange={(e) => onChange({...objeto, [campo]: e.target.value})} />
-           <br/>
-           <br/>
-        </>
+        </div>
     );
 }
-
 export {Input}

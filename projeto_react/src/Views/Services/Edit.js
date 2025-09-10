@@ -1,11 +1,11 @@
 // import logo from './logo.svg';
-import './Style.css';
+// import './App.css';
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Input } from '../../Components/Input'
 import CloseButton from 'react-bootstrap/CloseButton';
 import Button from 'react-bootstrap/Button';
-import {Input} from '../../Components/Input';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -13,26 +13,8 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 
-const StarRating = ({ rating, onRatingChange, readonly = false }) => {
-  const fullStar = '★';
-  const emptyStar = '☆';
-  
-  return (
-    <div style={{ fontSize: '24px', color: '#FF0000', cursor: readonly ? 'default' : 'pointer' }}>
-      {[1, 2, 3, 4, 5].map((star) => (
-        <span
-          key={star}
-          onClick={() => !readonly && onRatingChange && onRatingChange(star)}
-          style={{ cursor: readonly ? 'default' : 'pointer' }}
-        >
-          {star <= rating ? fullStar : emptyStar}
-        </span>
-      ))}
-    </div>
-  );
-};
-
 function Services() { // aqui é JavaScript
+  const{id} = useParams
   const nav = useNavigate();
 
   const [service,  setService] =useState({
@@ -42,12 +24,12 @@ function Services() { // aqui é JavaScript
     professional_id: "",
     client_id: "",
   })
-  const [services, setServices]= useState([]) // essa função useEfFect, serve, para quando entrar na tela, ja acontece!
+
   useEffect(()=> {
     readServices()
   }, [])
 
-  async function createServices(){
+  async function updateServices(){
     const {data: dataUser, error: errorUser} = await supabase.auth.getUser();
 
     const uid =dataUser?.user?.id;
@@ -56,7 +38,8 @@ function Services() { // aqui é JavaScript
     const { data, error } = await supabase
 
       .from('services')
-      .insert({...service, client_id: uid});
+      .update({...service, client_id: uid})
+      .eq('auth_id', id);
       //.select();
                 
 
@@ -72,24 +55,18 @@ function Services() { // aqui é JavaScript
       
       let { data: dataServices, error } = await supabase
       .from('services')
-      .select('*');
+      .select('*')
+      .eq('id',id)
+      .single();
 
-      setServices(dataServices);
+      setService(dataServices);
         
     }
 
-    async function delServices(s) {
-      const {error} = await supabase
-      .from('services')
-      .delete()
-      .eq('id', s)
-      
-    }
-
   return ( // Aqui é html
-    <div className="screen"><br></br>
+    <div className="screen">
 
-      <h2 className="page-title">Avaliações de Serviços</h2>
+      <h1 className="page-title">Avaliações de Serviço</h1>
       <form onSubmit={(e)=> e.preventDefault()}>
   
         <Input type ="text" placeholder= 'status' onChange={setService} objeto={service} campo='status'/>
@@ -98,32 +75,9 @@ function Services() { // aqui é JavaScript
         <Input type ="number" placeholder= '1' onchange={setService} objeto={service} campo='professional_id'/>
         
 
-        <button onClick ={createServices}> Salvar</button>
+        <button onClick ={updateServices}> Salvar</button>
       </form>
 
-
-      <button onClick ={readServices}> Salvar</button><br></br>
-
-      {services.map(
-          s => (
-
-            <div key={s.id}>
-            
-      
-              <h1>{s. professional_id}</h1> <button>{s.status}</button>
-              <div style={{ margin: '10px 0' }}>
-                <StarRating rating={s.star} readonly={true} />
-              </div>
- 
-              <p>{s.review}</p>
-              {/*<Button variant="danger"onclick={() => delServices(s.id)}>Excluir</Button>*/}
-              <Button variant="primary" onClick={() => nav( `/services/${s.id}`, {replace: true})}>Ver</Button>
-              <Button variant="warning" onClick={() => nav( `/services/edit/${s.id}`, {replace: true})}>Editar</Button>
-            </div>
-            
-
-          )
-      )}
 
       
       

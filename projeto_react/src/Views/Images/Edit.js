@@ -26,7 +26,7 @@ function Images() { // aqui é JavaScript
     readImage()
   }, [] )
 
-   async function createImage(){
+   async function updateImage(){
      
      
      const {data: dataUser, error: errorUser} = await supabase.auth.getUser();
@@ -39,8 +39,8 @@ function Images() { // aqui é JavaScript
       
       const { data, error } = await supabase
       .from('images')
-      .insert({...image, professional_id: uid })
-      // .select();
+      .update({...image, professional_id: uid })
+      .eq('auth_id', id);
 
     }
 
@@ -63,7 +63,7 @@ function Images() { // aqui é JavaScript
         <form onSubmit={(e) => e.preventDefault()} >
         <Input type="text" placeholder='url imagem ' onChange={setImage} obejto={image} campo='url' /><> </>
 
-          <button onClick={createImage} >Ver</button><br/>
+          <button onClick={updateImage} >SALVAR</button><br/>
           <button onClick={ () => nav(`/images`, {replace: true}) } >Voltar</button>
         </form>
       </div>

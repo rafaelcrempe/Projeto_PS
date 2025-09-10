@@ -8,7 +8,7 @@ function Select({
     options
 }) {
     return (
-        <>
+        <div>
             {label && (
                 <>
                 <label>{label}:</label>
@@ -26,7 +26,7 @@ function Select({
             </select>
             <br/>
             <br/>
-        </>
+        </div>
     );
 }
 

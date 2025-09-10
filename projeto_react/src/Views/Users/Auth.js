@@ -36,7 +36,7 @@ function Auth() { // aqui é JavaScript
   // const [name, setName] = useState("");
   // const [lastName, setLastName] = useState("");
   const [isLogin, setIsLogin] = useState(true);
-  const [isProfessional, setIsProfessional] = useState(true);
+  const [isProfessional, setIsProfessional] = useState(false);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
 
@@ -59,6 +59,8 @@ function Auth() { // aqui é JavaScript
         nav('/home', { replace: true }),
         5000
       )
+
+      window.location.reload();
 
     } catch (err) {
       setMsg('Error: ' + err);
@@ -121,105 +123,115 @@ function Auth() { // aqui é JavaScript
         <div className="backgroundScreen">
 
           {!isLogin &&
-            (<div>
-              <p>Você deseja se cadastrar como: </p>
-              <button className={isProfessional ? 'buttonBase' : 'active'} onClick={() => {
-                setIsProfessional(false);
-                setUser({ ...user, funcao: "cliente" })
-              }}>CLIENTE</button>
-              <button className={isProfessional ? 'active' : 'buttonBase'} onClick={() => setIsProfessional(true)}>PROFISSIONAL</button>
+            (<div className='tipoCadastro'>
+              <h2>QUERO ME CADASTRAR COMO:  </h2>
+              <div className='formDisplay'>
+                <button className={isProfessional ? 'inactive' : 'buttonBase'} onClick={() => {
+                  setIsProfessional(false);
+                  setUser({ ...user, funcao: "cliente" })
+                }}><i class="fa-solid fa-user" /> CLIENTE</button>
+                <button className={isProfessional ? 'buttonBase' : 'inactive'} onClick={() => setIsProfessional(true)}> <i class="fa-solid fa-screwdriver-wrench" /> PROFISSIONAL</button>
+              </div>
             </div>
             )
           }
 
-
           {!isLogin && isProfessional && (
             <Form func={register}>
 
-              <Select
-                label="Escolha sua especialidade"
-                name="funcao"
-                placeholder="Função"
-                onChange={setUser}
-                objeto={user}
-                campo="funcao"
-                options={[
-                  { value: 'pedreiro', label: 'Pedreiro' },
-                  { value: 'encanador', label: 'Encanador' },
-                  { value: 'pintor', label: 'Pintor' },
-                  { value: 'eletricista', label: 'Eletricista' },
-                  { value: 'marceneiro', label: 'Marceneiro' },
-                ]}
-              />
-
-              <Input
-                label="Nome"
-                type="text"
-                placeholder="Nome"
-                onChange={setUser}
-                objeto={user}
-                campo="name"
-              />
-
-              <Input
-                label="Sobrenome"
-                type="text"
-                placeholder="Sobrenome"
-                onChange={setUser}
-                objeto={user}
-                campo='last_name' />
-
-              <Input
-                label="Data de Nascimento"
-                type="date"
-                placeholder="Data de Nascimento"
-                onChange={setUser}
-                objeto={user}
-                campo='birth' />
-
-              <Input
-                label="CPF"
-                type="text"
-                placeholder="CPF"
-                onChange={setUser}
-                objeto={user}
-                campo='cpf' />
-
-              <Input
-                label="Telefone"
-                type="tel"
-                placeholder="Telefone"
-                onChange={setUser}
-                objeto={user}
-                campo='phone' />
-
-              <Input
-                label="Email"
-                type="email"
-                placeholder="E-mail"
-                onChange={setUser}
-                objeto={user}
-                campo='email'
-              />
-
-              <Input
-                label="Senha"
-                type="password"
-                placeholder="Senha"
-                onChange={setUser}
-                objeto={user}
-                campo='password'
-              />
-
-              <label>
-                Confirmar Senha: <br/>
-                <input
-                  type="password"
-                  placeholder="Confirmar Senha"
-                  onChange={(e) => verifyPass(e.target.value)}
+              <div style={{display: 'flex', justifyContent:'center', width: '100%'}}>
+                <Select
+                  label="Escolha sua especialidade"
+                  name="funcao"
+                  placeholder="Função"
+                  onChange={setUser}
+                  objeto={user}
+                  campo="funcao"
+                  options={[
+                    { value: 'pedreiro', label: 'Pedreiro' },
+                    { value: 'encanador', label: 'Encanador' },
+                    { value: 'pintor', label: 'Pintor' },
+                    { value: 'eletricista', label: 'Eletricista' },
+                    { value: 'marceneiro', label: 'Marceneiro' },
+                  ]}
                 />
-              </label>
-              <br/>
+              </div>
+              <div className='formDisplay'>
+                <Input
+                  label="Nome"
+                  type="text"
+                  placeholder="Nome"
+                  onChange={setUser}
+                  objeto={user}
+                  campo="name"
+                />
+
+                <Input
+                  label="Sobrenome"
+                  type="text"
+                  placeholder="Sobrenome"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='last_name' />
+              </div>
+
+              <div className='formDisplay'>
+                <Input
+                  label="Data de Nascimento"
+                  type="date"
+                  placeholder="Data de Nascimento"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='birth' />
+
+                <Input
+                  label="CPF"
+                  type="text"
+                  placeholder="CPF"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='cpf' />
+              </div>
+
+              <div className='formDisplay'>
+                <Input
+                  label="Telefone"
+                  type="tel"
+                  placeholder="Telefone"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='phone' />
+
+                <Input
+                  label="Email"
+                  type="email"
+                  placeholder="E-mail"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='email'
+                />
+              </div>
+
+              <div className='formDisplay'>
+                <Input
+                  label="Senha"
+                  type="password"
+                  placeholder="Senha"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='password'
+                />
+
+                <label>
+                  Confirmar Senha: <br />
+                  <input
+                    type="password"
+                    placeholder="Confirmar Senha"
+                    onChange={(e) => verifyPass(e.target.value)}
+                  />
+                </label>
+              </div>
+              <br />
 
             </Form>
           )}
@@ -227,81 +239,89 @@ function Auth() { // aqui é JavaScript
           {!isLogin && !isProfessional && (
             <Form func={register}>
 
-
-              <Input
-                label="Nome"
-                type="text"
-                placeholder="Nome"
-                onChange={setUser}
-                objeto={user}
-                campo="name"
-              />
-
-              <Input
-                label="Sobrenome"
-                type="text"
-                placeholder="Sobrenome"
-                onChange={setUser}
-                objeto={user}
-                campo='last_name' />
-
-              <Input
-                label="Data de Nascimento"
-                type="date"
-                placeholder="Data de Nascimento"
-                onChange={setUser}
-                objeto={user}
-                campo='birth' />
-
-              <Input
-                label="CPF"
-                type="text"
-                placeholder="CPF"
-                onChange={setUser}
-                objeto={user}
-                campo='cpf' />
-
-              <Input
-                label="Telefone"
-                type="tel"
-                placeholder="Telefone"
-                onChange={setUser}
-                objeto={user}
-                campo='phone' />
-
-              <Input
-                label="Email"
-                type="email"
-                placeholder="E-mail"
-                onChange={setUser}
-                objeto={user}
-                campo='email'
-              />
-
-              <Input
-                label="Senha"
-                type="password"
-                placeholder="Senha"
-                onChange={setUser}
-                objeto={user}
-                campo='password'
-              />
-
-              <label>
-                Confirmar Senha: <br/>
-                <input
-                  type="password"
-                  placeholder="Confirmar Senha"
-                  onChange={(e) => verifyPass(e.target.value)}
+              <div className='formDisplay'>
+                <Input
+                  label="Nome"
+                  type="text"
+                  placeholder="Nome"
+                  onChange={setUser}
+                  objeto={user}
+                  campo="name"
                 />
-                <br/>
-              </label>
+
+                <Input
+                  label="Sobrenome"
+                  type="text"
+                  placeholder="Sobrenome"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='last_name' />
+              </div>
+
+              <div className='formDisplay'>
+                <Input
+                  label="Data de Nascimento"
+                  type="date"
+                  placeholder="Data de Nascimento"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='birth' />
+
+                <Input
+                  label="CPF"
+                  type="text"
+                  placeholder="CPF"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='cpf' />
+              </div>
+
+              <div className='formDisplay'>
+                <Input
+                  label="Telefone"
+                  type="tel"
+                  placeholder="Telefone"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='phone' />
+
+                <Input
+                  label="Email"
+                  type="email"
+                  placeholder="E-mail"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='email'
+                />
+              </div>
+
+              <div className='formDisplay'>
+                <Input
+                  label="Senha"
+                  type="password"
+                  placeholder="Senha"
+                  onChange={setUser}
+                  objeto={user}
+                  campo='password'
+                />
+
+                <label>
+                  Confirmar Senha: <br />
+                  <input
+                    type="password"
+                    placeholder="Confirmar Senha"
+                    onChange={(e) => verifyPass(e.target.value)}
+                  />
+                </label>
+              </div>
+              <br />
 
             </Form>
           )}
 
           {isLogin && (
-            <Form func={register} buttonText='LOGIN'>
+            <Form func={logar} buttonText='LOGIN'>
+
 
               <Input
                 label="Email"
