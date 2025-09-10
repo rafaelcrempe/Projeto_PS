@@ -44,7 +44,7 @@
 }
 
 .buttonBase {
-  background-color: #DBE2EF;  
+  background-color: #DBE2EF;
   padding: 7px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -55,7 +55,7 @@
   align-self: center;
 }
 
-button.inactive{
+button.inactive {
   background-color: #DBE2EF;
   padding: 7px;
   margin: 20px;
@@ -69,7 +69,7 @@ button.inactive{
 
 .buttonVoltar {
   border-radius: 25px;
-  background-color:#112D4E;
+  background-color: #112D4E;
   color: #DBE2EF;
   border: none;
 }
@@ -87,12 +87,12 @@ button.inactive{
 
 }
 
-nav{
+nav {
   display: flex;
   flex-direction: row;
 }
 
-nav .principal{
+nav .principal {
   flex-grow: 1;
 }
 
@@ -122,7 +122,7 @@ nav {
 
 /* Estilo dos links */
 nav a {
-  color:#DBE2EF;
+  color: #DBE2EF;
   text-decoration: none;
   font-weight: 500;
   padding: 6px 10px;
@@ -145,7 +145,7 @@ nav a:hover {
   justify-content: space-around;
   margin-top: 50px;
   margin-bottom: 50px;
-  height:0%;
+  height: 0%;
 }
 
 /*Card central*/
@@ -162,7 +162,7 @@ nav a:hover {
   align-items: center;
   margin-bottom: 5px;
   margin-left: 0;
-  color:#DBE2EF
+  color: #DBE2EF
 }
 
 .homeProfessional {
@@ -190,7 +190,7 @@ nav a:hover {
   font-size: 25px;
 }
 
-.row{
+.row {
   display: flex
 }
 
@@ -235,18 +235,36 @@ nav a:hover {
   color: #fff;
   padding: 12px 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   opacity: 0;
   transform: translateY(-20px);
   animation: toastFadeInOut 3s forwards;
   z-index: 9999;
 }
 
+.inputErro {
+  border: 3px solid red;
+  background-color: #F9F7F7;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.inputErroTexto {
+  color: red;
+}
+
+.input {
+  border: 5px solid #F9F7F7;
+  background-color: #F9F7F7;
+  border-radius: 5px;
+  width: 300px;
+}
+
 Input {
-border: 5px solid #F9F7F7;
-background-color: #F9F7F7;
-border-radius: 5px;
-width: 300px;
+  border: 5px solid #F9F7F7;
+  background-color: #F9F7F7;
+  border-radius: 5px;
+  width: 300px;
 }
 
 Select {
@@ -259,7 +277,7 @@ Select {
 Form {
   display: flex;
   flex-direction: column;
-  align-items:flex-start;
+  align-items: flex-start;
 }
 
 @keyframes toastFadeInOut {
@@ -267,10 +285,13 @@ Form {
     opacity: 0;
     transform: translateY(-20px);
   }
-  10%, 90% {
+
+  10%,
+  90% {
     opacity: 1;
     transform: translateY(0);
   }
+
   100% {
     opacity: 0;
     transform: translateY(-20px);
