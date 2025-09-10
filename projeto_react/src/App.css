@@ -222,6 +222,30 @@ nav a:hover {
   cursor: pointer;
 }
 
+.backgroundQS {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid;
+  border-color: #112D4E;
+  background-color: #112D4E;
+  padding: 50px;
+  border-radius: 25px;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-left: 0;
+  color: #DBE2EF;
+  max-width: 800px;
+}
+
+.backgroundQS div {
+  font-size: 25px;
+}
+
+.backgroundQS h2 {
+  font-weight: bold;
+  padding-bottom: 30px;
+}
 
 
 .toast {
