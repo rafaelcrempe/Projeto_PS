@@ -13,6 +13,8 @@ function NavBar({
 
   const nav = useNavigate();
 
+
+
   async function sair() {
     if (hasSession != null) {
       localStorage.removeItem('supaSession')
@@ -21,6 +23,8 @@ function NavBar({
       nav("/home", { replace: true });
     }
   }
+
+  
 
   return (
     <nav> {/* navegação */}
@@ -51,6 +55,8 @@ function NavBar({
 
   );
 }
+
+
 
 export default NavBar;
 
