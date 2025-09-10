@@ -66,7 +66,6 @@ body {
 }
 
 button.inactive {
-button.inactive {
   background-color: #DBE2EF;
   padding: 7px;
   margin: 20px;
@@ -178,8 +177,7 @@ nav a:hover {
   align-items: center;
   margin-bottom: 5px;
   margin-left: 0;
-  color: #DBE2EF
-  color: #DBE2EF
+  color: #DBE2EF;
 }
 
 .homeProfessional {
@@ -208,7 +206,6 @@ nav a:hover {
   font-size: 25px;
 }
 
-.row {
 .row {
   display: flex
 }
@@ -331,15 +328,10 @@ Form {
     transform: translateY(-20px);
   }
 
-  10%,
-  90% {
-
-  10%,
-  90% {
+  10%, 90% {
     opacity: 1;
     transform: translateY(0);
   }
-
 
   100% {
     opacity: 0;
