@@ -13,7 +13,7 @@ export default function QuemSomos() {
                 <br />
                 <br />
                 <div>
-                    O <strong>Ajuda Aqui!</strong> foi um projeto idealizado por <i><b>Rafael Crempe, Marcos Curila e Renan Victorino</b></i> como projeto integrador
+                    O <strong>Ajuda Aqui!</strong> foi idealizado por <i><b>Rafael Crempe, Marcos Curila e Renan Victorino</b></i> como projeto integrador
                     do curso de Programador de Sistemas do SENAC São Carlos.
                     <br />
                     <br />
