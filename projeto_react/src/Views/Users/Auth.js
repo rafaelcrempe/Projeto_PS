@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Input } from '../../Components/Input'
 import { Select } from '../../Components/Select';
 import { Form } from '../../Components/Form';
+import Footer from '../../Components/Footer';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -36,7 +37,7 @@ function Auth() { // aqui é JavaScript
   // const [name, setName] = useState("");
   // const [lastName, setLastName] = useState("");
   const [isLogin, setIsLogin] = useState(true);
-  const [isProfessional, setIsProfessional] = useState(true);
+  const [isProfessional, setIsProfessional] = useState(false);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
 
@@ -122,18 +123,21 @@ function Auth() { // aqui é JavaScript
   }
 
   return ( // Aqui é html
+    <>
     <div className="screen">
       <div className="fundoCadastro">
         <div className="backgroundScreen">
 
           {!isLogin &&
-            (<div>
+            (<div className='tipoCadastro'>
               <h2>QUERO ME CADASTRAR COMO:  </h2>
-              <button className={isProfessional ? 'buttonBase' : 'active'} onClick={() => {
-                setIsProfessional(false);
-                setUser({ ...user, funcao: "cliente" })
-              }}>CLIENTE</button>
-              <button className={isProfessional ? 'active' : 'buttonBase'} onClick={() => setIsProfessional(true)}>PROFISSIONAL</button>
+              <div className='formDisplay'>
+                <button className={isProfessional ? 'inactive' : 'buttonBase'} onClick={() => {
+                  setIsProfessional(false);
+                  setUser({ ...user, funcao: "cliente" })
+                }}><i class="fa-solid fa-user" /> CLIENTE</button>
+                <button className={isProfessional ? 'buttonBase' : 'inactive'} onClick={() => setIsProfessional(true)}> <i class="fa-solid fa-screwdriver-wrench" /> PROFISSIONAL</button>
+              </div>
             </div>
             )
           }
@@ -141,21 +145,23 @@ function Auth() { // aqui é JavaScript
           {!isLogin && isProfessional && (
             <Form func={register}>
 
-              <Select
-                label="Escolha sua especialidade"
-                name="funcao"
-                placeholder="Função"
-                onChange={setUser}
-                objeto={user}
-                campo="funcao"
-                options={[
-                  { value: 'pedreiro', label: 'Pedreiro' },
-                  { value: 'encanador', label: 'Encanador' },
-                  { value: 'pintor', label: 'Pintor' },
-                  { value: 'eletricista', label: 'Eletricista' },
-                  { value: 'marceneiro', label: 'Marceneiro' },
-                ]}
-              />
+              <div style={{display: 'flex', justifyContent:'center', width: '100%'}}>
+                <Select
+                  label="Escolha sua especialidade"
+                  name="funcao"
+                  placeholder="Função"
+                  onChange={setUser}
+                  objeto={user}
+                  campo="funcao"
+                  options={[
+                    { value: 'pedreiro', label: 'Pedreiro' },
+                    { value: 'encanador', label: 'Encanador' },
+                    { value: 'pintor', label: 'Pintor' },
+                    { value: 'eletricista', label: 'Eletricista' },
+                    { value: 'marceneiro', label: 'Marceneiro' },
+                  ]}
+                />
+              </div>
               <div className='formDisplay'>
                 <Input
                   label="Nome"
@@ -203,7 +209,7 @@ function Auth() { // aqui é JavaScript
                   campo='phone' />
 
                 <Input
-                  label="Email"
+                  label="E-mail"
                   type="email"
                   placeholder="E-mail"
                   onChange={setUser}
@@ -286,7 +292,7 @@ function Auth() { // aqui é JavaScript
                   campo='phone' />
 
                 <Input
-                  label="Email"
+                  label="E-mail"
                   type="email"
                   placeholder="E-mail"
                   onChange={setUser}
@@ -355,9 +361,11 @@ function Auth() { // aqui é JavaScript
 
       {msg && (<div className='toast'> {msg} </div>)}     {/* exibe a mensagem de erro na tela */}
 
-
     </div>
-
+      <span>
+      <Footer />
+      </span>
+ </>
   );
 }
 
