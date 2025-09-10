@@ -179,6 +179,9 @@ function Profile() {
               <div>
                 {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
                 <p> Meus dados</p>
+
+                <button>Edit</button>
+                <button>Upload</button>
               </div>
           }
 
@@ -207,11 +210,12 @@ function Profile() {
         }
       </div>
 
-      <div> {/* Images área do Renan mexer */}
+      <div className="row"> {/* Images área do Renan mexer */}
         {images.map(
           i => (
             <div key={i.id}>
               <img src={i.url} />
+
             </div>
           )
         )}
