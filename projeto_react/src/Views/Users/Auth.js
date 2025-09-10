@@ -61,7 +61,11 @@ function Auth() { // aqui é JavaScript
         5000
       )
 
-      window.location.reload();
+      if(localStorage.getItem("paginaSalva")){
+        window.location.href = localStorage.getItem("paginaSalva")
+      }else{
+        window.location.reload();
+      }
 
     } catch (err) {
       setMsg('Error: ' + err);
