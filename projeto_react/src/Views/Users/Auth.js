@@ -40,6 +40,9 @@ function Auth() { // aqui é JavaScript
   const [isProfessional, setIsProfessional] = useState(false);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
+  const [erroSenha, setErroSenha] = useState(false);
+
+
 
   async function logar() {
     setLoading(true)
@@ -119,7 +122,7 @@ function Auth() { // aqui é JavaScript
   }
 
   function verifyPass(pass) {
-    return user.password.includes(pass)
+    setErroSenha(user.password != pass)
   }
 
   return ( // Aqui é html
@@ -145,7 +148,7 @@ function Auth() { // aqui é JavaScript
           {!isLogin && isProfessional && (
             <Form func={register}>
 
-              <div style={{display: 'flex', justifyContent:'center', width: '100%'}}>
+              <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                 <Select
                   label="Escolha sua especialidade"
                   name="funcao"
@@ -230,11 +233,14 @@ function Auth() { // aqui é JavaScript
 
                 <label>
                   Confirmar Senha: <br />
-                  <input
+                  <input 
+                    className={erroSenha ? "inputErro" : "input"}
                     type="password"
                     placeholder="Confirmar Senha"
                     onChange={(e) => verifyPass(e.target.value)}
+
                   />
+                  {erroSenha == true && <p className='inputErroTexto'>As senhas digitadas não coincidem!</p>}
                 </label>
               </div>
               <br />
@@ -314,10 +320,12 @@ function Auth() { // aqui é JavaScript
                 <label>
                   Confirmar Senha: <br />
                   <input
+                    className={erroSenha ? "inputErro" : "input"}
                     type="password"
                     placeholder="Confirmar Senha"
                     onChange={(e) => verifyPass(e.target.value)}
                   />
+                  {erroSenha == true && <p className='inputErroTexto'>As senhas digitadas não coincidem!</p>}
                 </label>
               </div>
               <br />
