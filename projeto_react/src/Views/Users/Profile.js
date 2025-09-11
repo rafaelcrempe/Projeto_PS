@@ -135,7 +135,7 @@ function Profile() {
     setServices(dataServices);
 
     const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
-    if(!data.user)
+    if(!dataUser.user)
       return;
 
     dataServices.forEach( s => {
@@ -228,7 +228,7 @@ function Profile() {
                         isServiceRequested == false ?
                           <button onClick={() => createServices(user)}>{user.phone}</button>
                         :
-                          <span>Serviço solicitado...</span>
+                          <span style={{color: "yellow"}}>Serviço solicitado...</span>
                       }
                     </p>
                   :
