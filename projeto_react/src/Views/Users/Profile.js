@@ -41,6 +41,7 @@ function Profile() {
   const nav = useNavigate(); // Navegação entre as páginas
   const { id } = useParams() // Variável que pega o ID do perfil que está sendo visualizado
 
+
   // ---- Variáveis de useState
   const [user, setUser] = useState({ // Dados do usuário que está sendo exibido o perfil
     email: "",
@@ -55,6 +56,7 @@ function Profile() {
   });
 
   const [services, setServices] = useState([]) // Busca os dados do serviço deste usuário que está sendo exibido
+  const [showServicesStatus, setShowServicesStatus] = useState("Pendente"); // Altera a visualização entre serviços novos ou em andamento
   const [images, setImages] = useState([]) // Imagens do usuário do serviço que está sendo mostrado
 
   const [loggedUser, setLoggedUser] = useState({}); // Dados do usuário que está logado
@@ -118,11 +120,18 @@ function Profile() {
   // Busca o serviço pelo ID do usuário do params
   async function readServices() {
 
-    let { data: dataServices, error } = await supabase
-      .from('services')
-      .select('*')
-      .eq('professional_id', id);
+    const { data: dataServices, error } = await supabase
+    .from('view_clients_by_professional')
+    .select('*')
+    .eq('professional_id', id);
+  
 
+    // let { data: dataServices, error } = await supabase
+    //   .from('services')
+    //   .select('*, users(name) ') // Está buscando errado, pois busca apenas o proprio profissional
+    //   .eq('professional_id', id);
+
+      console.log(dataServices)
     setServices(dataServices);
 
   }
@@ -147,6 +156,25 @@ function Profile() {
 
   }
 
+  async function updateServices(currentService, newStatus){
+
+
+    delete currentService.last_name;
+    delete currentService.name;
+    currentService.status = newStatus;
+
+    const { data, error } = await supabase
+    .from('services')
+    .update(currentService)
+    .eq('id', currentService.id)
+
+    console.log(data)
+    console.log(error)
+
+    readServices();
+
+  }
+
   // Busca as imagens do serviço
   async function readImage() {
     let { data: dataImages, error } = await supabase
@@ -163,59 +191,103 @@ function Profile() {
   //#region HTML
 
   return (
-    <div className='backgroundScreen'>
+    <div className='backgroundScreen' style={{flexDirection: "row", gap: 100}} >
+
+      {/* Dados do perfil do usuário */}
+      <div>
+
+        <div> {/* User: área do Rafael mexer */}
+
+          <img src={user.url} />
+          <h1>{user.name} {user.last_name}</h1>
+          <div >
+            <p>{user.funcao}</p>
 
 
-      <div> {/* User: área do Rafael mexer */}
+            {
+              isSelfUser == true &&
+                <div>
+                  {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
+                  <p> Meus dados</p>
+                </div>
+            }
 
-        <img src={user.url} />
-        <h1>{user.name} {user.last_name}</h1>
-        <div >
-          <p>{user.funcao}</p>
+            {
+              isLogged == true ?
+                isSelfUser == false &&
+                  // Aqui é o que aparece se o usuário estiver logado e puder contratar o serviço
+                  <p><button onClick={() => createServices(user)}>{user.phone}</button></p>
+                  :
+                  // Mensagem se o usuário não estiver logado
+                  <p><a href="/login">Clique aqui</a> para entrar com sua conta e visualizar</p>
+            }
 
+          </div>
+        </div>
 
+        <div> {/* Services: Marcos */}
           {
-            isSelfUser == true &&
-              <div>
-                {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                <p> Meus dados</p>
+            services.map(
+              s => (
+                  s.status == "Concluído" &&
+                    <Services key={s.id} servico={s} starRating={<StarRating rating={s.star} readonly={true} />} />
+              )
+            )
+          }
+        </div>
+
+        <div> {/* Images área do Renan mexer */}
+          {images.map(
+            i => (
+              <div key={i.id}>
+                <img src={i.url} />
               </div>
-          }
+            )
+          )}
+        </div>
 
-          {
-            isLogged == true ?
-              isSelfUser == false &&
-                // Aqui é o que aparece se o usuário estiver logado e puder contratar o serviço
-                <p><button onClick={() => createServices(user)}>{user.phone}</button></p>
-                :
-                // Mensagem se o usuário não estiver logado
-                <p><a href="/login">Clique aqui</a> para entrar com sua conta e visualizar</p>
-          }
+      </div>
+
+      {/* Serviços pendentes para ser aceitos */}
+      {
+        isSelfUser == true &&
+    
+        <div style={{alignSelf:"start"}}>
+            <h2>Solicitações</h2>
+            <p>Acompanhe suas solicitações de serviços por aqui:</p>
+
+            <button style={{backgroundColor: showServicesStatus == "Pendente" ? "white":"gray" , color: "blue", border: "none", padding: "5px 25px", marginRight: 30}} onClick={()=>setShowServicesStatus("Pendente")}>Pendentes</button>
+            <button style={{backgroundColor: showServicesStatus == "Em andamento" ? "white":"gray", color: "green", border: "none", padding: "5px 25px", marginRight: 30, marginBottom: 20}} onClick={()=>setShowServicesStatus("Em andamento")}>Em andamento</button>
+
+            {
+              services.length > 0 
+              ?
+                services.map( s => 
+                  s.status == showServicesStatus &&
+                    <div style={{boxShadow:"1px 2px 3px black", padding: 20, marginBottom: 15}} >
+                      <p style={{margin: 0}}> <span style={{fontSize: 25}}>{s.name} {s.last_name}</span> &nbsp;&nbsp; <a href={"/profile/"+s.client_id} >Ver o perfil</a> </p>
+                      <p>Solicitado em: {s.created_at}</p>
+
+
+                      {
+                        s.status == "Pendente" ?
+                          <div>
+                            <button onClick={()=>updateServices(s, "Em andamento")} style={{backgroundColor: "green", color: "white", border: "none", padding: "5px 25px", marginRight: 30}} >Aceitar</button>
+                            <button onClick={()=>updateServices(s, "Cancelado")} style={{backgroundColor: "red", color: "white", border: "none", padding: "5px 25px"}} >Recusar</button>
+                          </div>
+                        :
+                          <button onClick={()=>updateServices(s, "Concluído")} style={{backgroundColor: "yellow", color: "black", border: "none", padding: "5px 25px", marginRight: 30}} >Encerrar serviço</button>
+                      }
+                    </div>
+                )
+              :
+              <p style={{boxShadow:"1px 2px 3px black", padding: 20}}>Nenhum serviço solicitado ainda...</p>
+
+            }
 
         </div>
-      </div>
+      }
 
-      <div> {/* Services: Marcos */}
-        {
-          services.map(
-            s => (
-              <>
-                <Services key={s.id} servico={s} starRating={<StarRating rating={s.star} readonly={true} />} />
-              </>
-            )
-          )
-        }
-      </div>
-
-      <div> {/* Images área do Renan mexer */}
-        {images.map(
-          i => (
-            <div key={i.id}>
-              <img src={i.url} />
-            </div>
-          )
-        )}
-      </div>
     </div>
   );
 
