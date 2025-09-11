@@ -245,6 +245,7 @@ nav a:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  text-align: justify;
   border: 1px solid;
   border-color: #112D4E;
   background-color: #112D4E;
@@ -319,6 +320,18 @@ Form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+Footer {
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #112D4E;
+  color: #DBE2EF;
+  text-align: center;
+  padding: 10px 0;
 }
 
 

@@ -17,7 +17,7 @@ export default function QuemSomos() {
                     do curso de Programador de Sistemas do SENAC São Carlos.
                     <br />
                     <br />
-                    A ideia surgiu da necessidade de buscar prestadores de serviços que estivessem disponíveis para reparos rápidos.
+                    A ideia surgiu da necessidade de buscar prestadores de serviços que estivessem disponíveis para reparos rápidos, listando e conectando usuários necessitados a prestadores de serviços.
                     <br />
                     <br />
                     Para esse projeto, utilizamos React para a criação do sistema e Supabase para o banco de dados.
