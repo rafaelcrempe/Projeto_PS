@@ -270,7 +270,7 @@ function Profile() {
             <h2>Solicitações</h2>
             <p>Acompanhe suas solicitações de serviços por aqui:</p>
 
-            <button style={{backgroundColor: showServicesStatus == "Pendente" ? "white":"gray" , color: "blue", border: "none", padding: "5px 25px", marginRight: 30}} onClick={()=>setShowServicesStatus("Pendente")}>Pendentes</button>
+            <button style={{backgroundColor: showServicesStatus == "Pendente" ? "white":"gray" , color: "#DBE2EF", border: "",  padding: "5px 25px", marginRight: 30}} onClick={()=>setShowServicesStatus("Pendente")}>Pendentes</button>
             <button style={{backgroundColor: showServicesStatus == "Em andamento" ? "white":"gray", color: "green", border: "none", padding: "5px 25px", marginRight: 30, marginBottom: 20}} onClick={()=>setShowServicesStatus("Em andamento")}>Em andamento</button>
 
             {
@@ -286,7 +286,7 @@ function Profile() {
                       {
                         s.status == "Pendente" ?
                           <div>
-                            <button onClick={()=>updateServices(s, "Em andamento")} style={{backgroundColor: "green", color: "white", border: "none", padding: "5px 25px", marginRight: 30}} >Aceitar</button>
+                            <button onClick={()=>updateServices(s, "Em andamento")} style={{backgroundColor: "#112D4E", color: "white", border: "2px solid #112D4E", padding: "5px 25px", marginRight: 30}} >Aceitar</button>
                             <button onClick={()=>updateServices(s, "Cancelado")} style={{backgroundColor: "red", color: "white", border: "none", padding: "5px 25px"}} >Recusar</button>
                           </div>
                         :
