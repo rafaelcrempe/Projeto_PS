@@ -206,9 +206,9 @@ function Profile() {
         <div> {/* User: área do Rafael mexer */}
 
           <img src={user.url} />
-          <h1>{user.name} {user.last_name}</h1>
+          <h1>{user.name.toUpperCase()} {user.last_name.toUpperCase()}</h1>
           <div >
-            <p>{user.funcao}</p>
+            <p>{user.funcao.toUpperCase()}</p>
 
 
             {
@@ -226,7 +226,7 @@ function Profile() {
                     <p>
                       {
                         isServiceRequested == false ?
-                          <button onClick={() => createServices(user)}>{user.phone}</button>
+                          <button onClick={() => createServices(user)}>CONTATO</button>
                         :
                           <span style={{color: "yellow"}}>Serviço solicitado...</span>
                       }
