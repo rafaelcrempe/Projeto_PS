@@ -11,11 +11,13 @@ function Select({
         <div>
             {label && (
                 <>
-                <label>{label}:</label>
-                <br/>
+                    <label>{label}:</label>
+                    <br />
                 </>
-            )} 
-            <select name={name} value={objeto[campo]} placeholder={placeholder} onChange={(e) => onChange({...objeto, [campo]: e.target.value})}><br />
+            )}
+            <select name={name} value={objeto[campo]} placeholder={placeholder} onChange={(e) => onChange({ ...objeto, [campo]: e.target.value })}><br />
+
+
                 {options.map(
                     o => (
                         <option value={o.value}>{o.label}</option>
@@ -24,8 +26,8 @@ function Select({
 
 
             </select>
-            <br/>
-            <br/>
+            <br />
+            <br />
         </div>
     );
 }
