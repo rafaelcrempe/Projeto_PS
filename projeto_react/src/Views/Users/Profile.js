@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 //useEffect muda a tela quando entra ou atualiza a tela
 import { createClient } from "@supabase/supabase-js";
-import { useNavigate, useParams } from 'react-router-dom';
+import { data, useNavigate, useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Services from './Services';
 
@@ -57,6 +57,7 @@ function Profile() {
 
   const [services, setServices] = useState([]) // Busca os dados do serviço deste usuário que está sendo exibido
   const [showServicesStatus, setShowServicesStatus] = useState("Pendente"); // Altera a visualização entre serviços novos ou em andamento
+  const [isServiceRequested, setIsServiceRequested] = useState(false) // Informa se o cliente já tem um pedido em andamento com o profissional
   const [images, setImages] = useState([]) // Imagens do usuário do serviço que está sendo mostrado
 
   const [loggedUser, setLoggedUser] = useState({}); // Dados do usuário que está logado
@@ -131,8 +132,16 @@ function Profile() {
     //   .select('*, users(name) ') // Está buscando errado, pois busca apenas o proprio profissional
     //   .eq('professional_id', id);
 
-      console.log(dataServices)
     setServices(dataServices);
+
+    const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
+    if(!data.user)
+      return;
+
+    dataServices.forEach( s => {
+      if(s.client_id == dataUser.user.id)
+        setIsServiceRequested(true)
+    } )
 
   }
 
@@ -154,10 +163,11 @@ function Profile() {
       .from('services')
       .insert({ ...novoServico, client_id: uid });
 
+      readServices();
+
   }
 
   async function updateServices(currentService, newStatus){
-
 
     delete currentService.last_name;
     delete currentService.name;
@@ -167,9 +177,6 @@ function Profile() {
     .from('services')
     .update(currentService)
     .eq('id', currentService.id)
-
-    console.log(data)
-    console.log(error)
 
     readServices();
 
@@ -214,9 +221,16 @@ function Profile() {
 
             {
               isLogged == true ?
-                isSelfUser == false &&
-                  // Aqui é o que aparece se o usuário estiver logado e puder contratar o serviço
-                  <p><button onClick={() => createServices(user)}>{user.phone}</button></p>
+                  isSelfUser == false &&
+                    // Aqui é o que aparece se o usuário estiver logado e puder contratar o serviço
+                    <p>
+                      {
+                        isServiceRequested == false ?
+                          <button onClick={() => createServices(user)}>{user.phone}</button>
+                        :
+                          <span>Serviço solicitado...</span>
+                      }
+                    </p>
                   :
                   // Mensagem se o usuário não estiver logado
                   <p><a href="/login">Clique aqui</a> para entrar com sua conta e visualizar</p>
@@ -229,7 +243,7 @@ function Profile() {
           {
             services.map(
               s => (
-                  s.status == "Concluído" &&
+                  (s.status == "Concluído" && s.star != 0) &&
                     <Services key={s.id} servico={s} starRating={<StarRating rating={s.star} readonly={true} />} />
               )
             )
