@@ -5,7 +5,8 @@ function Input({
     className, 
     label,
     objeto,
-    campo
+    campo,
+    ...rest
 }) {
     return (
         <div>
@@ -14,7 +15,7 @@ function Input({
                 <>
                 <label>{label}:
                 <br/>
-                <input type={type} placeholder={placeholder} className={className} onChange={(e) => onChange({...objeto, [campo]: e.target.value})} />
+                <input required type={type} placeholder={placeholder} className={className} onChange={(e) => onChange({...objeto, [campo]: e.target.value})} {...rest} />
                 <br/>
                 <br/>
                 </label>

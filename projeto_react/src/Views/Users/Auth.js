@@ -39,7 +39,7 @@ function Auth() { // aqui é JavaScript
   const [isLogin, setIsLogin] = useState(true);
   const [isProfessional, setIsProfessional] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [msg, setMsg] = useState("");
+  const [msg, setMsg] = useState("true");
   const [erroSenha, setErroSenha] = useState(false);
 
 
@@ -199,7 +199,10 @@ function Auth() { // aqui é JavaScript
                   placeholder="CPF"
                   onChange={setUser}
                   objeto={user}
-                  campo='cpf' />
+                  campo='cpf' 
+                  minLength={11}
+                  maxLength={11}
+                  />
               </div>
 
               <div className='formDisplay'>
@@ -228,7 +231,8 @@ function Auth() { // aqui é JavaScript
                   placeholder="Senha"
                   onChange={setUser}
                   objeto={user}
-                  campo='password'
+                  campo='password'                  
+                  minLength={6}
                 />
 
                 <label>
@@ -285,7 +289,9 @@ function Auth() { // aqui é JavaScript
                   placeholder="CPF"
                   onChange={setUser}
                   objeto={user}
-                  campo='cpf' />
+                  campo='cpf' 
+                  minLength={11}
+                  maxLength={11} />
               </div>
 
               <div className='formDisplay'>
@@ -315,6 +321,7 @@ function Auth() { // aqui é JavaScript
                   onChange={setUser}
                   objeto={user}
                   campo='password'
+                  minLength={6}
                 />
 
                 <label>
