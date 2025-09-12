@@ -272,9 +272,9 @@ nav a:hover {
   font-size: 25px;
 }
 
-.backgroundQS h2 {
-  font-weight: bold;
-  padding-bottom: 30px;
+.backgroundQS img {
+  width: 500px;
+  margin-bottom: 50px;
 }
 
 
