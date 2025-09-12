@@ -250,7 +250,7 @@ function Profile() {
           }
         </div>
 
-        <div> {/* Images área do Renan mexer */}
+        <div className="cardImagem"> {/* Images área do Renan mexer */}
           {images.map(
             i => (
               <div key={i.id}>
@@ -314,16 +314,6 @@ function Profile() {
         }
       </div>
 
-      <div className="row"> {/* Images área do Renan mexer */}
-        {images.map(
-          i => (
-            <div key={i.id}>
-              <img src={i.url} />
-
-            </div>
-          )
-        )}
-      </div>
     </div>
   );
 

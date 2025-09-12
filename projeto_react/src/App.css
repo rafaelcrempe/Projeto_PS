@@ -352,3 +352,24 @@ Footer {
     transform: translateY(-60px);
   }
 }
+
+.cardImagem {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardImagem img {
+  width: 100%;
+}
+
+.cardImagem img:hover {
+  transform: scale(2.5);
+  transition: 0.5s ease-in-out;
+}
+
+.cardImagem label {
+  font-weight: 500;
+  font-size: 25px;
+}
