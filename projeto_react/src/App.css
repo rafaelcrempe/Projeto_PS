@@ -206,6 +206,16 @@ nav a:hover {
   font-size: 25px;
 }
 
+.cardLista {
+  box-shadow: #DBE2EF 2px 2px 5px;
+  margin-bottom: 10px;
+  
+}
+
+.cardLista:hover {
+  transform: scale(1.2);
+}
+
 .row {
   display: flex
 }

@@ -14,35 +14,39 @@ function NavBar({
 
   const nav = useNavigate();
 
-  const [ showRating, setShowRating ] = useState(false);
-  const [ service, setService ] = useState({})
+  const [showRating, setShowRating] = useState(false);
+  const [service, setService] = useState({})
 
   const [inputStars, setInputStars] = useState(0);
   const [inputComment, setInputComment] = useState("")
 
-  useEffect(()=> {
+  const [userId, setUserId] = useState(null)
+
+  useEffect(() => {
     readService()
   }, [])
 
-  async function readService(){
+  async function readService() {
 
     const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
-    if(!dataUser.user)
+    if (!dataUser.user)
       return;
+    
+    setUserId(dataUser.user.id);
 
     const { data: dataServices, error } = await supabase
       .from('view_clients_by_professional')
       .select('*')
-      .match({client_id: dataUser.user.id, status: "Concluído", star: 0});
+      .match({ client_id: dataUser.user.id, status: "Concluído", star: 0 });
 
-    if(dataServices && dataServices.length > 0){
-      setService(dataServices[0])    
+    if (dataServices && dataServices.length > 0) {
+      setService(dataServices[0])
       setShowRating(true)
     }
 
   }
 
-  async function saveRating(){
+  async function saveRating() {
 
     let currentService = service
     delete currentService.last_name;
@@ -52,9 +56,9 @@ function NavBar({
     currentService.review = inputComment
 
     const { data, error } = await supabase
-    .from('services')
-    .update(currentService)
-    .eq('id', currentService.id)
+      .from('services')
+      .update(currentService)
+      .eq('id', currentService.id)
 
     setShowRating(false)
 
@@ -69,7 +73,7 @@ function NavBar({
     }
   }
 
-  
+
 
   return (
     <nav> {/* navegação */}
@@ -78,29 +82,29 @@ function NavBar({
 
           <div className="principal">
             <Link to="/home">Início</Link>
-            <Link to="/profile">Perfil</Link>
+            <Link to={`/profile/${userId}`}>Perfil</Link>
           </div>
           <Link className="buttonSair" onClick={() => sair()}>Sair</Link>
 
           {
             showRating == true &&
-              <div style={{width: 400, backgroundColor: "white", position: "absolute", margin: "auto", top: 100, left: 0, right: 0, padding: 50, textAlign: "center"}}>
-                <h2>Avaliação</h2>
-                <p>Você realizou o serviço recente.<br/>Como foi a sua experiência?</p>
-                <button onClick={()=>setInputStars(1)}>1</button>
-                <button onClick={()=>setInputStars(2)}>2</button>
-                <button onClick={()=>setInputStars(3)}>3</button>
-                <button onClick={()=>setInputStars(4)}>4</button>
-                <button onClick={()=>setInputStars(5)}>5</button>
+            <div style={{ width: 400, backgroundColor: "white", position: "absolute", margin: "auto", top: 100, left: 0, right: 0, padding: 50, textAlign: "center" }}>
+              <h2>Avaliação</h2>
+              <p>Você realizou o serviço recente.<br />Como foi a sua experiência?</p>
+              <button onClick={() => setInputStars(1)}>1</button>
+              <button onClick={() => setInputStars(2)}>2</button>
+              <button onClick={() => setInputStars(3)}>3</button>
+              <button onClick={() => setInputStars(4)}>4</button>
+              <button onClick={() => setInputStars(5)}>5</button>
 
-                <br/><br/>
-                <p>Por favor, deixe um comentário:</p>
-                <textarea onChange={e=>setInputComment(e.target.value)} ></textarea>
-                <br/><br/>
+              <br /><br />
+              <p>Por favor, deixe um comentário:</p>
+              <textarea onChange={e => setInputComment(e.target.value)} ></textarea>
+              <br /><br />
 
-                <button onClick={()=>saveRating()} >Salvar</button>
+              <button onClick={() => saveRating()} >Salvar</button>
 
-              </div>
+            </div>
           }
 
         </>
