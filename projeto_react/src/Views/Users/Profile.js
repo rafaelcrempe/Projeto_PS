@@ -17,7 +17,7 @@ const StarRating = ({ rating, onRatingChange, readonly = false }) => {
   const emptyStar = '☆';
 
   return (
-    <div style={{ fontSize: '24px', color: '#FF0000', cursor: readonly ? 'default' : 'pointer' }}>
+    <div style={{ fontSize: '24px', color: '#DBE2EF', cursor: readonly ? 'default' : 'pointer' }}>
       {[1, 2, 3, 4, 5].map((star) => (
         <span
           key={star}
