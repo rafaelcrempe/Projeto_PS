@@ -139,7 +139,7 @@ function Profile() {
       return;
 
     dataServices.forEach( s => {
-      if(s.client_id == dataUser.user.id)
+      if(s.client_id == dataUser.user.id && s.status != "Concluído")
         setIsServiceRequested(true)
     } )
 
