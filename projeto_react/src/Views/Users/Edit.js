@@ -11,14 +11,9 @@ function ProfileEdit() {
     const nav = useNavigate();
 
     const [user, setUser] = useState({
-        email: "",
         phone: "",
         name: "",
         last_name: "",
-        funcao: "",
-        birth: "",
-        cpf: "",
-        url: "",
     });
 
     const [editingField, setEditingField] = useState(null); // controla qual campo está sendo editado
@@ -56,9 +51,6 @@ function ProfileEdit() {
             phone: user.phone,
             name: user.name,
             last_name: user.last_name,
-            birth: user.birth,
-            cpf: user.cpf,
-            funcao: user.funcao,
         };
 
         const { error: eU } = await supabase
