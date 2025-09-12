@@ -15,6 +15,8 @@ function ProfileEdit() {
     const { id } = useParams()
     const nav = useNavigate();
 
+    const [editing, setEditing] = useState();
+
     const [user, setUser] = useState({
         email: "",
         password: "",
@@ -44,47 +46,52 @@ function ProfileEdit() {
         setUser(dataUser);
 
     }
-async function updateProfile(){
+    async function updateProfile() {
 
-    const {data: dataUser, error: errorUser} = await supabase.auth.getUser();
-    const uid = dataUser?.user?.id;
-    if (!uid) throw 'deu ruim';
+        const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
+        const uid = dataUser?.user?.id;
+        if (!uid) throw 'deu ruim';
 
-    const senduser = {
-      phone: user.phone,
-      name: user.name,
-      last_name: user.last_name,
-      birth: user.birth,
-      cpf: user.cpf,
-      auth_id: uid,
-      funcao: user.funcao
+        const senduser = {
+            phone: user.phone,
+            name: user.name,
+            last_name: user.last_name,
+            birth: user.birth,
+            cpf: user.cpf,
+            auth_id: uid,
+            funcao: user.funcao
+        }
+
+        const { data: dU, error: eU } = await supabase
+            .from('users')
+            .update(senduser)
+            .eq('auth_id', uid);
+
+        nav(`/profile/${id}`)
+
     }
 
-    const { data: dU, error: eU } = await supabase
-      .from('users')
-      .update(senduser)
-      .eq('auth_id', uid);
-
-      nav(`/profile/${id}`)
-
-}
-
     return (
-        <div className='card'>
+        <div className='backgroundScreen'>
             <label>
+                <p>{user.name.toUpperCase()}</p>
                 Nome <br />
                 <input type="text" placeholder="Nome" onChange={(e) => setUser({ ...user, name: e.target.value })} /><br />
             </label>
             <label>
+                <p>{user.last_name.toUpperCase()}</p>
                 Sobrenome <br />
                 <input type="text" placeholder="Sobrenome" onChange={(e) => setUser({ ...user, last_name: e.target.value })} /><br />
             </label>
             <label>
+                <p>{user.phone}</p>
                 Telefone <br />
                 <input type="tel" placeholder="Telefone" onChange={(e) => setUser({ ...user, phone: e.target.value })} /><br />
             </label>
 
             <label>
+                <p>{user.password}</p>
+
                 Senha <br />
                 <input type="password" placeholder="Senha" minLength={6} onChange={(e) => setUser({ ...user, password: e.target.value })} /><br />
             </label>
@@ -92,7 +99,7 @@ async function updateProfile(){
                 Confirmar Senha <br />
                 <input type="password" placeholder="Confirmar Senha" minLength={6} /><br />
             </label>
-            <button className="buttonSuccess" onClick={() => {updateProfile();}}>SALVAR</button>
+            <button className="buttonBase" onClick={() => { updateProfile(); }}>SALVAR</button>
 
 
 
