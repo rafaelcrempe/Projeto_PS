@@ -206,7 +206,7 @@ function Profile() {
         <div> {/* User: área do Rafael mexer */}
 
           <img src={user.url} />
-          <h1>{user.name.toUpperCase()} {user.last_name.toUpperCase()}</h1>
+          <h1 style={{width: 500}}>{user.name.toUpperCase()} {user.last_name.toUpperCase()}</h1>
           <div >
             <p>{user.funcao.toUpperCase()}</p>
 
@@ -226,7 +226,7 @@ function Profile() {
                     <p>
                       {
                         isServiceRequested == false ?
-                          <button onClick={() => createServices(user)}>CONTATO</button>
+                          <button className='buttonBase' onClick={() => createServices(user)}>CONTATO</button>
                         :
                           <span style={{color: "yellow"}}>Serviço solicitado...</span>
                       }
@@ -270,8 +270,8 @@ function Profile() {
             <h2>Solicitações</h2>
             <p>Acompanhe suas solicitações de serviços por aqui:</p>
 
-            <button style={{backgroundColor: showServicesStatus == "Pendente" ? "white":"gray" , color: "#DBE2EF", border: "",  padding: "5px 25px", marginRight: 30}} onClick={()=>setShowServicesStatus("Pendente")}>Pendentes</button>
-            <button style={{backgroundColor: showServicesStatus == "Em andamento" ? "white":"gray", color: "green", border: "none", padding: "5px 25px", marginRight: 30, marginBottom: 20}} onClick={()=>setShowServicesStatus("Em andamento")}>Em andamento</button>
+            <button className='buttonBase' style={{backgroundColor: showServicesStatus == "Pendente" ? "white":"gray" , color: "#112D4E", borderRadius:"10px", borderBlockColor: "ActiveBorder", padding: "5px 25px", marginBottom: "20px", marginRight: 30}} onClick={()=>setShowServicesStatus("Pendente")}>Pendentes</button>
+            <button className= 'buttonBase'style={{backgroundColor: showServicesStatus == "Em andamento" ? "white":"gray", color: "#112D4E", borderRadius:"10px",borderBlockColor: "ActiveBorder", padding: "5px 25px", marginBottom: "20px", marginRight: 30, marginBottom: 20}} onClick={()=>setShowServicesStatus("Em andamento")}>Em andamento</button>
 
             {
               services.length > 0 
@@ -286,11 +286,11 @@ function Profile() {
                       {
                         s.status == "Pendente" ?
                           <div>
-                            <button onClick={()=>updateServices(s, "Em andamento")} style={{backgroundColor: "#112D4E", color: "white", border: "2px solid #112D4E", padding: "5px 25px", marginRight: 30}} >Aceitar</button>
-                            <button onClick={()=>updateServices(s, "Cancelado")} style={{backgroundColor: "red", color: "white", border: "none", padding: "5px 25px"}} >Recusar</button>
+                            <button className='buttonBase' onClick={()=>updateServices(s, "Em andamento")} style={{backgroundColor: "green", color: "white", border: "2px solid #112D4E", padding: "5px 25px", marginRight: 30}} >Aceitar</button>
+                            <button className='buttonBase' onClick={()=>updateServices(s, "Cancelado")} style={{backgroundColor: "red", color: "white", border: "none", padding: "5px 25px"}} >Recusar</button>
                           </div>
                         :
-                          <button onClick={()=>updateServices(s, "Concluído")} style={{backgroundColor: "yellow", color: "black", border: "none", padding: "5px 25px", marginRight: 30}} >Encerrar serviço</button>
+                          <button className='buttonBase' onClick={()=>updateServices(s, "Concluído")} style={{backgroundColor: "yellow", color: "black", border: "none", padding: "5px 25px", marginRight: 30}} >Encerrar serviço</button>
                       }
                     </div>
                 )
