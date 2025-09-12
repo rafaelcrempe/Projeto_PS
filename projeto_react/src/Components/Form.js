@@ -21,11 +21,11 @@ function Form({
 
         <div className=''>
             <h2>{title}</h2>
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={(e) => { e.preventDefault(); send() }}>
                 {children}
 
 
-                <button className='buttonBase' onClick={() => send()} disabled={loading}>
+                <button className='buttonBase' disabled={loading}>
                     {loading ? (
                         <Spinner animation="border" role="status">
                             <span className="visually-hidden">Loading...</span>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 //useEffect muda a tela quando entra ou atualiza a tela
 import { createClient } from "@supabase/supabase-js";
-import { data, useNavigate, useParams } from 'react-router-dom';
+import { data, Link, useNavigate, useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Services from './Services';
 
@@ -139,7 +139,7 @@ function Profile() {
       return;
 
     dataServices.forEach( s => {
-      if(s.client_id == dataUser.user.id)
+      if(s.client_id == dataUser.user.id && s.status != "Concluído")
         setIsServiceRequested(true)
     } )
 
@@ -215,7 +215,7 @@ function Profile() {
               isSelfUser == true &&
                 <div>
                   {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                  <p> Meus dados</p>
+                  <Link to={`/profile/edit/${id}`}>Editar Perfil</Link>
                 </div>
             }
 
