@@ -81,9 +81,27 @@ button.inactive {
 .buttonVoltar {
   border-radius: 25px;
   background-color: #112D4E;
+  color: #DBE2EF;
+  border: none;
+}
+
+.buttonEdit {
+  border-radius: 25px;
   background-color: #112D4E;
   color: #DBE2EF;
   border: none;
+  border-color:#DBE2EF;
+}
+
+.editScreen {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  gap: 20px;
+}
+
+.labelEdit {
+  font-weight: bold;
 }
 
 .formDisplay {

@@ -1,56 +1,56 @@
-// import logo from './logo.svg';
-// import './App.css';
-import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
-//useEffect muda a tela quando entra ou atualiza a tela
+import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
-const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8"
+const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co";
+const supabaseKey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-
 function ProfileEdit() {
-
-    const { id } = useParams()
     const nav = useNavigate();
-
-    const [editing, setEditing] = useState();
 
     const [user, setUser] = useState({
         email: "",
-        password: "",
         phone: "",
         name: "",
-        funcao: "",
         last_name: "",
+        funcao: "",
         birth: "",
         cpf: "",
-        url: ""
+        url: "",
     });
 
+    const [editingField, setEditingField] = useState(null); // controla qual campo está sendo editado
+    const [newPassword, setNewPassword] = useState("");
+
+    // Busca usuário logado ao carregar a tela
     useEffect(() => {
-        showUser(id)
-    }, [])
+        async function fetchUser() {
+            const { data: authUser } = await supabase.auth.getUser();
+            const uid = authUser?.user?.id;
+            if (!uid) return;
 
+            let { data: dataUser, error } = await supabase
+                .from("users")
+                .select("*")
+                .eq("auth_id", uid)
+                .single();
 
-    async function showUser(id) {
+            if (error) console.error(error);
+            else setUser(dataUser);
+        }
 
-        let { data: dataUser, error } = await supabase
-            .from('users')
-            .select('*')
-            .eq('auth_id', id)
-            .single();
+        fetchUser();
+    }, []);
 
-        console.log(dataUser)
-        setUser(dataUser);
-
-    }
     async function updateProfile() {
-
-        const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
+        const { data: dataUser } = await supabase.auth.getUser();
         const uid = dataUser?.user?.id;
-        if (!uid) throw 'deu ruim';
+        if (!uid) {
+            console.error("Usuário não autenticado");
+            return;
+        }
 
         const senduser = {
             phone: user.phone,
@@ -58,57 +58,111 @@ function ProfileEdit() {
             last_name: user.last_name,
             birth: user.birth,
             cpf: user.cpf,
-            auth_id: uid,
-            funcao: user.funcao
+            funcao: user.funcao,
+        };
+
+        const { error: eU } = await supabase
+            .from("users")
+            .update(senduser)
+            .eq("auth_id", uid);
+
+        if (eU) {
+            console.error("Erro ao atualizar usuário:", eU.message);
         }
 
-        const { data: dU, error: eU } = await supabase
-            .from('users')
-            .update(senduser)
-            .eq('auth_id', uid);
 
-        nav(`/profile/${id}`)
+        if (newPassword) {
+            const { error: passError } = await supabase.auth.updateUser({
+                password: newPassword,
+            });
+            if (passError) {
+                console.error("Erro ao atualizar senha:", passError.message);
+            }
+        }
 
+        setEditingField(null);
+        setNewPassword("");
+        nav(`/profile/${uid}`);
     }
 
     return (
-        <div className='backgroundScreen'>
-            <label>
-                <p>{user.name.toUpperCase()}</p>
-                Nome <br />
-                <input type="text" placeholder="Nome" onChange={(e) => setUser({ ...user, name: e.target.value })} /><br />
-            </label>
-            <label>
-                <p>{user.last_name.toUpperCase()}</p>
-                Sobrenome <br />
-                <input type="text" placeholder="Sobrenome" onChange={(e) => setUser({ ...user, last_name: e.target.value })} /><br />
-            </label>
-            <label>
-                <p>{user.phone}</p>
-                Telefone <br />
-                <input type="tel" placeholder="Telefone" onChange={(e) => setUser({ ...user, phone: e.target.value })} /><br />
-            </label>
+        <div className="backgroundScreen">
+            <div className="editScreen">
+                <div>
+                    <label className="labelEdit">Nome:</label>
+                    {editingField === "name" ? (
+                        <input
+                            type="text"
+                            value={user.name || ""}
+                            onChange={(e) => setUser({ ...user, name: e.target.value })}
+                            onBlur={() => setEditingField(null)}
+                        />
+                    ) : (
+                        <span>
+                            {" "}{user.name}{" "}
+                            <button className="buttonEdit" onClick={() => setEditingField("name")}><i class="fa-solid fa-pen-to-square"></i></button>
+                        </span>
+                    )}
+                </div>
 
-            <label>
-                <p>{user.password}</p>
+                <div>
+                    <label className="labelEdit">Sobrenome:</label>
+                    {editingField === "last_name" ? (
+                        <input
+                            type="text"
+                            value={user.last_name || ""}
+                            onChange={(e) => setUser({ ...user, last_name: e.target.value })}
+                            onBlur={() => setEditingField(null)}
+                        />
+                    ) : (
+                        <span>
+                            {" "}{user.last_name}{" "}
+                            <button className="buttonEdit" onClick={() => setEditingField("last_name")}><i class="fa-solid fa-pen-to-square"></i></button>
+                        </span>
+                    )}
+                </div>
 
-                Senha <br />
-                <input type="password" placeholder="Senha" minLength={6} onChange={(e) => setUser({ ...user, password: e.target.value })} /><br />
-            </label>
-            <label>
-                Confirmar Senha <br />
-                <input type="password" placeholder="Confirmar Senha" minLength={6} /><br />
-            </label>
-            <button className="buttonBase" onClick={() => { updateProfile(); }}>SALVAR</button>
+                <div>
+                    <label className="labelEdit">Telefone:</label>
+                    {editingField === "phone" ? (
+                        <input
+                            type="tel"
+                            value={user.phone || ""}
+                            onChange={(e) => setUser({ ...user, phone: e.target.value })}
+                            onBlur={() => setEditingField(null)}
+                        />
+                    ) : (
+                        <span>
+                            {" "}{user.phone}{" "}
+                            <button className="buttonEdit" onClick={() => setEditingField("phone")}><i class="fa-solid fa-pen-to-square"></i></button>
+                        </span>
+                    )}
+                </div>
 
-
-
-
+                <div>
+                    <label className="labelEdit">Senha:</label>
+                    {editingField === "password" ? (
+                        <input
+                            type="password"
+                            minLength={6}
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            onBlur={() => setEditingField(null)}
+                        />
+                    ) : (
+                        <span>
+                            ********
+                            <button className="buttonEdit" onClick={() => setEditingField("password")}><i class="fa-solid fa-pen-to-square"></i></button>
+                        </span>
+                    )}
+                </div>
+            </div>
+            <br />
+            <button className="buttonBase" onClick={updateProfile}>
+                SALVAR
+            </button>
         </div>
     );
-
-
 }
-
 
 export default ProfileEdit;
