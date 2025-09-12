@@ -63,6 +63,7 @@ body {
   border: none;
   border-radius: 5px;
   align-self: center;
+  font-weight: bold;
 }
 
 button.inactive {
@@ -98,10 +99,7 @@ button.inactive {
 
 }
 
-nav {
-  display: flex;
-  flex-direction: row;
-}
+
 
 nav .principal {
   flex-grow: 1;
@@ -118,6 +116,8 @@ body {
 
 /* Barra de navegação fixa no topo */
 nav {
+  display: flex;
+  flex-direction: row;
   position: fixed;
   top: 0;
   left: 0;
@@ -172,7 +172,7 @@ nav a:hover {
   border: 1px solid;
   border-color: #112D4E;
   background-color: #112D4E;
-  padding: 50px;
+  padding: 30px;
   border-radius: 25px;
   align-items: center;
   margin-bottom: 5px;
@@ -338,16 +338,17 @@ Footer {
 @keyframes toastFadeInOut {
   0% {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-60px);
   }
 
-  10%, 90% {
+  10%,
+  90% {
     opacity: 1;
     transform: translateY(0);
   }
 
   100% {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-60px);
   }
 }

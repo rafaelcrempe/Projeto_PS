@@ -15,7 +15,7 @@ function Select({
                     <br />
                 </>
             )}
-            <select name={name} value={objeto[campo]} placeholder={placeholder} onChange={(e) => onChange({ ...objeto, [campo]: e.target.value })}><br />
+            <select required name={name} value={objeto[campo]} placeholder={placeholder} onChange={(e) => onChange({ ...objeto, [campo]: e.target.value })}><br />
 
 
                 {options.map(

@@ -18,6 +18,7 @@ function Home() { // aqui é JavaScript
   const nav = useNavigate();
   const [professionals, setProfessionals] = useState([])
   const [logado, setLogado] = useState(-1)
+  const [funcao, setFuncao] = useState('');
 
 
 
@@ -44,6 +45,10 @@ function Home() { // aqui é JavaScript
 
       setProfessionals(dataProfessionals);
 
+      setFuncao(dataProfessionals[0].funcao)
+
+
+
     } else {
 
       let { data: dataProfessionals, error } = await supabase
@@ -52,6 +57,8 @@ function Home() { // aqui é JavaScript
 
 
       setProfessionals(dataProfessionals);
+
+      setFuncao(dataProfessionals[0].funcao)
 
     }
     setIsFiltered(true);
@@ -100,7 +107,7 @@ function Home() { // aqui é JavaScript
 
             <button className='buttonVoltar' onClick={() => setIsFiltered(false)} ><i class="fa-solid fa-circle-left"></i></button>
 
-            <h2>PROFISSIONAIS</h2>
+            <h2>{funcao.toUpperCase()}</h2>
 
             {professionals.map(
               u => (
