@@ -81,7 +81,7 @@ function NavBar({
         <>  {/* tags vazia, equivale a uma DIV */}
 
           <div className="principal">
-            <Link to="/home">Início</Link>
+            <Link to="/home"><img className="logoNavBar" src="https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/logo_completo.png" /></Link>
             <Link to={`/profile/${userId}`}>Perfil</Link>
           </div>
           <Link className="buttonSair" onClick={() => sair()}>Sair</Link>
