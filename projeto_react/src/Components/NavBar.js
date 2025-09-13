@@ -88,21 +88,25 @@ function NavBar({
 
           {
             showRating == true &&
-            <div style={{ width: 400, backgroundColor: "white", position: "absolute", margin: "auto", top: 100, left: 0, right: 0, padding: 50, textAlign: "center" }}>
+            <div style={{ width: 400, backgroundColor: "#112d4e", position: "absolute", margin: "auto", top: 100, left: 0, right: 0, padding: 50, textAlign: "center", color: "#dbe2ef", border: "#dbe2ef 2px solid", borderRadius: "25px" }}>
               <h2>Avaliação</h2>
               <p>Você realizou o serviço recente.<br />Como foi a sua experiência?</p>
-              <button onClick={() => setInputStars(1)}>1</button>
-              <button onClick={() => setInputStars(2)}>2</button>
-              <button onClick={() => setInputStars(3)}>3</button>
-              <button onClick={() => setInputStars(4)}>4</button>
-              <button onClick={() => setInputStars(5)}>5</button>
 
+              <div className="buttonStar">
+
+                <button style={{background: "#DBE2EF", border:"none", margin: "0 5px"}} onClick={() => setInputStars(1)}>★</button>
+                <button style={{background: "#DBE2EF", border:"none", margin: "0 5px"}} onClick={() => setInputStars(2)}>★</button>
+                <button style={{background: "#DBE2EF", border:"none", margin: "0 5px"}} onClick={() => setInputStars(3)}>★</button>
+                <button style={{background: "#DBE2EF", border:"none", margin: "0 5px"}} onClick={() => setInputStars(4)}>★</button>
+                <button style={{background: "#DBE2EF", border:"none", margin: "0 5px"}} onClick={() => setInputStars(5)}>★</button>
+
+              </div>
               <br /><br />
               <p>Por favor, deixe um comentário:</p>
               <textarea onChange={e => setInputComment(e.target.value)} ></textarea>
               <br /><br />
 
-              <button onClick={() => saveRating()} >Salvar</button>
+              <button className="buttonBase" onClick={() => saveRating()} >ENVIAR</button>
 
             </div>
           }
