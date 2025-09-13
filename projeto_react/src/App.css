@@ -63,6 +63,7 @@ body {
   border: none;
   border-radius: 5px;
   align-self: center;
+  font-weight: bold;
 }
 
 button.inactive {
@@ -80,9 +81,27 @@ button.inactive {
 .buttonVoltar {
   border-radius: 25px;
   background-color: #112D4E;
+  color: #DBE2EF;
+  border: none;
+}
+
+.buttonEdit {
+  border-radius: 25px;
   background-color: #112D4E;
   color: #DBE2EF;
   border: none;
+  border-color:#DBE2EF;
+}
+
+.editScreen {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  gap: 20px;
+}
+
+.labelEdit {
+  font-weight: bold;
 }
 
 .formDisplay {
@@ -98,10 +117,7 @@ button.inactive {
 
 }
 
-nav {
-  display: flex;
-  flex-direction: row;
-}
+
 
 nav .principal {
   flex-grow: 1;
@@ -118,6 +134,8 @@ body {
 
 /* Barra de navegação fixa no topo */
 nav {
+  display: flex;
+  flex-direction: row;
   position: fixed;
   top: 0;
   left: 0;
@@ -172,7 +190,7 @@ nav a:hover {
   border: 1px solid;
   border-color: #112D4E;
   background-color: #112D4E;
-  padding: 50px;
+  padding: 30px;
   border-radius: 25px;
   align-items: center;
   margin-bottom: 5px;
@@ -204,6 +222,16 @@ nav a:hover {
 .cardProfissao label {
   font-weight: 500;
   font-size: 25px;
+}
+
+.cardLista {
+  box-shadow: #DBE2EF 2px 2px 5px;
+  margin-bottom: 10px;
+  
+}
+
+.cardLista:hover {
+  transform: scale(1.2);
 }
 
 .row {
@@ -262,9 +290,9 @@ nav a:hover {
   font-size: 25px;
 }
 
-.backgroundQS h2 {
-  font-weight: bold;
-  padding-bottom: 30px;
+.backgroundQS img {
+  width: 500px;
+  margin-bottom: 50px;
 }
 
 
@@ -338,16 +366,17 @@ Footer {
 @keyframes toastFadeInOut {
   0% {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-60px);
   }
 
-  10%, 90% {
+  10%,
+  90% {
     opacity: 1;
     transform: translateY(0);
   }
 
   100% {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-60px);
   }
 }
