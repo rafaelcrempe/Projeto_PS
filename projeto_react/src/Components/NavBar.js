@@ -110,7 +110,7 @@ function NavBar({
       ) : (
         <>  {/* tags vazia, equivale a uma DIV */}
 
-          <Link to="/home">Início</Link>
+          <Link to="/home"><img className="logoNavBar" src="https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/logo_completo.png" /></Link>
           <Link to="/quemsomos">Quem Somos</Link>
           <Link to="/login">Entrar</Link>
 
