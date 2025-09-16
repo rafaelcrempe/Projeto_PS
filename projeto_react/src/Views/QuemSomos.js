@@ -9,9 +9,8 @@ export default function QuemSomos() {
     return (
         <>
             <div className='backgroundQS'>
-                <h2>QUEM SOMOS</h2>
-                <br />
-                <br />
+                <img src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/quemsomos.png' />
+
                 <div>
                     O <strong>Ajuda Aqui!</strong> foi idealizado por <i><b>Rafael Crempe, Marcos Curila e Renan Victorino</b></i> como projeto integrador
                     do curso de Programador de Sistemas do SENAC São Carlos.
