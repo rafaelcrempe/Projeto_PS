@@ -192,6 +192,7 @@ function Profile() {
     setImages(dataImages);
 
   }
+  
 
   //#endregion
 
@@ -225,10 +226,13 @@ function Profile() {
                     // Aqui é o que aparece se o usuário estiver logado e puder contratar o serviço
                     <p>
                       {
+                        
+                          
+                        
                         isServiceRequested == false ?
-                          <button className='buttonBase' onClick={() => createServices(user)}>CONTATO</button>
+                          <button className='buttonBase' onClick={() => createServices(user.phone)}>CONTATO</button>
                         :
-                          <span style={{color: "yellow"}}>Serviço solicitado...</span>
+                          <span style={{color: "yellow"}}>Entre em Conato pelo telefone {user.phone}</span>
                       }
                     </p>
                   :
