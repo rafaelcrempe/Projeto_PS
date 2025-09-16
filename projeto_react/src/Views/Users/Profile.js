@@ -230,9 +230,9 @@ function Profile() {
                           
                         
                         isServiceRequested == false ?
-                          <button className='buttonBase' onClick={() => createServices(user.phone)}>CONTATO</button>
+                          <button className='buttonBase' onClick={() => createServices(user)}>CONTATO</button>
                         :
-                          <span style={{color: "yellow"}}>Entre em Conato pelo telefone {user.phone}</span>
+                          <span style={{color: "#DBE2EF"}}> <span style={{fontWeight:"bold"}}>SERVIÇO SOLICITADO!</span> <br/> Entre em contato com {user.name} pelo telefone {user.phone} para definir os detalhes!</span>
                       }
                     </p>
                   :

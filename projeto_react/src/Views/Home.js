@@ -1,4 +1,4 @@
-  // import logo from './logo.svg';
+// import logo from './logo.svg';
 // import './App.css';
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
@@ -103,7 +103,7 @@ function Home() { // aqui é JavaScript
 
 
         {isFiltered && (
-          <div className='column'>
+          <div>
 
             <button className='buttonVoltar' onClick={() => setIsFiltered(false)} ><i class="fa-solid fa-circle-left"></i></button>
 
@@ -111,12 +111,13 @@ function Home() { // aqui é JavaScript
 
             {professionals.map(
               u => (
-
-                <div onClick={() => nav(`/profile/${u.auth_id}`, { replace: true })} className='cardLista' key={u.auth_id}>
-                  <img src={u.url} width="50px" height="50px" /> {u.name} {u.last_name}<br />
-                  {logado == u.auth_id &&
-                    (<button variant="warning" onClick={() => nav(`/profile/edit/${u.auth_id}`, { replace: true })}>Editar</button>
-                    )}
+                <div className='exibicaoFiltrada'>
+                  <div onClick={() => nav(`/profile/${u.auth_id}`, { replace: true })} className='cardLista' key={u.auth_id}>
+                    <img src={u.url} width="50px" height="50px" /> {u.name} {u.last_name}<br />
+                    {logado == u.auth_id &&
+                      (<button variant="warning" onClick={() => nav(`/profile/edit/${u.auth_id}`, { replace: true })}>Editar</button>
+                      )}
+                  </div>
                 </div>
               )
             )}
@@ -124,7 +125,7 @@ function Home() { // aqui é JavaScript
         )}
       </div>
       <span>
-      <Footer />
+        <Footer />
       </span>
     </>
   );
