@@ -39,7 +39,7 @@ function Auth() { // aqui é JavaScript
   const [isLogin, setIsLogin] = useState(true);
   const [isProfessional, setIsProfessional] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [msg, setMsg] = useState("true");
+  const [msg, setMsg] = useState("");
   const [erroSenha, setErroSenha] = useState(false);
 
 
