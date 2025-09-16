@@ -89,7 +89,7 @@ function Auth() { // aqui é JavaScript
       })
 
       if (error) throw error //throw força um erro, então se o supabase der erro, ele força o código a parar e entrar no catch
-      if (data.status == 400) throw data.message //podemos colocar outros erros aqui, mas inicialmente usaremos apenas o 400 por ser o mais comum
+      if (data.status > 299) throw data.message //podemos colocar outros erros aqui, mas inicialmente usaremos apenas o 400 por ser o mais comum
 
       const uid = data?.user?.id;
       if (!uid) throw 'deu ruim';

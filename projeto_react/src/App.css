@@ -303,6 +303,7 @@ nav a:hover {
 
 .toast {
   position: fixed;
+  display: block !important;
   top: 20px;
   right: 20px;
   background-color: #333;
