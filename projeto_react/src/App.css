@@ -110,6 +110,12 @@ button.inactive {
   align-self: center;
 }
 
+.exibicaoFiltrada{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .formDisplay {
   display: flex;
   flex-direction: row;
@@ -197,11 +203,12 @@ nav a:hover {
   border: 1px solid;
   border-color: #112D4E;
   background-color: #112D4E;
-  padding: 30px;
+  padding: 20px;
   border-radius: 25px;
   align-items: center;
   margin-bottom: 5px;
-  margin-left: 0;
+  margin-left: 10px;
+  margin-right: 10px;
   color: #DBE2EF;
 }
 
@@ -234,6 +241,10 @@ nav a:hover {
 .cardLista {
   box-shadow: #DBE2EF 2px 2px 5px;
   margin-bottom: 10px;
+  height: 100px;
+  width: 200px;
+  margin: 15px;
+  padding: 5px
 }
 
 .cardLista:hover {
@@ -242,6 +253,14 @@ nav a:hover {
 
 .row {
   display: flex
+}
+
+.exibFuncao {
+  background-color: #DBE2EF;
+  color: #112D4E;
+  border-radius: 25px;
+  padding: 5px;
+  font-weight: bold;
 }
 
 

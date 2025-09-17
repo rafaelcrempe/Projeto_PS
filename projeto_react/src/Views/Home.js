@@ -109,18 +109,18 @@ function Home() { // aqui é JavaScript
 
             <h2>{funcao.toUpperCase()}</h2>
 
-            {professionals.map(
-              u => (
-                <div className='exibicaoFiltrada'>
+            <div className='exibicaoFiltrada'>
+              {professionals.map(
+                u => (
                   <div onClick={() => nav(`/profile/${u.auth_id}`, { replace: true })} className='cardLista' key={u.auth_id}>
-                    <img src={u.url} width="50px" height="50px" /> {u.name} {u.last_name}<br />
+                    <img src={u.url} width="60px" height="60px" /> <br/>{u.name} {u.last_name}<br />
                     {logado == u.auth_id &&
                       (<button variant="warning" onClick={() => nav(`/profile/edit/${u.auth_id}`, { replace: true })}>Editar</button>
                       )}
                   </div>
-                </div>
-              )
-            )}
+                )
+              )}
+            </div>
           </div>
         )}
       </div>
