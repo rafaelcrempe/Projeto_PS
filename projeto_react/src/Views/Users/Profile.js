@@ -71,12 +71,13 @@ function Profile() {
     getLoggedUser(); // Busca o usuário que está logado
     readServices() // Busca o serviço do usuário
     readImage() // Busca as imagens do serviço do usuário
-  }, [])
+  }, [id])
 
   useEffect(() => {
-    if (!user.auth_id || !loggedUser.id)
+    if (!user.auth_id || !loggedUser.id){
+      console.log("Não puxou")
       return;
-    if (user.auth_id == loggedUser.id) {
+    }else if (user.auth_id == loggedUser.id) {
       console.log("O usuário logado está vendo o seu próprio perfil")
       setIsSelfUser(true);
     } else {
@@ -209,20 +210,21 @@ function Profile() {
           <img src={user.url} />
           <h1 style={{width: 500}}>{user.name.toUpperCase()} {user.last_name.toUpperCase()}</h1>
           <div >
-            <p>{user.funcao.toUpperCase()}</p>
+            <span className='exibFuncao'>{user.funcao.toUpperCase()}</span>
 
 
             {
-              isSelfUser == true &&
+              isSelfUser && (
                 <div>
                   {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                  <Link to={`/profile/edit/${id}`}>Editar Perfil</Link>
+                  <Link to={`/profile/edit/${id}`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
                 </div>
+              )
             }
 
             {
               isLogged == true ?
-                  isSelfUser == false &&
+                   !isSelfUser &&(
                     // Aqui é o que aparece se o usuário estiver logado e puder contratar o serviço
                     <p>
                       {
@@ -230,14 +232,15 @@ function Profile() {
                           
                         
                         isServiceRequested == false ?
-                          <button className='buttonBase' onClick={() => createServices(user.phone)}>CONTATO</button>
+                          <button className='buttonBase' onClick={() => createServices(user)}>CONTATO</button>
                         :
-                          <span style={{color: "yellow"}}>Entre em Conato pelo telefone {user.phone}</span>
+                          <span style={{color: "#DBE2EF"}}> <span style={{fontWeight:"bold"}}>SERVIÇO SOLICITADO!</span> <br/> Entre em contato com {user.name} pelo telefone {user.phone} para definir os detalhes!</span>
                       }
                     </p>
-                  :
+                   ):(
                   // Mensagem se o usuário não estiver logado
                   <p><a href="/login">Clique aqui</a> para entrar com sua conta e visualizar</p>
+                  )
             }
 
           </div>
@@ -268,42 +271,42 @@ function Profile() {
 
       {/* Serviços pendentes para ser aceitos */}
       {
-        isSelfUser == true &&
-    
-        <div style={{alignSelf:"start"}}>
-            <h2>Solicitações</h2>
-            <p>Acompanhe suas solicitações de serviços por aqui:</p>
+        isSelfUser && user.funcao != 'cliente' && (
+          <div style={{alignSelf:"start"}}>
+              <h2>Solicitações</h2>
+              <p>Acompanhe suas solicitações de serviços por aqui:</p>
 
-            <button className='buttonBase' style={{backgroundColor: showServicesStatus == "Pendente" ? "white":"gray" , color: "#112D4E", borderRadius:"10px", borderBlockColor: "ActiveBorder", padding: "5px 25px", marginBottom: "20px", marginRight: 30}} onClick={()=>setShowServicesStatus("Pendente")}>Pendentes</button>
-            <button className= 'buttonBase'style={{backgroundColor: showServicesStatus == "Em andamento" ? "white":"gray", color: "#112D4E", borderRadius:"10px",borderBlockColor: "ActiveBorder", padding: "5px 25px", marginBottom: "20px", marginRight: 30, marginBottom: 20}} onClick={()=>setShowServicesStatus("Em andamento")}>Em andamento</button>
+              <button className='buttonBase' style={{backgroundColor: showServicesStatus == "Pendente" ? "white":"gray" , color: "#112D4E", borderRadius:"10px", borderBlockColor: "ActiveBorder", padding: "5px 25px", marginBottom: "20px", marginRight: 30}} onClick={()=>setShowServicesStatus("Pendente")}>Pendentes</button>
+              <button className= 'buttonBase'style={{backgroundColor: showServicesStatus == "Em andamento" ? "white":"gray", color: "#112D4E", borderRadius:"10px",borderBlockColor: "ActiveBorder", padding: "5px 25px", marginBottom: "20px", marginRight: 30, marginBottom: 20}} onClick={()=>setShowServicesStatus("Em andamento")}>Em andamento</button>
 
-            {
-              services.length > 0 
-              ?
-                services.map( s => 
-                  s.status == showServicesStatus &&
-                    <div style={{boxShadow:"1px 2px 3px black", padding: 20, marginBottom: 15}} >
-                      <p style={{margin: 0}}> <span style={{fontSize: 25}}>{s.name} {s.last_name}</span> &nbsp;&nbsp; <a href={"/profile/"+s.client_id} >Ver o perfil</a> </p>
-                      <p>Solicitado em: {s.created_at}</p>
+              {
+                services.length > 0 
+                ?
+                  services.map( s => 
+                    s.status == showServicesStatus &&
+                      <div style={{boxShadow:"1px 2px 3px black", padding: 20, marginBottom: 15}} >
+                        <p style={{margin: 0}}> <span style={{fontSize: 25}}>{s.name} {s.last_name}</span> &nbsp;&nbsp; <a href={"/profile/"+s.client_id} >Ver o perfil</a> </p>
+                        <p>Solicitado em: {s.created_at}</p>
 
 
-                      {
-                        s.status == "Pendente" ?
-                          <div>
-                            <button className='buttonBase' onClick={()=>updateServices(s, "Em andamento")} style={{backgroundColor: "green", color: "white", border: "2px solid #112D4E", padding: "5px 25px", marginRight: 30}} >Aceitar</button>
-                            <button className='buttonBase' onClick={()=>updateServices(s, "Cancelado")} style={{backgroundColor: "red", color: "white", border: "none", padding: "5px 25px"}} >Recusar</button>
-                          </div>
-                        :
-                          <button className='buttonBase' onClick={()=>updateServices(s, "Concluído")} style={{backgroundColor: "yellow", color: "black", border: "none", padding: "5px 25px", marginRight: 30}} >Encerrar serviço</button>
-                      }
-                    </div>
-                )
-              :
-              <p style={{boxShadow:"1px 2px 3px black", padding: 20}}>Nenhum serviço solicitado ainda...</p>
+                        {
+                          s.status == "Pendente" ?
+                            <div>
+                              <button className='buttonBase' onClick={()=>updateServices(s, "Em andamento")} style={{backgroundColor: "green", color: "white", border: "2px solid #112D4E", padding: "5px 25px", marginRight: 30}} >Aceitar</button>
+                              <button className='buttonBase' onClick={()=>updateServices(s, "Cancelado")} style={{backgroundColor: "red", color: "white", border: "none", padding: "5px 25px"}} >Recusar</button>
+                            </div>
+                          :
+                            <button className='buttonBase' onClick={()=>updateServices(s, "Concluído")} style={{backgroundColor: "yellow", color: "black", border: "none", padding: "5px 25px", marginRight: 30}} >Encerrar serviço</button>
+                        }
+                      </div>
+                  )
+                :
+                <p style={{boxShadow:"1px 2px 3px black", padding: 20}}>Nenhum serviço solicitado ainda...</p>
 
-            }
+              }
 
-        </div>
+          </div>
+        )
       }
 
       <div> {/* Services: Marcos */}

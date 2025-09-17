@@ -1,9 +1,8 @@
-  // import logo from './logo.svg';
+// import logo from './logo.svg';
 // import './App.css';
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
-import Footer from '../Components/Footer';
 // import Professionals from './Views/Users/Professionals.js';
 
 
@@ -67,7 +66,6 @@ function Home() { // aqui é JavaScript
   }
 
   return ( // Aqui é html
-    <>
       <div className='backgroundScreen'>
         {!isFiltered && (
           <>
@@ -103,30 +101,27 @@ function Home() { // aqui é JavaScript
 
 
         {isFiltered && (
-          <div className='column'>
+          <div>
 
             <button className='buttonVoltar' onClick={() => setIsFiltered(false)} ><i class="fa-solid fa-circle-left"></i></button>
 
             <h2>{funcao.toUpperCase()}</h2>
 
-            {professionals.map(
-              u => (
-
-                <div onClick={() => nav(`/profile/${u.auth_id}`, { replace: true })} className='cardLista' key={u.auth_id}>
-                  <img src={u.url} width="50px" height="50px" /> {u.name} {u.last_name}<br />
-                  {logado == u.auth_id &&
-                    (<button variant="warning" onClick={() => nav(`/profile/edit/${u.auth_id}`, { replace: true })}>Editar</button>
-                    )}
-                </div>
-              )
-            )}
+            <div className='exibicaoFiltrada'>
+              {professionals.map(
+                u => (
+                  <div onClick={() => nav(`/profile/${u.auth_id}`, { replace: true })} className='cardLista' key={u.auth_id}>
+                    <img src={u.url} width="60px" height="60px" /> <br/>{u.name} {u.last_name}<br />
+                    {logado == u.auth_id &&
+                      (<button variant="warning" onClick={() => nav(`/profile/edit/${u.auth_id}`, { replace: true })}>Editar</button>
+                      )}
+                  </div>
+                )
+              )}
+            </div>
           </div>
         )}
       </div>
-      <span>
-      <Footer />
-      </span>
-    </>
   );
 }
 

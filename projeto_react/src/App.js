@@ -20,6 +20,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter as Router, Routes, Route, Navigate, Outlet} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './Components/NavBar';
+import Footer from './Components/Footer';
 
 
 function PrivateSession(){
@@ -73,6 +74,7 @@ function App() { // aqui é JavaScript
         </Routes>
 
       </main>
+      <Footer />
     </Router>
   );
 }

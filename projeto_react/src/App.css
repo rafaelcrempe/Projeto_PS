@@ -1,5 +1,5 @@
 .App {
-  min-height: calc(100vh - 30px);
+  min-height: calc(100vh - 67px);
   align-items: center;
   display: flex;
   justify-content: center;
@@ -90,7 +90,7 @@ button.inactive {
   background-color: #112D4E;
   color: #DBE2EF;
   border: none;
-  border-color:#DBE2EF;
+  border-color: #DBE2EF;
 }
 
 .editScreen {
@@ -110,6 +110,12 @@ button.inactive {
   align-self: center;
 }
 
+.exibicaoFiltrada{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .formDisplay {
   display: flex;
   flex-direction: row;
@@ -122,6 +128,8 @@ button.inactive {
   align-items: center;
 
 }
+
+
 
 body {
   font-family: "Open Sans", sans-serif;
@@ -195,11 +203,12 @@ nav a:hover {
   border: 1px solid;
   border-color: #112D4E;
   background-color: #112D4E;
-  padding: 30px;
+  padding: 20px;
   border-radius: 25px;
   align-items: center;
   margin-bottom: 5px;
-  margin-left: 0;
+  margin-left: 10px;
+  margin-right: 10px;
   color: #DBE2EF;
 }
 
@@ -232,7 +241,10 @@ nav a:hover {
 .cardLista {
   box-shadow: #DBE2EF 2px 2px 5px;
   margin-bottom: 10px;
-  
+  height: 100px;
+  width: 200px;
+  margin: 15px;
+  padding: 5px
 }
 
 .cardLista:hover {
@@ -241,6 +253,15 @@ nav a:hover {
 
 .row {
   display: flex
+}
+
+.exibFuncao {
+  background-color: #DBE2EF;
+  color: #112D4E;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bold;
+  gap: 5px;
 }
 
 
@@ -336,6 +357,7 @@ nav a:hover {
   width: 300px;
 }
 
+
 Input {
   border: 5px solid #F9F7F7;
   background-color: #F9F7F7;
@@ -365,7 +387,7 @@ Footer {
   background: #112D4E;
   color: #DBE2EF;
   text-align: center;
-  padding: 10px 0;
+  padding: 10px 0 0;
 }
 
 
