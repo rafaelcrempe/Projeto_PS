@@ -309,18 +309,6 @@ function Profile() {
         )
       }
 
-      <div> {/* Services: Marcos */}
-        {
-          services.map(
-            s => (
-              <>
-                <Services key={s.id} servico={s} starRating={<StarRating rating={s.star} readonly={true} />} />
-              </>
-            )
-          )
-        }
-      </div>
-
     </div>
   );
 
