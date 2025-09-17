@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
-import Footer from '../Components/Footer';
 // import Professionals from './Views/Users/Professionals.js';
 
 
@@ -67,7 +66,6 @@ function Home() { // aqui é JavaScript
   }
 
   return ( // Aqui é html
-    <>
       <div className='backgroundScreen'>
         {!isFiltered && (
           <>
@@ -124,10 +122,6 @@ function Home() { // aqui é JavaScript
           </div>
         )}
       </div>
-      <span>
-        <Footer />
-      </span>
-    </>
   );
 }
 

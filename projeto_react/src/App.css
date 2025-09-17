@@ -1,5 +1,5 @@
 .App {
-  min-height: calc(100vh - 30px);
+  min-height: calc(100vh - 67px);
   align-items: center;
   display: flex;
   justify-content: center;
@@ -386,7 +386,7 @@ Footer {
   background: #112D4E;
   color: #DBE2EF;
   text-align: center;
-  padding: 10px 0;
+  padding: 10px 0 0;
 }
 
 

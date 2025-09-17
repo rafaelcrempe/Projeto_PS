@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { Input } from '../../Components/Input'
 import { Select } from '../../Components/Select';
 import { Form } from '../../Components/Form';
-import Footer from '../../Components/Footer';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -126,7 +125,7 @@ function Auth() { // aqui é JavaScript
   }
 
   return ( // Aqui é html
-    <>
+
     <div className="screen">
       <div className="fundoCadastro">
         <div className="backgroundScreen">
@@ -377,10 +376,7 @@ function Auth() { // aqui é JavaScript
       {msg && (<div className='toast'> {msg} </div>)}     {/* exibe a mensagem de erro na tela */}
 
     </div>
-      <span>
-      <Footer />
-      </span>
- </>
+
   );
 }
 
