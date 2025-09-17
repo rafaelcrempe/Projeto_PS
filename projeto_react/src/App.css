@@ -258,9 +258,10 @@ nav a:hover {
 .exibFuncao {
   background-color: #DBE2EF;
   color: #112D4E;
-  border-radius: 25px;
+  border-radius: 5px;
   padding: 5px;
   font-weight: bold;
+  gap: 5px;
 }
 
 

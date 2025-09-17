@@ -217,7 +217,7 @@ function Profile() {
               isSelfUser && (
                 <div>
                   {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                  <Link to={`/profile/edit/${id}`}>Editar Perfil</Link>
+                  <Link to={`/profile/edit/${id}`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
                 </div>
               )
             }
