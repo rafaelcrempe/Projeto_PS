@@ -79,7 +79,26 @@ function ProfileEdit() {
 
     return (
         <div className="backgroundScreen">
+
             <div className="editScreen">
+
+                <div>
+                    
+                    {editingField === "url" ? (
+                        <input
+                            type="text"
+                            value={user.name || ""}
+                            onChange={(e) => setUser({ ...user, name: e.target.value })}
+                            onBlur={() => setEditingField(null)}
+                        />
+                    ) : (
+                        <span>
+                            {" "}{user.url}{" "}
+                            <button className="buttonEdit" onClick={() => setEditingField("name")}><i class="fa-solid fa-pen-to-square"></i></button>
+                        </span>
+                    )}
+                </div>
+
                 <div>
                     <label className="labelEdit">Nome:</label>
                     {editingField === "name" ? (

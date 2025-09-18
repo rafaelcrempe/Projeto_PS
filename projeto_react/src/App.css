@@ -160,10 +160,7 @@ nav {
   align-items: center;
   gap: 20px;
   z-index: 1000;
-}
-
-nav .principal {
-  flex-grow: 1;
+  justify-content: space-between;
 }
 
 /* Estilo dos links */
@@ -171,7 +168,7 @@ nav a {
   color: #DBE2EF;
   color: #DBE2EF;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: bold;
   padding: 6px 10px;
   border-radius: 6px;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -181,6 +178,16 @@ nav a {
 nav a:hover {
   background-color: #DBE2EF;
   color: #112D4E;
+}
+
+nav a:has(img.logoNavBar):hover {
+  background-color: transparent;
+  color: inherit; 
+  cursor: pointer;
+}
+
+.logoNavBar:hover {
+  transform: scale(1.1);
 }
 
 .fundoCadastro {
@@ -264,6 +271,9 @@ nav a:hover {
   gap: 5px;
 }
 
+.profilePicture {
+  border-radius: 25px;
+}
 
 .login {
   display: flex;
