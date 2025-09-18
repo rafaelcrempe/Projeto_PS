@@ -179,12 +179,15 @@ nav a:hover {
   color: #112D4E;
 }
 
-nav a:first-child:hover {
+nav a:has(img.logoNavBar):hover {
   background-color: transparent;
-  transform: scale(1.1);
+  color: inherit; 
+  cursor: pointer;
 }
 
-
+.logoNavBar:hover {
+  transform: scale(1.1);
+}
 
 .fundoCadastro {
   display: flex;

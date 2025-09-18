@@ -82,7 +82,6 @@ function NavBar({
 
           <div className="principal">
             <Link to="/home"><img className="logoNavBar" src="https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/logo_completo.png" /></Link>
-
             <Link to={`/profile/${userId}`}> <i class="fa-solid fa-user"></i> PERFIL</Link>
             <Link className="buttonSair" onClick={() => sair()}>SAIR <i class="fa-solid fa-person-walking-arrow-right"></i></Link>
 
@@ -112,9 +111,11 @@ function NavBar({
       ) : (
         <>  {/* tags vazia, equivale a uma DIV */}
 
-          <Link to="/home"><img className="logoNavBar" src="https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/logo_completo.png" /></Link>
-          <Link to="/quemsomos">QUEM SOMOS</Link>
-          <Link to="/login">ENTRAR <i class="fa-solid fa-arrow-right-to-bracket"></i></Link>
+          <div className="principal">
+            <Link to="/home"><img className="logoNavBar" src="https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/logo_completo.png" /></Link>
+            <Link to="/quemsomos">QUEM SOMOS</Link>
+            <Link to="/login">ENTRAR <i class="fa-solid fa-arrow-right-to-bracket"></i></Link>
+          </div>
 
 
         </>
