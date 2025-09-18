@@ -84,10 +84,12 @@ function NavBar({
 
           <div className="principal">
             <Link to="/home"><img className="logoNavBar" src="https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/logo_completo.png" /></Link>
-            <Link to={`/profile/${userId}`}> <i class="fa-solid fa-user"></i> PERFIL</Link>
-            <Link className="buttonSair" onClick={() => sair()}>SAIR <i class="fa-solid fa-person-walking-arrow-right"></i></Link>
-
           </div>
+          <div>
+            <Link to={`/profile/${userId}`}>PERFIL <i class="fa-solid fa-user"></i></Link>
+            <Link className="buttonSair" onClick={() => sair()}>SAIR <i class="fa-solid fa-person-walking-arrow-right"></i></Link>
+          </div>
+
 
           {
             showRating == true &&
@@ -115,6 +117,8 @@ function NavBar({
 
           <div className="principal">
             <Link to="/home"><img className="logoNavBar" src="https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/logo_completo.png" /></Link>
+          </div>
+          <div>
             <Link to="/quemsomos">QUEM SOMOS</Link>
             <Link to="/login">ENTRAR <i class="fa-solid fa-arrow-right-to-bracket"></i></Link>
           </div>
