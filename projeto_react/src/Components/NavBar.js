@@ -66,10 +66,12 @@ function NavBar({
 
   async function sair() {
     if (hasSession != null) {
-      localStorage.removeItem('supaSession')
       const { data: dataUser, error: errorUser } = await supabase.auth.signOut();
-      window.location.reload();
+      localStorage.removeItem('supaSession')
+      
+      
       nav("/home", { replace: true });
+      window.location.reload();
     }
   }
 
