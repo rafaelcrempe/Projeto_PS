@@ -22,7 +22,6 @@ export default function QuemSomos() {
                     Para esse projeto, utilizamos React para a criação do sistema e Supabase para o banco de dados.
                 </div>
             </div>
-            <Footer />
         </>
     );
 
