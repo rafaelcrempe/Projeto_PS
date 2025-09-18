@@ -418,3 +418,39 @@ Footer {
     transform: translateY(-60px);
   }
 }
+
+.cardImagem {
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cardImagem img {
+  width: 100%;
+}
+
+.cardImagem img:hover {
+  transform: scale(2.5);
+  transition: 0.5s ease-in-out;
+}
+
+.cardImagem label {
+  font-weight: 500;
+  font-size: 25px;
+}
+.backgroundScreenProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid;
+  border-color: #112D4E;
+  background-color: #112D4E;
+  padding: 20px;
+  border-radius: 25px;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #DBE2EF;
+}

@@ -200,7 +200,7 @@ function Profile() {
   //#region HTML
 
   return (
-    <div className='backgroundScreen' style={{flexDirection: "row", gap: 100}} >
+    <div className='backgroundScreenProfile' style={{flexDirection: "row", gap: 100}} >
 
       {/* Dados do perfil do usuário */}
       <div>
@@ -257,7 +257,15 @@ function Profile() {
           }
         </div>
 
-        
+        <div className="cardImagem"> {/* Images área do Renan mexer */}
+          {images.map(
+            i => (
+              <div key={i.id}>
+                <img src={i.url} />
+              </div>
+            )
+          )}
+        </div>
 
       </div>
 

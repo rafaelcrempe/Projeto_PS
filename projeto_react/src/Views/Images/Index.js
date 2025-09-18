@@ -6,7 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
 import CloseButton from 'react-bootstrap/CloseButton';
 import Button from 'react-bootstrap/Button';
-import {Input} from '../../Components/Input';
+import { Upload } from '../../Components/Upload';
 
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
@@ -17,10 +17,6 @@ function Images() { // aqui é JavaScript
 
   const nav = useNavigate();
 
-  const [image, setImage] = useState({
-    url:"",
-    professional_id: ""
-  })
 
   const [images, setImages] = useState([])
 
@@ -28,33 +24,7 @@ function Images() { // aqui é JavaScript
     readImage()
   }, [] )
 
-   async function createImage(){
-     
-     
-     const {data: dataUser, error: errorUser} = await supabase.auth.getUser();
-     
-     const uid = dataUser?.user?.id;
-     
-     if(!uid) nav('/login', {replace: true})
-      
-      console.log(uid)
-      
-      const { data, error } = await supabase
-      .from('images')
-      .insert({...image, professional_id: uid })
-      // .select();
-
-    }
-
-      async function readImage(){
-       
-        let { data: dataImages, error } = await supabase
-          .from('images')
-          .select('*')
-
-          setImages(dataImages);        
-      }
-      
+  
       async function delImage(id){
         const { error } = await supabase
           .from('images')
@@ -65,21 +35,69 @@ function Images() { // aqui é JavaScript
 
       }
     
-
+      async function updateImage(newUrl) {
+        const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
+        const uid = dataUser?.user?.id;
+        console.log('UID:', uid);
+    
+        if (!uid) {
+          nav('/login', { replace: true });
+          return;
+        }
+    
+        console.log('Usuário logado:', uid);
+    
+        // Usar uid do usuário logado para atualizar
+        const { data, error } = await supabase
+          .from('images')
+          .insert({
+            url: newUrl,
+            professional_id: uid
+          })
+    
+        if (error) {
+          console.error('Erro ao atualizar imagem:', error);
+          alert('Erro ao atualizar imagem: ' + error.message);
+          return;
+        }
+    
+        console.log('Imagem atualizada com sucesso:', data);
+        readImage()
+      }
+    
+      async function readImage() {
+        const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
+        const uid = dataUser?.user?.id;
+    
+        if (!uid) {
+          nav('/login', { replace: true });
+          return;
+        }
+    
+        let { data: dataImages, error } = await supabase
+          .from('images')
+          .select('*')
+          .eq('professional_id', uid);  // Usar uid para buscar imagem do usuário logado
+  
+    
+        if (error) {
+          console.error('Erro ao ler imagem:', error);
+          return;
+        }
+    
+        setImages(dataImages);
+      }
     
     return ( // Aqui é html
-      <div className="screen">
+      <div className='teladeImagen'>
+
+      {/* Dados do perfil do usuário */}
       <form onSubmit={(e) => e.preventDefault()} >
-        <Input type="text" placeholder='url imagem ' onChange={setImage} obejto={image} campo='url' /><> </>
-
-        <button onClick={createImage} >SALVAR</button><>               </>
-        <button onClick={readImage} >BUSCAR</button>
-
+        <Upload onUploadSuccess={updateImage} />
       </form>
       
 
-
-        <div className='row'>
+        <div className='lista'>
         {images.map(
           i => (
             <div key={i.id}>
@@ -93,9 +111,8 @@ function Images() { // aqui é JavaScript
         )}
         </div>    
 
-      
-
     </div>
+
   );
 }
 

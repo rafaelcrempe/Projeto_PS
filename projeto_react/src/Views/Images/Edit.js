@@ -41,7 +41,7 @@ function Images() {
         url: newUrl,
         professional_id: uid
       })
-      .eq('auth_id', uid);
+      .eq('id', id);
 
     if (error) {
       console.error('Erro ao atualizar imagem:', error);
@@ -65,7 +65,7 @@ function Images() {
     let { data: dataImages, error } = await supabase
       .from('images')
       .select('*')
-      .eq('auth_id', uid)  // Usar uid para buscar imagem do usuário logado
+      .eq('id', id)  // Usar uid para buscar imagem do usuário logado
       .single();
 
     if (error) {
