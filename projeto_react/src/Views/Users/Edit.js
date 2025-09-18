@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from "react-router-dom";
+import { Upload } from "../../Components/Upload";
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co";
 const supabaseKey =
@@ -14,6 +15,7 @@ function ProfileEdit() {
         phone: "",
         name: "",
         last_name: "",
+        url: ""
     });
 
     const [editingField, setEditingField] = useState(null); // controla qual campo está sendo editado
@@ -51,6 +53,7 @@ function ProfileEdit() {
             phone: user.phone,
             name: user.name,
             last_name: user.last_name,
+            url: user.url
         };
 
         const { error: eU } = await supabase
@@ -85,16 +88,12 @@ function ProfileEdit() {
                 <div>
                     
                     {editingField === "url" ? (
-                        <input
-                            type="text"
-                            value={user.name || ""}
-                            onChange={(e) => setUser({ ...user, name: e.target.value })}
-                            onBlur={() => setEditingField(null)}
-                        />
+                        <Upload onUploadSuccess={(url) => setUser({...user, url: url})}/>
+                
                     ) : (
                         <span>
-                            {" "}{user.url}{" "}
-                            <button className="buttonEdit" onClick={() => setEditingField("name")}><i class="fa-solid fa-pen-to-square"></i></button>
+                            {" "}<img className='profilePicture' src={user.url} />{" "}
+                            <button className="buttonEdit" onClick={() => setEditingField("url")}><i class="fa-solid fa-pen-to-square"></i></button>
                         </span>
                     )}
                 </div>
