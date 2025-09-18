@@ -207,7 +207,7 @@ function Profile() {
 
         <div> {/* User: área do Rafael mexer */}
 
-          <img src={user.url} />
+          <img className='profilePicture' src={user.url} />
           <h1 style={{width: 500}}>{user.name.toUpperCase()} {user.last_name.toUpperCase()}</h1>
           <div >
             <span className='exibFuncao'>{user.funcao.toUpperCase()}</span>
