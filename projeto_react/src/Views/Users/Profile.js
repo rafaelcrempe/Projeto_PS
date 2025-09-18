@@ -257,15 +257,7 @@ function Profile() {
           }
         </div>
 
-        <div> {/* Images área do Renan mexer */}
-          {images.map(
-            i => (
-              <div key={i.id}>
-                <img src={i.url} />
-              </div>
-            )
-          )}
-        </div>
+        
 
       </div>
 
