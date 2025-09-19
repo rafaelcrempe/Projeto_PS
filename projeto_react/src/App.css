@@ -266,9 +266,11 @@ nav a:has(img.logoNavBar):hover {
   background-color: #DBE2EF;
   color: #112D4E;
   border-radius: 5px;
-  padding: 5px;
+  padding: 7px;
   font-weight: bold;
   gap: 5px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .profilePicture {
@@ -427,7 +429,8 @@ Footer {
 }
 
 .cardImagem img {
-  width: 100%;
+  height: 200px;
+  width: 200px;
 }
 
 .cardImagem img:hover {
@@ -453,4 +456,6 @@ Footer {
   margin-left: 10px;
   margin-right: 10px;
   color: #DBE2EF;
+  max-height: 800px ;
+ 
 }

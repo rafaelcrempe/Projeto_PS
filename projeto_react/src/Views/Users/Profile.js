@@ -188,7 +188,7 @@ function Profile() {
     let { data: dataImages, error } = await supabase
       .from('images')
       .select('*')
-      .eq('auth_id', id);
+        .eq('professional_id', id);
 
     setImages(dataImages);
 
@@ -218,6 +218,13 @@ function Profile() {
                 <div>
                   {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
                   <Link to={`/profile/edit/${id}`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
+                </div>
+              )
+            }{
+              isSelfUser && (
+                <div>
+                  {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
+                  <Link to={`/images`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar imagens</Link>
                 </div>
               )
             }
