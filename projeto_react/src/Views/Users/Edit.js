@@ -26,7 +26,7 @@ function ProfileEdit() {
         async function fetchUser() {
             const { data: authUser } = await supabase.auth.getUser();
             const uid = authUser?.user?.id;
-            if (!uid) return;
+            if (!uid) nav("/login", {replace: true});
 
             let { data: dataUser, error } = await supabase
                 .from("users")

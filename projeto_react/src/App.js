@@ -22,18 +22,36 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
 import { createClient } from "@supabase/supabase-js";
+import { useEffect, useState } from 'react';
 
 const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8"
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 
-async function PrivateSession() {
-  const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
+function PrivateSession() {
+  const [loading, setLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
 
-  const uid = dataUser?.user?.id;
+  useEffect(() => {
+    async function checkUser() {
+      const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
+      if (errorUser || !dataUser?.user) {
+        setAuthenticated(false);
+      } else {
+        setAuthenticated(true);
+      }
+      setLoading(false);
+    }
 
-  return uid ? <Outlet /> : <Navigate to="/login" replace />
+    checkUser();
+  }, []);
+
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
+
+  return authenticated ? <Outlet /> : <Navigate to="/login" replace />;
 }
 
 
