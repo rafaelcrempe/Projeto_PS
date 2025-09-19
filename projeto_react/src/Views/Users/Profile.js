@@ -247,24 +247,31 @@ function Profile() {
         </div>
 
         <div> {/* Services: Marcos */}
-          {
+          {services?
             services.map(
               s => (
                   (s.status == "Concluído" && s.star != 0) &&
                     <Services key={s.id} servico={s} starRating={<StarRating rating={s.star} readonly={true} />} />
               )
+            ):(
+              <span>Nenhum serviço ainda</span>
             )
           }
         </div>
 
         <div className="cardImagem"> {/* Images área do Renan mexer */}
-          {images.map(
+          {images?
+          images.map(
             i => (
               <div key={i.id}>
                 <img src={i.url} />
               </div>
             )
-          )}
+          ):(
+            <span>Nenhuma imagem ainda</span>
+          )
+
+        }
         </div>
 
       </div>
