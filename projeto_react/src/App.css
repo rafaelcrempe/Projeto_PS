@@ -452,10 +452,14 @@ Footer {
   padding: 20px;
   border-radius: 25px;
   align-items: center;
-  margin-bottom: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
+ 
   color: #DBE2EF;
-  max-height: 800px ;
+
  
 }
+
+.tatu {
+  height: 750px;
+  overflow-y: scroll;
+}
+

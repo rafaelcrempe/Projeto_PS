@@ -74,10 +74,10 @@ function Profile() {
   }, [id])
 
   useEffect(() => {
-    if (!user.auth_id || !loggedUser.id){
+    if (!user.auth_id || !loggedUser.id) {
       console.log("Não puxou")
       return;
-    }else if (user.auth_id == loggedUser.id) {
+    } else if (user.auth_id == loggedUser.id) {
       console.log("O usuário logado está vendo o seu próprio perfil")
       setIsSelfUser(true);
     } else {
@@ -88,7 +88,7 @@ function Profile() {
   //#endregion
 
   //#region Funções
-  
+
   // Busca os dados do perfil do usuário que está sendo visitado/visualizado
   async function showUser(id) {
 
@@ -115,7 +115,7 @@ function Profile() {
     else {
       setLoggedUser({});
       setIsLogged(false)
-      localStorage.setItem("paginaSalva", "/profile/"+id)
+      localStorage.setItem("paginaSalva", "/profile/" + id)
     }
   }
 
@@ -123,10 +123,10 @@ function Profile() {
   async function readServices() {
 
     const { data: dataServices, error } = await supabase
-    .from('view_clients_by_professional')
-    .select('*')
-    .eq('professional_id', id);
-  
+      .from('view_clients_by_professional')
+      .select('*')
+      .eq('professional_id', id);
+
 
     // let { data: dataServices, error } = await supabase
     //   .from('services')
@@ -136,13 +136,13 @@ function Profile() {
     setServices(dataServices);
 
     const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
-    if(!dataUser.user)
+    if (!dataUser.user)
       return;
 
-    dataServices.forEach( s => {
-      if(s.client_id == dataUser.user.id && s.status != "Concluído")
+    dataServices.forEach(s => {
+      if (s.client_id == dataUser.user.id && s.status != "Concluído")
         setIsServiceRequested(true)
-    } )
+    })
 
   }
 
@@ -164,20 +164,20 @@ function Profile() {
       .from('services')
       .insert({ ...novoServico, client_id: uid });
 
-      readServices();
+    readServices();
 
   }
 
-  async function updateServices(currentService, newStatus){
+  async function updateServices(currentService, newStatus) {
 
     delete currentService.last_name;
     delete currentService.name;
     currentService.status = newStatus;
 
     const { data, error } = await supabase
-    .from('services')
-    .update(currentService)
-    .eq('id', currentService.id)
+      .from('services')
+      .update(currentService)
+      .eq('id', currentService.id)
 
     readServices();
 
@@ -188,141 +188,143 @@ function Profile() {
     let { data: dataImages, error } = await supabase
       .from('images')
       .select('*')
-        .eq('professional_id', id);
+      .eq('professional_id', id);
 
     setImages(dataImages);
 
   }
-  
+
 
   //#endregion
 
   //#region HTML
 
   return (
-    <div className='backgroundScreenProfile' style={{flexDirection: "row", gap: 100}} >
+    <div className='tatu'>
+      <div className='backgroundScreenProfile' style={{ flexDirection: "row", gap: 100 }} >
 
-      {/* Dados do perfil do usuário */}
-      <div>
+        {/* Dados do perfil do usuário */}
+        <div>
 
-        <div> {/* User: área do Rafael mexer */}
+          <div> {/* User: área do Rafael mexer */}
 
-          <img className='profilePicture' src={user.url} />
-          <h1 style={{width: 500}}>{user.name.toUpperCase()} {user.last_name.toUpperCase()}</h1>
-          <div >
-            <span className='exibFuncao'>{user.funcao.toUpperCase()}</span>
+            <img className='profilePicture' src={user.url} />
+            <h1 style={{ width: 500 }}>{user.name.toUpperCase()} {user.last_name.toUpperCase()}</h1>
+            <div >
+              <span className='exibFuncao'>{user.funcao.toUpperCase()}</span>
 
 
-            {
-              isSelfUser && (
-                <div>
-                  {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                  <Link to={`/profile/edit/${id}`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
-                </div>
-              )
-            }{
-              isSelfUser && (
-                <div>
-                  {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                  <Link to={`/images`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar imagens</Link>
-                </div>
-              )
-            }
+              {
+                isSelfUser && (
+                  <div>
+                    {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
+                    <Link to={`/profile/edit/${id}`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
+                  </div>
+                )
+              }{
+                isSelfUser && (
+                  <div>
+                    {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
+                    <Link to={`/images`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar imagens</Link>
+                  </div>
+                )
+              }
 
-            {
-              isLogged == true ?
-                   !isSelfUser &&(
+              {
+                isLogged == true ?
+                  !isSelfUser && (
                     // Aqui é o que aparece se o usuário estiver logado e puder contratar o serviço
                     <p>
                       {
-                        
-                          
-                        
+
+
+
                         isServiceRequested == false ?
                           <button className='buttonBase' onClick={() => createServices(user)}>CONTATO</button>
-                        :
-                          <span style={{color: "#DBE2EF"}}> <span style={{fontWeight:"bold"}}>SERVIÇO SOLICITADO!</span> <br/> Entre em contato com {user.name} pelo telefone {user.phone} para definir os detalhes!</span>
+                          :
+                          <span style={{ color: "#DBE2EF" }}> <span style={{ fontWeight: "bold" }}>SERVIÇO SOLICITADO!</span> <br /> Entre em contato com {user.name} pelo telefone {user.phone} para definir os detalhes!</span>
                       }
                     </p>
-                   ):(
-                  // Mensagem se o usuário não estiver logado
-                  <p><a href="/login">Clique aqui</a> para entrar com sua conta e visualizar</p>
+                  ) : (
+                    // Mensagem se o usuário não estiver logado
+                    <p><a href="/login">Clique aqui</a> para entrar com sua conta e visualizar</p>
                   )
-            }
+              }
 
+            </div>
           </div>
-        </div>
 
-        <div> {/* Services: Marcos */}
-          {services?
-            services.map(
-              s => (
+          <div> {/* Services: Marcos */}
+            {services ?
+              services.map(
+                s => (
                   (s.status == "Concluído" && s.star != 0) &&
-                    <Services key={s.id} servico={s} starRating={<StarRating rating={s.star} readonly={true} />} />
+                  <Services key={s.id} servico={s} starRating={<StarRating rating={s.star} readonly={true} />} />
+                )
+              ) : (
+                <span>Nenhum serviço ainda</span>
               )
-            ):(
-              <span>Nenhum serviço ainda</span>
-            )
-          }
+            }
+          </div>
+
+          <div className="cardImagem"> {/* Images área do Renan mexer */}
+            {images ?
+              images.map(
+                i => (
+                  <div key={i.id}>
+                    <img src={i.url} />
+                  </div>
+                )
+              ) : (
+                <span>Nenhuma imagem ainda</span>
+              )
+
+            }
+          </div>
+
         </div>
 
-        <div className="cardImagem"> {/* Images área do Renan mexer */}
-          {images?
-          images.map(
-            i => (
-              <div key={i.id}>
-                <img src={i.url} />
-              </div>
-            )
-          ):(
-            <span>Nenhuma imagem ainda</span>
-          )
-
-        }
-        </div>
-
-      </div>
-
-      {/* Serviços pendentes para ser aceitos */}
-      {
-        isSelfUser && user.funcao != 'cliente' && (
-          <div style={{alignSelf:"start"}}>
+        {/* Serviços pendentes para ser aceitos */}
+        {
+          isSelfUser && user.funcao != 'cliente' && (
+            <div style={{ alignSelf: "start" }}>
               <h2>Solicitações</h2>
               <p>Acompanhe suas solicitações de serviços por aqui:</p>
 
-              <button className='buttonBase' style={{backgroundColor: showServicesStatus == "Pendente" ? "white":"gray" , color: "#112D4E", borderRadius:"10px", borderBlockColor: "ActiveBorder", padding: "5px 25px", marginBottom: "20px", marginRight: 30}} onClick={()=>setShowServicesStatus("Pendente")}>Pendentes</button>
-              <button className= 'buttonBase'style={{backgroundColor: showServicesStatus == "Em andamento" ? "white":"gray", color: "#112D4E", borderRadius:"10px",borderBlockColor: "ActiveBorder", padding: "5px 25px", marginBottom: "20px", marginRight: 30, marginBottom: 20}} onClick={()=>setShowServicesStatus("Em andamento")}>Em andamento</button>
+              <button className='buttonBase' style={{ backgroundColor: showServicesStatus == "Pendente" ? "white" : "gray", color: "#112D4E", borderRadius: "10px", borderBlockColor: "ActiveBorder", padding: "5px 25px", marginBottom: "20px", marginRight: 30 }} onClick={() => setShowServicesStatus("Pendente")}>Pendentes</button>
+              <button className='buttonBase' style={{ backgroundColor: showServicesStatus == "Em andamento" ? "white" : "gray", color: "#112D4E", borderRadius: "10px", borderBlockColor: "ActiveBorder", padding: "5px 25px", marginBottom: "20px", marginRight: 30, marginBottom: 20 }} onClick={() => setShowServicesStatus("Em andamento")}>Em andamento</button>
 
               {
-                services.length > 0 
-                ?
-                  services.map( s => 
+                services.length > 0
+                  ?
+                  services.map(s =>
                     s.status == showServicesStatus &&
-                      <div style={{boxShadow:"1px 2px 3px black", padding: 20, marginBottom: 15}} >
-                        <p style={{margin: 0}}> <span style={{fontSize: 25}}>{s.name} {s.last_name}</span> &nbsp;&nbsp; <a href={"/profile/"+s.client_id} >Ver o perfil</a> </p>
-                        <p>Solicitado em: {s.created_at}</p>
+                    <div style={{ boxShadow: "1px 2px 3px black", padding: 20, marginBottom: 15 }} >
+                      <p style={{ margin: 0 }}> <span style={{ fontSize: 25 }}>{s.name} {s.last_name}</span> &nbsp;&nbsp; <a href={"/profile/" + s.client_id} >Ver o perfil</a> </p>
+                      <p>Solicitado em: {s.created_at}</p>
 
 
-                        {
-                          s.status == "Pendente" ?
-                            <div>
-                              <button className='buttonBase' onClick={()=>updateServices(s, "Em andamento")} style={{backgroundColor: "green", color: "white", border: "2px solid #112D4E", padding: "5px 25px", marginRight: 30}} >Aceitar</button>
-                              <button className='buttonBase' onClick={()=>updateServices(s, "Cancelado")} style={{backgroundColor: "red", color: "white", border: "none", padding: "5px 25px"}} >Recusar</button>
-                            </div>
+                      {
+                        s.status == "Pendente" ?
+                          <div>
+                            <button className='buttonBase' onClick={() => updateServices(s, "Em andamento")} style={{ backgroundColor: "green", color: "white", border: "2px solid #112D4E", padding: "5px 25px", marginRight: 30 }} >Aceitar</button>
+                            <button className='buttonBase' onClick={() => updateServices(s, "Cancelado")} style={{ backgroundColor: "red", color: "white", border: "none", padding: "5px 25px" }} >Recusar</button>
+                          </div>
                           :
-                            <button className='buttonBase' onClick={()=>updateServices(s, "Concluído")} style={{backgroundColor: "yellow", color: "black", border: "none", padding: "5px 25px", marginRight: 30}} >Encerrar serviço</button>
-                        }
-                      </div>
+                          <button className='buttonBase' onClick={() => updateServices(s, "Concluído")} style={{ backgroundColor: "yellow", color: "black", border: "none", padding: "5px 25px", marginRight: 30 }} >Encerrar serviço</button>
+                      }
+                    </div>
                   )
-                :
-                <p style={{boxShadow:"1px 2px 3px black", padding: 20}}>Nenhum serviço solicitado ainda...</p>
+                  :
+                  <p style={{ boxShadow: "1px 2px 3px black", padding: 20 }}>Nenhum serviço solicitado ainda...</p>
 
               }
 
-          </div>
-        )
-      }
+            </div>
+          )
+        }
 
+      </div>
     </div>
   );
 
