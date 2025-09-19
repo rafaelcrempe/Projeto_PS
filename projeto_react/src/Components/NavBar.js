@@ -10,7 +10,6 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 function NavBar({
 
 }) {
-  const hasSession = !!localStorage.getItem('supaSession');
 
   const nav = useNavigate();
 
@@ -24,6 +23,20 @@ function NavBar({
 
   useEffect(() => {
     readService()
+  }, [])
+
+ const [uid, setUid] = useState(null);
+
+  async function getId() {
+    const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
+
+    const userId = dataUser?.user?.id;
+
+    setUid(userId)
+  }
+
+  useEffect(() => {
+    getId()
   }, [])
 
   async function readService() {
@@ -65,11 +78,9 @@ function NavBar({
   }
 
   async function sair() {
-    if (hasSession != null) {
+    if (uid != null) {
       const { data: dataUser, error: errorUser } = await supabase.auth.signOut();
-      localStorage.removeItem('supaSession')
-      
-      
+           
       nav("/home", { replace: true });
       window.location.reload();
     }
@@ -79,7 +90,7 @@ function NavBar({
 
   return (
     <nav> {/* navegação */}
-      {hasSession ? (
+      {uid ? (
         <>  {/* tags vazia, equivale a uma DIV */}
 
           <div className="principal">
