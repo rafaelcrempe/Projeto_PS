@@ -194,6 +194,24 @@ function Profile() {
 
   }
 
+const formatPhoneNumber = (phone) => {
+  // Remove tudo que não é dígito
+  const cleaned = phone.replace(/\D/g, '');
+  
+  // Verifica se tem código do Brasil (55) e remove
+  const hasCountryCode = cleaned.length === 13 && cleaned.startsWith('55');
+  const numbers = hasCountryCode ? cleaned.slice(2) : cleaned;
+  
+  // Aplica a formatação para números com DDD + 9 dígitos
+  if (numbers.length === 11) {
+    return numbers.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+  }
+  
+  // Caso não corresponda ao padrão esperado, retorna o original
+  return phone;
+};
+
+
 
   //#endregion
 
@@ -242,7 +260,7 @@ function Profile() {
                         isServiceRequested == false ?
                           <button className='buttonBase' onClick={() => createServices(user)}>CONTATO</button>
                           :
-                          <span style={{ color: "#DBE2EF" }}> <span style={{ fontWeight: "bold" }}>SERVIÇO SOLICITADO!</span> <br /> Entre em contato com {user.name} pelo telefone {user.phone} para definir os detalhes!</span>
+                          <span style={{ color: "#DBE2EF" }}> <span style={{ fontWeight: "bold" }}>SERVIÇO SOLICITADO!</span> <br /> Entre em contato com {user.name} pelo telefone {formatPhoneNumber(user.phone)} para definir os detalhes!</span>
                       }
                     </p>
                   ) : (
