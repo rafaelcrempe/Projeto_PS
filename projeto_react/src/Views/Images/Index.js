@@ -101,7 +101,7 @@ function Images() { // aqui é JavaScript
         {images.map(
           i => (
             <div key={i.id}>
-              <img src={i.url}/>
+              <img width={250}  src={i.url}/>
               <br/>
               <Button variant="danger"  onClick={ ()=> delImage(i.id) } >Excluir</Button>
               <Button variant="primary" onClick={ () => nav(`/images/${i.id}`, {replace: true}) } >Ver</Button>
