@@ -1,0 +1,10 @@
+.teladeImagen{
+    display: block;
+    height: 80vh;
+}
+
+.teladeImagen div.lista{
+    display: flex;
+    max-width: 1080px;
+    overflow-x: scroll;
+}

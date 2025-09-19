@@ -79,7 +79,7 @@ function Upload({
       setUploading(false);
 
       if (onUploadSuccess) {
-        onUploadSuccess(publicData.publicUrl, filePath);
+        onUploadSuccess(publicData.publicUrl);
       }
 
     } catch (err) {

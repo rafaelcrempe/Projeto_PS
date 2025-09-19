@@ -200,7 +200,7 @@ function Profile() {
   //#region HTML
 
   return (
-    <div className='backgroundScreen' style={{flexDirection: "row", gap: 100}} >
+    <div className='backgroundScreenProfile' style={{flexDirection: "row", gap: 100}} >
 
       {/* Dados do perfil do usuário */}
       <div>
@@ -247,17 +247,32 @@ function Profile() {
         </div>
 
         <div> {/* Services: Marcos */}
-          {
+          {services?
             services.map(
               s => (
                   (s.status == "Concluído" && s.star != 0) &&
                     <Services key={s.id} servico={s} starRating={<StarRating rating={s.star} readonly={true} />} />
               )
+            ):(
+              <span>Nenhum serviço ainda</span>
             )
           }
         </div>
 
-        
+        <div className="cardImagem"> {/* Images área do Renan mexer */}
+          {images?
+          images.map(
+            i => (
+              <div key={i.id}>
+                <img src={i.url} />
+              </div>
+            )
+          ):(
+            <span>Nenhuma imagem ainda</span>
+          )
+
+        }
+        </div>
 
       </div>
 
