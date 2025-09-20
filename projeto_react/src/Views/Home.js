@@ -112,9 +112,9 @@ function Home() { // aqui é JavaScript
                 u => (
                   <div onClick={() => nav(`/profile/${u.auth_id}`, { replace: true })} className='cardLista' key={u.auth_id}>
                     <img src={u.url} width="60px" height="60px" /> <br/>{u.name} {u.last_name}<br />
-                    {logado == u.auth_id &&
+                    {/* {logado == u.auth_id &&
                       (<button variant="warning" onClick={() => nav(`/profile/edit/${u.auth_id}`, { replace: true })}>Editar</button>
-                      )}
+                      )} */}
                   </div>
                 )
               )}
