@@ -18,6 +18,8 @@
   }
 }
 
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -422,9 +424,10 @@ Footer {
 }
 
 .cardImagem {
-  width: 1000px;
+  width: 100%;
   display: flex;
   flex-direction: row;
+
   align-items: center;
 }
 
@@ -442,24 +445,92 @@ Footer {
   font-weight: 500;
   font-size: 25px;
 }
+
 .backgroundScreenProfile {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  align-items: stretch;
+  gap: 10px;
+  padding: 5px;
+  height: 100%;
+}
+
+@media (min-width: 780px) {
+  .tatu {
+    height: 750px;
+  }
+  .backgroundScreenProfile{
+    flex-direction: row;
+  }
+  
+}
+
+@media (max-width: 780px ) {
+  .backgroundScreenProfile > div:nth-child(2) {
+    order: -1;
+  }
+}
+
+.backgroundScreenProfile > div {
   border: 1px solid;
   border-color: #112D4E;
   background-color: #112D4E;
   padding: 20px;
   border-radius: 25px;
   align-items: center;
- 
   color: #DBE2EF;
+  height: 100%;
+}
 
+.backgroundScreenProfile > div:first-child {
+  overflow-y: auto;
  
 }
 
-.tatu {
-  height: 750px;
-  overflow-y: scroll;
+
+
+
+.botoesEditar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
+.botoesTopo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.conjuntoTopo {
+
+}
+
+.imagemPerfilProfile {
+
+}
+
+.dadosProfile > h2 {
+  margin-top: 30px;
+}
+
+.TopoProfile {
+  display: flex;
+  
+}
+
+.conjuntosMap {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.conjuntosMap  > div {
+  width: 25%;
+  margin-top: 10px;
+ 
+}
+
+.dadosProfile {
+  
+}

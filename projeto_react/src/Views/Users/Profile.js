@@ -194,22 +194,22 @@ function Profile() {
 
   }
 
-const formatPhoneNumber = (phone) => {
-  // Remove tudo que não é dígito
-  const cleaned = phone.replace(/\D/g, '');
-  
-  // Verifica se tem código do Brasil (55) e remove
-  const hasCountryCode = cleaned.length === 13 && cleaned.startsWith('55');
-  const numbers = hasCountryCode ? cleaned.slice(2) : cleaned;
-  
-  // Aplica a formatação para números com DDD + 9 dígitos
-  if (numbers.length === 11) {
-    return numbers.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-  }
-  
-  // Caso não corresponda ao padrão esperado, retorna o original
-  return phone;
-};
+  const formatPhoneNumber = (phone) => {
+    // Remove tudo que não é dígito
+    const cleaned = phone.replace(/\D/g, '');
+
+    // Verifica se tem código do Brasil (55) e remove
+    const hasCountryCode = cleaned.length === 13 && cleaned.startsWith('55');
+    const numbers = hasCountryCode ? cleaned.slice(2) : cleaned;
+
+    // Aplica a formatação para números com DDD + 9 dígitos
+    if (numbers.length === 11) {
+      return numbers.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    }
+
+    // Caso não corresponda ao padrão esperado, retorna o original
+    return phone;
+  };
 
 
 
@@ -219,93 +219,107 @@ const formatPhoneNumber = (phone) => {
 
   return (
     <div className='tatu'>
-      <div className='backgroundScreenProfile' style={{ flexDirection: "row", gap: 100 }} >
+      <div className='backgroundScreenProfile' >
 
         {/* Dados do perfil do usuário */}
-        <div>
+        <div className='dadosProfile' >
 
           <div> {/* User: área do Rafael mexer */}
 
-            <img className='profilePicture' src={user.url} />
-            <h1 style={{ width: 500 }}>{user.name.toUpperCase()} {user.last_name.toUpperCase()}</h1>
-            <div >
-              <span className='exibFuncao'>{user.funcao.toUpperCase()}</span>
+            <div className='TopoProfile' >
+              <div className='imagemPerfilProfile' >
+                <img className='profilePicture' src={user.url} />
+              </div>
+              <div className='conjuntoTopo' >
+                <h1 style={{ width: 500 }}>{user.name.toUpperCase()} {user.last_name.toUpperCase()}</h1>
 
+                <div className='botoesTopo' >
+                  <span className='exibFuncao'>{user.funcao.toUpperCase()}</span>
 
-              {
-                isSelfUser && (
-                  <div>
-                    {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                    <Link to={`/profile/edit/${id}`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
+                  <div className='botoesEditar' >
+                    {
+                      isSelfUser && (
+                        <div>
+                          {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
+                          <Link to={`/profile/edit/${id}`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
+                        </div>
+                      )
+                    }{
+                      isSelfUser && (
+                        <div>
+                          {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
+                          <Link to={`/images`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar imagens</Link>
+                        </div>
+                      )
+                    }
                   </div>
-                )
-              }{
-                isSelfUser && (
-                  <div>
-                    {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                    <Link to={`/images`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar imagens</Link>
-                  </div>
-                )
-              }
-
-              {
-                isLogged == true ?
-                  !isSelfUser && (
-                    // Aqui é o que aparece se o usuário estiver logado e puder contratar o serviço
-                    <p>
-                      {
-
-
-
-                        isServiceRequested == false ?
-                          <button className='buttonBase' onClick={() => createServices(user)}>CONTATO</button>
-                          :
-                          <span style={{ color: "#DBE2EF" }}> <span style={{ fontWeight: "bold" }}>SERVIÇO SOLICITADO!</span> <br /> Entre em contato com {user.name} pelo telefone {formatPhoneNumber(user.phone)} para definir os detalhes!</span>
-                      }
-                    </p>
-                  ) : (
-                    // Mensagem se o usuário não estiver logado
-                    <p><a href="/login">Clique aqui</a> para entrar com sua conta e visualizar</p>
-                  )
-              }
-
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div> {/* Services: Marcos */}
-            {services ?
-              services.map(
-                s => (
-                  (s.status == "Concluído" && s.star != 0) &&
-                  <Services key={s.id} servico={s} starRating={<StarRating rating={s.star} readonly={true} />} />
+            {
+              isLogged == true ?
+                !isSelfUser && (
+                  // Aqui é o que aparece se o usuário estiver logado e puder contratar o serviço
+                  <p>
+                    {
+
+
+
+                      isServiceRequested == false ?
+                        <button className='buttonBase' onClick={() => createServices(user)}>CONTATO</button>
+                        :
+                        <span style={{ color: "#DBE2EF" }}> <span style={{ fontWeight: "bold" }}>SERVIÇO SOLICITADO!</span> <br /> Entre em contato com {user.name} pelo telefone {formatPhoneNumber(user.phone)} para definir os detalhes!</span>
+                    }
+                  </p>
+                ) : (
+                  // Mensagem se o usuário não estiver logado
+                  <p><a href="/login">Clique aqui</a> para entrar com sua conta e visualizar</p>
                 )
-              ) : (
-                <span>Nenhum serviço ainda</span>
-              )
             }
-          </div>
 
-          <div className="cardImagem"> {/* Images área do Renan mexer */}
-            {images ?
-              images.map(
-                i => (
-                  <div key={i.id}>
-                    <img src={i.url} />
-                  </div>
+
+          </div>
+<h2>Imagens</h2>
+          <section className="cardImagem"> {/* Images área do Renan mexer */}
+            
+              {images ?
+                images.map(
+                  i => (
+                    <div key={i.id}>
+                      <img src={i.url} />
+                    </div>
+                  )
+                ) : (
+                  <span>Nenhuma imagem ainda</span>
                 )
-              ) : (
-                <span>Nenhuma imagem ainda</span>
-              )
 
-            }
-          </div>
+              }
+            </section>
+<h2>Serviços</h2>
+          <section className='conjuntosMap' >
+          
+              {services ?
+                services.map(
+                  s => (
+                    (s.status == "Concluído" && s.star != 0) &&
+                    <Services key={s.id} servico={s} starRating={<StarRating rating={s.star} readonly={true} />} />
+                  )
+                ) : (
+                  <span>Nenhum serviço ainda</span>
+                )
+              }
+   
+
+            
+          </section>
 
         </div>
 
         {/* Serviços pendentes para ser aceitos */}
         {
           isSelfUser && user.funcao != 'cliente' && (
-            <div style={{ alignSelf: "start" }}>
+            <div >
               <h2>Solicitações</h2>
               <p>Acompanhe suas solicitações de serviços por aqui:</p>
 
