@@ -22,8 +22,15 @@ function NavBar({
   const [userId, setUserId] = useState(null)
 
   useEffect(() => {
-    readService()
-  }, [])
+  const interval = setInterval(() => {
+    readService();
+  }, 30000); // verifica a cada 30 segundos
+
+  readService(); // dispara também na primeira vez
+
+  return () => clearInterval(interval);
+}, []);
+
 
  const [uid, setUid] = useState(null);
 
@@ -48,7 +55,7 @@ function NavBar({
     setUserId(dataUser.user.id);
 
     const { data: dataServices, error } = await supabase
-      .from('view_clients_by_professional')
+      .from('services')
       .select('*')
       .match({ client_id: dataUser.user.id, status: "Concluído", star: 0 });
 
@@ -103,7 +110,7 @@ function NavBar({
 
 
           {
-            showRating == true &&
+            showRating &&
             <div style={{ width: 400, backgroundColor: "#112d4e", position: "absolute", margin: "auto", top: 100, left: 0, right: 0, padding: 50, textAlign: "center", color: "#dbe2ef", border: "#dbe2ef 2px solid", borderRadius: "25px" }}>
               <h2>Avaliação</h2>
               <p>Você realizou o serviço recente.<br />Como foi a sua experiência?</p>

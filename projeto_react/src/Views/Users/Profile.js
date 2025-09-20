@@ -123,7 +123,7 @@ function Profile() {
   async function readServices() {
 
     const { data: dataServices, error } = await supabase
-      .from('view_clients_by_professional')
+      .from('services')
       .select('*')
       .eq('professional_id', id);
 
