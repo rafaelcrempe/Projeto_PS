@@ -241,14 +241,14 @@ function Profile() {
                       isSelfUser && (
                         <div>
                           {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                          <Link to={`/profile/edit/${id}`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Alterar Dados</Link>
+                          <Link to={`/profile/edit/${id}`} ><button className='buttonBase'><i class="fa-solid fa-pen-to-square"></i> Alterar Dados</button></Link>
                         </div>
                       )
                     }{
                       isSelfUser && (
                         <div>
                           {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                          <Link to={`/images`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar galeria</Link>
+                          <Link to={`/images`} ><button className='buttonBase'><i class="fa-solid fa-pen-to-square"></i> Editar galeria</button></Link>
                         </div>
                       )
                     }

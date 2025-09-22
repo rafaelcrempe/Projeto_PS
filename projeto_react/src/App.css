@@ -265,9 +265,10 @@ nav a:has(img.logoNavBar):hover {
 }
 
 .exibFuncao {
-  background-color: #DBE2EF;
-  color: #112D4E;
+  background-color: #3F72AF;
+  color: #F9F7F7;
   border-radius: 5px;
+  border: #F9F7F7 2px solid;
   padding: 7px;
   font-weight: bold;
   gap: 5px;
