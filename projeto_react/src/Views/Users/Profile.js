@@ -280,38 +280,40 @@ function Profile() {
 
 
           </div>
-<h2>Galeria de Imagens</h2>
+          <h2>Galeria de Imagens</h2>
+          <hr/>
           <section className="cardImagem"> {/* Images área do Renan mexer */}
-            
-              {images ?
-                images.map(
-                  i => (
-                    <div key={i.id}>
-                      <img src={i.url} />
-                    </div>
-                  )
-                ) : (
-                  <span>Nenhuma imagem ainda</span>
-                )
 
-              }
-            </section>
-<h2>Serviços</h2>
+            {images ?
+              images.map(
+                i => (
+                  <div key={i.id}>
+                    <img src={i.url} />
+                  </div>
+                )
+              ) : (
+                <span>Nenhuma imagem ainda</span>
+              )
+
+            }
+          </section>
+          <h2>Serviços</h2>          
+          <hr/>
           <section className='conjuntosMap' >
-          
-              {services ?
-                services.map(
-                  s => (
-                    (s.status == "Concluído" && s.star != 0) &&
-                    <Services key={s.id} servico={s} starRating={<StarRating rating={s.star} readonly={true} />} />
-                  )
-                ) : (
-                  <span>Nenhum serviço ainda</span>
-                )
-              }
-   
 
-            
+            {services ?
+              services.map(
+                s => (
+                  (s.status == "Concluído" && s.star != 0) &&
+                  <Services key={s.id} servico={s} starRating={<StarRating rating={s.star} readonly={true} />} />
+                )
+              ) : (
+                <span>Nenhum serviço ainda</span>
+              )
+            }
+
+
+
           </section>
 
         </div>
