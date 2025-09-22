@@ -277,7 +277,8 @@ nav a:has(img.logoNavBar):hover {
 }
 
 .profilePicture {
-  border-radius: 25px;
+  border-radius: 25px;  
+  border: #F9F7F7 5px solid;
   width: 150px;
   margin: 15px;
 }
@@ -540,6 +541,8 @@ Footer {
 .conjuntosMap  > div {
   width: 25%;
   margin-top: 10px;
+  margin-left: 5px;
+  border: #F9F7F7 2px solid;
  
 }
 
