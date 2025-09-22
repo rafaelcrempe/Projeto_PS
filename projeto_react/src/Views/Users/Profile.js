@@ -241,14 +241,14 @@ function Profile() {
                       isSelfUser && (
                         <div>
                           {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                          <Link to={`/profile/edit/${id}`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar</Link>
+                          <Link to={`/profile/edit/${id}`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Alterar Dados</Link>
                         </div>
                       )
                     }{
                       isSelfUser && (
                         <div>
                           {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                          <Link to={`/images`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar imagens</Link>
+                          <Link to={`/images`} className='exibFuncao' ><i class="fa-solid fa-pen-to-square"></i> Editar galeria</Link>
                         </div>
                       )
                     }
@@ -280,7 +280,7 @@ function Profile() {
 
 
           </div>
-<h2>Imagens</h2>
+<h2>Galeria de Imagens</h2>
           <section className="cardImagem"> {/* Images área do Renan mexer */}
             
               {images ?
