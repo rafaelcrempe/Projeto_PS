@@ -274,7 +274,7 @@ function Profile() {
                   </p>
                 ) : (
                   // Mensagem se o usuário não estiver logado
-                  <p><a href="/login">Clique aqui</a> para entrar com sua conta e visualizar</p>
+                  <p><Link to="/login">Clique aqui</Link> para entrar com sua conta e visualizar</p>
                 )
             }
 
