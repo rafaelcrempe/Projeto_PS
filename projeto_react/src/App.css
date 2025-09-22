@@ -277,6 +277,8 @@ nav a:has(img.logoNavBar):hover {
 
 .profilePicture {
   border-radius: 25px;
+  width: 150px;
+  margin: 15px;
 }
 
 .login {
@@ -500,6 +502,9 @@ Footer {
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 15px;
+  justify-content: space-around;
+  
 }
 
 .conjuntoTopo {
