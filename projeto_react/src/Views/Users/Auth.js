@@ -64,7 +64,7 @@ function Auth() { // aqui é JavaScript
       )
 
       if(localStorage.getItem("paginaSalva")){
-        window.location.href = localStorage.getItem("paginaSalva")
+        nav(localStorage.getItem("paginaSalva"), {replace: true})
       }else{
         window.location.reload();
       }

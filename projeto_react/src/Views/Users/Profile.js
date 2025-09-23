@@ -107,6 +107,8 @@ function Profile() {
 
     const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
 
+    console.log(dataUser.user)
+
     if (dataUser.user) {
       setLoggedUser(dataUser.user);
       setIsLogged(true)
@@ -334,7 +336,7 @@ function Profile() {
                   services.map(s =>
                     s.status == showServicesStatus &&
                     <div style={{ boxShadow: "1px 2px 3px black", padding: 20, marginBottom: 15 }} >
-                      <p style={{ margin: 0 }}> <span style={{ fontSize: 25 }}>{s.name} {s.last_name}</span> &nbsp;&nbsp; <a href={"/profile/" + s.client_id} >Ver o perfil</a> </p>
+                      <p style={{ margin: 0 }}> <span style={{ fontSize: 25 }}>{s.name} {s.last_name}</span> &nbsp;&nbsp; <Link to={"/profile/" + s.client_id} >Ver o perfil</Link> </p>
                       <p>Solicitado em: {s.created_at}</p>
 
 
