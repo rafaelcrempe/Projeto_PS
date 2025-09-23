@@ -58,15 +58,16 @@ function Auth() { // aqui é JavaScript
       localStorage.setItem('supaSession', data.session) //guardar um item no armazenamento local
 
 
-      setTimeout(
-        nav('/home', { replace: true }),
-        5000
-      )
 
-      if(localStorage.getItem("paginaSalva")){
-        nav(localStorage.getItem("paginaSalva"), {replace: true})
-      }else{
+
+      if (localStorage.getItem("paginaSalva")) {
+        nav(localStorage.getItem("paginaSalva"), { replace: true })
+      } else {
         window.location.reload();
+        setTimeout(
+          nav('/home', { replace: true }),
+          5000
+        )
       }
 
     } catch (err) {
@@ -198,10 +199,10 @@ function Auth() { // aqui é JavaScript
                   placeholder="CPF"
                   onChange={setUser}
                   objeto={user}
-                  campo='cpf' 
+                  campo='cpf'
                   minLength={11}
                   maxLength={11}
-                  />
+                />
               </div>
 
               <div className='formDisplay'>
@@ -230,13 +231,13 @@ function Auth() { // aqui é JavaScript
                   placeholder="Senha"
                   onChange={setUser}
                   objeto={user}
-                  campo='password'                  
+                  campo='password'
                   minLength={6}
                 />
 
                 <label>
                   Confirmar Senha: <br />
-                  <input 
+                  <input
                     className={erroSenha ? "inputErro" : "input"}
                     type="password"
                     placeholder="Confirmar Senha"
@@ -288,7 +289,7 @@ function Auth() { // aqui é JavaScript
                   placeholder="CPF"
                   onChange={setUser}
                   objeto={user}
-                  campo='cpf' 
+                  campo='cpf'
                   minLength={11}
                   maxLength={11} />
               </div>

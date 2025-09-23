@@ -22,13 +22,15 @@ function NavBar({
   const [userId, setUserId] = useState(null)
 
   useEffect(() => {
-  const interval = setInterval(() => {
-    readService();
-  }, 30000); // verifica a cada 30 segundos
+    const interval = setInterval(() => {
+      readService();
+    }, 30000); // verifica a cada 30 segundos
 
-  readService(); // dispara também na primeira vez
+    readService(); // dispara também na primeira vez
 
-  return () => clearInterval(interval);
+    getId();
+
+    return () => clearInterval(interval);
 }, []);
 
 
@@ -41,10 +43,6 @@ function NavBar({
 
     setUid(userId)
   }
-
-  useEffect(() => {
-    getId()
-  }, [])
 
   async function readService() {
 
@@ -87,9 +85,11 @@ function NavBar({
   async function sair() {
     if (uid != null) {
       const { data: dataUser, error: errorUser } = await supabase.auth.signOut();
+      
+      setUid(null);
            
-      nav("/home", { replace: true });
       window.location.reload();
+      nav("/home", { replace: true });
     }
   }
 
@@ -97,7 +97,7 @@ function NavBar({
 
   return (
     <nav> {/* navegação */}
-      {uid ? (
+      {uid != null ? (
         <>  {/* tags vazia, equivale a uma DIV */}
 
           <div className="principal">
