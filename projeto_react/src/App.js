@@ -68,45 +68,40 @@ function App() { // aqui é JavaScript
     <Router>
       <NavBar />
       <main className="App">
-        
-
-
-
-          <Routes>
-            {/* Rotas Públicas */}
-            <Route path='/home' element={< Home />} />
-            <Route path='/login' element={< Auth />} />
-            <Route path='/profile/:id' element={< Profile />} />
-            <Route path='/images' element={< Images />} />
-            <Route path='/professionals' element={< Professionals />} />
-            <Route path='/quemsomos' element={< QuemSomos />} />
-
-
-
-            <Route element={<PrivateSession />}>
-              {/* Rotas Logado */}
-
-
-              <Route path='/clients' element={< Clients />} />
-              <Route path='/services/edit/:id' element={< ServicesEdit />} />
-              <Route path='/services/:id' element={< ServicesShow />} />
-              <Route path='/services' element={< Services />} />
-              <Route path='/users' element={< Users />} />
-              <Route path='/images/edit/:id' element={< ImagesEdit />} />
-              <Route path='/images/:id' element={< ImagesShow />} />
-              <Route path='/images' element={< Images />} />
-              <Route path='/images:id' element={< ImagesShow />} />
-              <Route path='/profile/edit/:id' element={< ProfileEdit />} />
 
 
 
 
-            </Route>
-            <Route path='/' element={< Navigate to='/home' />} />
-          </Routes>
+        <Routes>
+          {/* Rotas Públicas */}
+          <Route path='/home' element={<Home />} />
+          <Route path='/login' element={<Auth />} />
+          <Route path='/profile/:id' element={<Profile />} />
+          <Route path='/professionals' element={<Professionals />} />
+          <Route path='/quemsomos' element={<QuemSomos />} />
+
+          <Route element={<PrivateSession />}>
+            {/* Rotas Logado */}
+            <Route path='/clients' element={<Clients />} />
+            <Route path='/services/edit/:id' element={<ServicesEdit />} />
+            <Route path='/services/:id' element={<ServicesShow />} />
+            <Route path='/services' element={<Services />} />
+            <Route path='/users' element={<Users />} />
+
+            {/* Rotas de imagens corrigidas */}
+            <Route path='/images' element={<Images />} />
+            <Route path='/images/:id' element={<ImagesShow />} />
+            <Route path='/images/edit/:id' element={<ImagesEdit />} />
+
+            <Route path='/profile/edit/:id' element={<ProfileEdit />} />
+          </Route>
+
+          {/* Rota raiz */}
+          <Route index element={<Navigate to='/home' replace />} />
+        </Routes>
 
 
-        
+
       </main>
       <Footer />
     </Router>
