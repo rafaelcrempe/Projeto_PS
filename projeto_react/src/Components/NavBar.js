@@ -1,11 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
-
-const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co";
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8";
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from "../supabaseClient";
 
 function NavBar() {
   const nav = useNavigate();
@@ -110,17 +105,20 @@ function NavBar() {
             <div
               style={{
                 width: 400,
+                maxWidth: "90%",
+                boxSizing: "border-box",
                 backgroundColor: "#112d4e",
                 position: "absolute",
                 margin: "auto",
                 top: 100,
                 left: 0,
                 right: 0,
-                padding: 50,
+                padding: "30px 20px",
                 textAlign: "center",
                 color: "#dbe2ef",
                 border: "#dbe2ef 2px solid",
                 borderRadius: "25px",
+                zIndex: 1001,
               }}
             >
               <h2>Avaliação</h2>

@@ -1,10 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
-  min-height: calc(100vh - 67px);
-  align-items: center;
+  min-height: 100vh;
+  padding-top: 75px;
+  padding-bottom: 60px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   background-color: #DBE2EF;
   font-family: "Open Sans", sans-serif;
+  width: 100%;
 }
 
 .App-logo {
@@ -85,6 +93,26 @@ button.inactive {
   background-color: #112D4E;
   color: #DBE2EF;
   border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.buttonSair {
+  background-color: transparent;
+  color: #DBE2EF;
+  border: none;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  font-size: inherit;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buttonSair:hover {
+  background-color: #DBE2EF;
+  color: #112D4E;
 }
 
 .buttonEdit {
@@ -121,7 +149,18 @@ button.inactive {
 .formDisplay {
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .formDisplay {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
 }
 
 .tipoCadastro {
@@ -151,23 +190,24 @@ nav .principal {
 nav {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 50px;
+  min-height: 55px;
+  height: auto;
   background-color: #112D4E;
-  padding: 12px 24px;
-  display: flex;
+  padding: 8px 16px;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   z-index: 1000;
   justify-content: space-between;
+  box-sizing: border-box;
 }
 
 /* Estilo dos links */
 nav a {
-  color: #DBE2EF;
   color: #DBE2EF;
   text-decoration: none;
   font-weight: bold;
@@ -196,11 +236,10 @@ nav a:has(img.logoNavBar):hover {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  height: 0%;
-  height: 0%;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 /*Card central*/
@@ -215,22 +254,29 @@ nav a:has(img.logoNavBar):hover {
   padding: 20px;
   border-radius: 25px;
   align-items: center;
-  margin-bottom: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 10px auto;
   color: #DBE2EF;
+  width: 95%;
+  max-width: 1000px;
+  box-sizing: border-box;
 }
 
 .homeProfessional {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .cardProfissao {
-  width: 200px;
+  width: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 }
 
 .cardProfissao img {
@@ -321,22 +367,25 @@ nav a:has(img.logoNavBar):hover {
   border: 1px solid;
   border-color: #112D4E;
   background-color: #112D4E;
-  padding: 50px;
+  padding: clamp(20px, 4vw, 50px);
   border-radius: 25px;
   align-items: center;
-  margin-bottom: 5px;
-  margin-left: 0;
+  margin: 20px auto;
   color: #DBE2EF;
+  width: 95%;
   max-width: 800px;
+  box-sizing: border-box;
 }
 
 .backgroundQS div {
-  font-size: 25px;
+  font-size: clamp(16px, 2.2vw, 25px);
 }
 
 .backgroundQS img {
+  max-width: 100%;
   width: 500px;
-  margin-bottom: 50px;
+  height: auto;
+  margin-bottom: 30px;
 }
 
 
@@ -350,7 +399,6 @@ nav a:has(img.logoNavBar):hover {
   padding: 12px 20px;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   opacity: 0;
   transform: translateY(-20px);
   animation: toastFadeInOut 3s forwards;
@@ -361,7 +409,9 @@ nav a:has(img.logoNavBar):hover {
   border: 3px solid red;
   background-color: #F9F7F7;
   border-radius: 5px;
-  width: 300px;
+  width: 100%;
+  max-width: 350px;
+  box-sizing: border-box;
 }
 
 .inputErroTexto {
@@ -372,7 +422,9 @@ nav a:has(img.logoNavBar):hover {
   border: 5px solid #F9F7F7;
   background-color: #F9F7F7;
   border-radius: 5px;
-  width: 300px;
+  width: 100%;
+  max-width: 350px;
+  box-sizing: border-box;
 }
 
 
@@ -380,24 +432,28 @@ Input {
   border: 5px solid #F9F7F7;
   background-color: #F9F7F7;
   border-radius: 5px;
-  width: 300px;
+  width: 100%;
+  max-width: 350px;
+  box-sizing: border-box;
 }
 
 Select {
   border: 5px solid #F9F7F7;
   background-color: #F9F7F7;
   border-radius: 5px;
-
+  width: 100%;
+  max-width: 350px;
+  box-sizing: border-box;
 }
 
 Form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
 }
 
-Footer {
-
+Footer, footer {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -405,7 +461,8 @@ Footer {
   background: #112D4E;
   color: #DBE2EF;
   text-align: center;
-  padding: 10px 0 0;
+  padding: 10px 0;
+  z-index: 1000;
 }
 
 
@@ -431,19 +488,22 @@ Footer {
   width: 100%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  margin-left: 5px;
-  gap: 3px;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .cardImagem img {
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .cardImagem img:hover {
-  transform: scale(2.5);
-  transition: 0.5s ease-in-out;
+  transform: scale(1.3);
+  transition: 0.3s ease-in-out;
 }
 
 .cardImagem label {
@@ -451,28 +511,42 @@ Footer {
   font-size: 25px;
 }
 
+.tatu {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .backgroundScreenProfile {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 10px;
-  padding: 5px;
-  height: 100%;
+  gap: 15px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 780px) {
-  .tatu {
-    height: 750px;
-  }
-  .backgroundScreenProfile{
+  .backgroundScreenProfile {
     flex-direction: row;
   }
-  
 }
 
-@media (max-width: 780px ) {
+@media (max-width: 780px) {
   .backgroundScreenProfile > div:nth-child(2) {
     order: -1;
+  }
+  .TopoProfile {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .botoesTopo {
+    flex-direction: column;
+  }
+  .botoesEditar {
+    flex-direction: column;
   }
 }
 
@@ -484,16 +558,12 @@ Footer {
   border-radius: 25px;
   align-items: center;
   color: #DBE2EF;
-  height: 100%;
+  flex: 1;
 }
 
 .backgroundScreenProfile > div:first-child {
   overflow-y: auto;
- 
 }
-
-
-
 
 .botoesEditar {
   display: flex;
@@ -512,7 +582,7 @@ Footer {
   align-items: center;
   gap: 15px;
   justify-content: space-around;
-  
+  flex-wrap: wrap;
 }
 
 .conjuntoTopo {
@@ -529,23 +599,28 @@ Footer {
 
 .TopoProfile {
   display: flex;
-  
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .conjuntosMap {
   display: flex;
   flex-wrap: wrap;
-
+  gap: 15px;
+  width: 100%;
 }
 
-.conjuntosMap  > div {
-  width: 25%;
+.conjuntosMap > div {
+  flex: 1 1 200px;
+  min-width: 220px;
+  max-width: 100%;
   margin-top: 10px;
-  margin-left: 5px;
   border: #F9F7F7 2px solid;
- 
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .dadosProfile {
-  
+  width: 100%;
 }

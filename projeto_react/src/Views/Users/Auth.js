@@ -1,16 +1,11 @@
 // import logo from './logo.svg';
 // import './App.css';
-import { useState } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
-import { createClient } from "@supabase/supabase-js";
+import { useState } from 'react';
+import { supabase } from '../../supabaseClient';
 import { useNavigate } from 'react-router-dom';
-import { Input } from '../../Components/Input'
+import { Input } from '../../Components/Input';
 import { Select } from '../../Components/Select';
 import { Form } from '../../Components/Form';
-
-
-const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8"
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 
 function Auth() { // aqui é JavaScript
@@ -60,14 +55,12 @@ function Auth() { // aqui é JavaScript
 
 
 
-      if (localStorage.getItem("paginaSalva")) {
-        nav(localStorage.getItem("paginaSalva"), { replace: true })
+      const savedPage = localStorage.getItem("paginaSalva");
+      if (savedPage) {
+        localStorage.removeItem("paginaSalva");
+        nav(savedPage, { replace: true });
       } else {
-        window.location.reload();
-        setTimeout(
-          nav('/home', { replace: true }),
-          5000
-        )
+        nav('/home', { replace: true });
       }
 
     } catch (err) {
@@ -138,8 +131,8 @@ function Auth() { // aqui é JavaScript
                 <button className={isProfessional ? 'inactive' : 'buttonBase'} onClick={() => {
                   setIsProfessional(false);
                   setUser({ ...user, funcao: "cliente" })
-                }}><i class="fa-solid fa-user" /> CLIENTE</button>
-                <button className={isProfessional ? 'buttonBase' : 'inactive'} onClick={() => setIsProfessional(true)}> <i class="fa-solid fa-screwdriver-wrench" /> PROFISSIONAL</button>
+                }}><i className="fa-solid fa-user" /> CLIENTE</button>
+                <button className={isProfessional ? 'buttonBase' : 'inactive'} onClick={() => setIsProfessional(true)}> <i className="fa-solid fa-screwdriver-wrench" /> PROFISSIONAL</button>
               </div>
             </div>
             )
@@ -366,7 +359,7 @@ function Auth() { // aqui é JavaScript
           )}
 
 
-          <a className="alterarLoginCadastro" onClick={() => setIsLogin(!isLogin)}>
+          <a className="alterarLoginCadastro" href="#" onClick={(e) => { e.preventDefault(); setIsLogin(!isLogin); }}>
             {isLogin && ("Cadastre-se")}
             {!isLogin && ("Voltar para o login")}
           </a>

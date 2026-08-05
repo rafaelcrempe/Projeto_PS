@@ -1,15 +1,8 @@
 // import logo from './logo.svg';
 // import './App.css';
-import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
-import { createClient } from "@supabase/supabase-js";
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import Professionals from './Views/Users/Professionals.js';
-
-
-const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8"
-const supabase = createClient(supabaseUrl, supabaseKey);
-
+import { supabase } from '../supabaseClient';
 
 function Home() { // aqui é JavaScript
 
@@ -19,50 +12,44 @@ function Home() { // aqui é JavaScript
   const [logado, setLogado] = useState(-1)
   const [funcao, setFuncao] = useState('');
 
-
-
   useEffect(() => {
     isLogado()
-  })
+  }, [])
 
   async function isLogado() {
     const { data: dataUser, error: errorUser } = await supabase.auth.getUser();
-
     const uid = dataUser?.user?.id;
-
     setLogado(uid);
   }
 
   async function readProfessionals(filtro) {
-
     if (filtro) {
-
       let { data: dataProfessionals, error } = await supabase
         .from('users')
         .select('*')
         .eq('funcao', filtro);
 
-      setProfessionals(dataProfessionals);
-
-      setFuncao(dataProfessionals[0].funcao)
-
-
-
+      if (dataProfessionals && dataProfessionals.length > 0) {
+        setProfessionals(dataProfessionals);
+        setFuncao(dataProfessionals[0].funcao || filtro);
+      } else {
+        setProfessionals([]);
+        setFuncao(filtro);
+      }
     } else {
-
       let { data: dataProfessionals, error } = await supabase
         .from('users')
         .select('*');
 
-
-      setProfessionals(dataProfessionals);
-
-      setFuncao(dataProfessionals[0].funcao)
-
+      if (dataProfessionals && dataProfessionals.length > 0) {
+        setProfessionals(dataProfessionals);
+        setFuncao(dataProfessionals[0].funcao || '');
+      } else {
+        setProfessionals([]);
+        setFuncao('');
+      }
     }
     setIsFiltered(true);
-
-
   }
 
   return ( // Aqui é html
@@ -70,7 +57,7 @@ function Home() { // aqui é JavaScript
         {!isFiltered && (
           <>
             <div>
-              <img src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/texto_1.png' />
+              <img style={{ maxWidth: '100%', height: 'auto' }} src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/texto_1.png' alt="Ajuda Aqui" />
             </div>
 
             <div className='homeProfessional'>
@@ -103,7 +90,7 @@ function Home() { // aqui é JavaScript
         {isFiltered && (
           <div>
 
-            <button className='buttonVoltar' onClick={() => setIsFiltered(false)} ><i class="fa-solid fa-circle-left"></i></button>
+            <button className='buttonVoltar' onClick={() => setIsFiltered(false)} ><i className="fa-solid fa-circle-left"></i></button>
 
             <h2>{funcao.toUpperCase()}</h2>
 

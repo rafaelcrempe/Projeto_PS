@@ -1,15 +1,10 @@
 // import logo from './logo.svg';
 // import './App.css';
-import { useState, useEffect } from 'react'; //useState permite criar variável, em parceria com função, que faz alterações na tela quando essa variável é alterada
-//useEffect muda a tela quando entra ou atualiza a tela
-import { createClient } from "@supabase/supabase-js";
-import { data, Link, useNavigate, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Services from './Services';
-
-const supabaseUrl = "https://wvljndxyaidxngxzfmyc.supabase.co"
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bGpuZHh5YWlkeG5neHpmbXljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzNTA4NDUsImV4cCI6MjA2OTkyNjg0NX0.KYntjFPUrdxUWrSVdiE4XGmpSn_mRDrsZhEt3JukZB8"
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from '../../supabaseClient';
 
 // Componente das estrelinhas. Ele é separado do perfil.
 const StarRating = ({ rating, onRatingChange, readonly = false }) => {
@@ -91,15 +86,25 @@ function Profile() {
 
   // Busca os dados do perfil do usuário que está sendo visitado/visualizado
   async function showUser(id) {
-
-    let { data: dataUser, error } = await supabase
+    if (!id) return;
+    let { data: dataUser } = await supabase
       .from('users')
       .select('*')
       .eq('auth_id', id)
-      .single();
+      .maybeSingle();
 
-    setUser(dataUser);
+    if (!dataUser) {
+      let { data: dataById } = await supabase
+        .from('users')
+        .select('*')
+        .eq('id', id)
+        .maybeSingle();
+      dataUser = dataById;
+    }
 
+    if (dataUser) {
+      setUser(dataUser);
+    }
   }
 
   // Busca os dados do usuário que está logado agora
@@ -233,7 +238,7 @@ function Profile() {
                 <img className='profilePicture' src={user.url} />
               </div>
               <div className='conjuntoTopo' >
-                <h1 style={{ width: 500 }}>{user.name.toUpperCase()} {user.last_name.toUpperCase()}</h1>
+                <h1 style={{ maxWidth: "100%", wordBreak: "break-word" }}>{user.name.toUpperCase()} {user.last_name.toUpperCase()}</h1>
 
                 <div className='botoesTopo' >
                   <span className='exibFuncao'>{user.funcao.toUpperCase()}</span>
@@ -243,14 +248,14 @@ function Profile() {
                       isSelfUser && (
                         <div>
                           {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                          <Link to={`/profile/edit/${id}`} ><button className='buttonBase'><i class="fa-solid fa-pen-to-square"></i> Alterar Dados</button></Link>
+                          <Link to={`/profile/edit/${id}`} ><button className='buttonBase'><i className="fa-solid fa-pen-to-square"></i> Alterar Dados</button></Link>
                         </div>
                       )
                     }{
                       isSelfUser && (
                         <div>
                           {/* Coloque nesta DIV todos os dados que só o próprio usuário logado pode ver */}
-                          <Link to={`/images`} ><button className='buttonBase'><i class="fa-solid fa-pen-to-square"></i> Editar galeria</button></Link>
+                          <Link to={`/images`} ><button className='buttonBase'><i className="fa-solid fa-pen-to-square"></i> Editar galeria</button></Link>
                         </div>
                       )
                     }

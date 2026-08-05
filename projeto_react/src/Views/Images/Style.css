@@ -1,10 +1,20 @@
-.teladeImagen{
-    display: block;
-    height: 80vh;
+.teladeImagen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 140px);
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 10px;
 }
 
-.teladeImagen div.lista{
+.teladeImagen div.lista {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
     max-width: 1080px;
-    overflow-x: scroll;
+    width: 100%;
+    margin-top: 20px;
 }

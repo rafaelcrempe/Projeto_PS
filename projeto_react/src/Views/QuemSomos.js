@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { createClient } from "@supabase/supabase-js";
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../Components/NavBar';
 import Footer from '../Components/Footer';
@@ -9,7 +8,7 @@ export default function QuemSomos() {
     return (
         <>
             <div className='backgroundQS'>
-                <img src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/quemsomos.png' />
+                <img style={{ maxWidth: '100%', height: 'auto' }} src='https://wvljndxyaidxngxzfmyc.supabase.co/storage/v1/object/public/logos/quemsomos.png' alt="Quem Somos" />
 
                 <div>
                     O <strong>Ajuda Aqui!</strong> foi idealizado por <i><b>Rafael Crempe, Marcos Curila e Renan Victorino</b></i> como projeto integrador
