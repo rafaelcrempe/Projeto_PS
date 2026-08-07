@@ -1,4 +1,4 @@
-function Button ({
+export default function Button ({
     className,
     creatImage,
     onSubmit,

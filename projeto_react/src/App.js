@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Clients from './Views/Users/Clients'
 import Images from './Views/Images/Index';
